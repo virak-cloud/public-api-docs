@@ -21,14 +21,14 @@ jobs:
 
       - name: Install OpenAPI Generator
         run: |
-          bun i -g @openapitools/openapi-generator-cli
+          wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.14.0/openapi-generator-cli-7.14.0.jar -O openapi-generator-cli.jar
           echo "OpenAPI Generator installed."
 
       - name: Generate SDKs
         run: |
           languages=("python" "java" "javascript" "typescript" "csharp")
           for lang in "${languages[@]}"; do
-            openapi-generator-cli generate \
+            java -jar openapi-generator-cli.jar generate \
               -i openapi.yaml \  # Path to your OpenAPI spec file
               -g $lang \         # Language for SDK generation
               -o ./generated-sdk/$lang  # Output directory for the generated SDK
