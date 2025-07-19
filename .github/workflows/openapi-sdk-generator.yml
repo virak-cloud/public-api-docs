@@ -20,6 +20,7 @@ jobs:
       - name: Set up JDK (for OpenAPI Generator)
         uses: actions/setup-java@v2
         with:
+          distribution: 'temurin'
           java-version: '11'  # Specify the Java version required by OpenAPI Generator
 
       - name: Install OpenAPI Generator
