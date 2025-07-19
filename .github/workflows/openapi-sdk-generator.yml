@@ -30,6 +30,8 @@ jobs:
 
       - name: Create Release
         id: create_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           VERSION=$(date +'%Y%m%d%H%M%S')
           echo "Creating release version: $VERSION"
