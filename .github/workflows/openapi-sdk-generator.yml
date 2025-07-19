@@ -27,10 +27,7 @@ jobs:
 
       - name: Generate SDKs
         run: |
-          java -jar openapi-generator-cli.jar generate \
-            -i ./openapi.yaml \  # Path to your OpenAPI spec file
-            -g ${{ matrix.language }} \         # Language for SDK generation
-            -o ./generated-sdk/${{ matrix.language }}  # Output directory for the generated SDK
+          java -jar openapi-generator-cli.jar generate -i ./openapi.yaml -g ${{ matrix.language }} -o ./generated-sdk/${{ matrix.language }}  # Output directory for the generated SDK
 
       - name: Create Release
         id: create_release
