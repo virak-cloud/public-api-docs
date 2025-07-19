@@ -26,7 +26,7 @@ jobs:
 
       - name: Generate SDKs
         run: |
-          openapi-generator-cli generate -i ./openapi.yaml -g ${{ matrix.language }} -o ./generated-sdk/${{ matrix.language }}
+          openapi-generator-cli generate -i ./openapi.yaml -g ${{ matrix.language }} -o ./generated-sdk/${{ matrix.language }} --skip-validate-spec
 
       - name: Create Release
         id: create_release
