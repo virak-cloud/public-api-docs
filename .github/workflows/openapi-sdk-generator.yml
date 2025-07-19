@@ -16,23 +16,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Set up JDK (for OpenAPI Generator)
-        uses: actions/setup-java@v2
-        with:
-          distribution: 'temurin'
-          java-version: '11'  # Specify the Java version required by OpenAPI Generator
+      - name: SetUp Bun
+        uses: oven-sh/setup-bun@v2
 
       - name: Install OpenAPI Generator
         run: |
-          wget https://github.com/OpenAPITools/openapi-generator-cli/releases/latest/download/openapi-generator-cli.jar -O openapi-generator-cli.jar
+          bun i -g @openapitools/openapi-generator-cli
           echo "OpenAPI Generator installed."
 
       - name: Generate SDKs
         run: |
           languages=("python" "java" "javascript" "typescript" "csharp")
           for lang in "${languages[@]}"; do
-            java -jar openapi-generator-cli.jar generate \
+            openapi-generator-cli generate \
               -i openapi.yaml \  # Path to your OpenAPI spec file
               -g $lang \         # Language for SDK generation
               -o ./generated-sdk/$lang  # Output directory for the generated SDK
