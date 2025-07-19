@@ -12,12 +12,13 @@ on:
 jobs:
   generate-sdk:
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        language: [typescript, python, java]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: SetUp Bun
-        uses: oven-sh/setup-bun@v2
+
 
       - name: Install OpenAPI Generator
         run: |
@@ -26,13 +27,10 @@ jobs:
 
       - name: Generate SDKs
         run: |
-          languages=("python" "java" "javascript" "typescript" "csharp")
-          for lang in "${languages[@]}"; do
-            java -jar openapi-generator-cli.jar generate \
-              -i openapi.yaml \  # Path to your OpenAPI spec file
-              -g $lang \         # Language for SDK generation
-              -o ./generated-sdk/$lang  # Output directory for the generated SDK
-          done
+          java -jar openapi-generator-cli.jar generate \
+            -i ./openapi.yaml \  # Path to your OpenAPI spec file
+            -g ${{ matrix.language }} \         # Language for SDK generation
+            -o ./generated-sdk/${{ matrix.language }}  # Output directory for the generated SDK
 
       - name: Create Release
         id: create_release
