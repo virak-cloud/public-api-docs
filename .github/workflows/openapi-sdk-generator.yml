@@ -19,15 +19,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-
-      - name: Install OpenAPI Generator
+      - name: Install OpenAPI Generator CLI (npm)
         run: |
-          wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.14.0/openapi-generator-cli-7.14.0.jar -O openapi-generator-cli.jar
-          echo "OpenAPI Generator installed."
+          npm install -g @openapitools/openapi-generator-cli
+          echo "OpenAPI Generator CLI installed via npm."
 
       - name: Generate SDKs
         run: |
-          java -jar openapi-generator-cli.jar generate -i ./openapi.yaml -g ${{ matrix.language }} -o ./generated-sdk/${{ matrix.language }}  # Output directory for the generated SDK
+          openapi-generator-cli generate -i ./openapi.yaml -g ${{ matrix.language }} -o ./generated-sdk/${{ matrix.language }}
 
       - name: Create Release
         id: create_release
