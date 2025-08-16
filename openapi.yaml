@@ -5,9 +5,666 @@ info:
   version: 1.0.0
 servers:
   -
-    url: 'http://public-api.dev.virakcloud.net:20580'
+    url: 'https://public-api.virakcloud.com'
 paths:
-  '/api/zone/{zoneId}/instance':
+  /zones:
+    get:
+      summary: 'Zone List'
+      operationId: zoneList
+      description: ' <aside class="notice">need <small class="badge">zone:list</small> ability for api token</aside>'
+      parameters: []
+      responses:
+        200:
+          description: 'Successful response'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: string
+                      name: string
+                      location: string
+                      active: true
+                    -
+                      id: string
+                      name: string
+                      location: string
+                      active: true
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: string
+                        name: string
+                        location: string
+                        active: true
+                      -
+                        id: string
+                        name: string
+                        location: string
+                        active: true
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: string
+                        name:
+                          type: string
+                          example: string
+                        location:
+                          type: string
+                          example: string
+                        active:
+                          type: boolean
+                          example: true
+      tags:
+        - Datacenter
+  '/zone/{zoneId}':
+    get:
+      summary: 'Zone Active Services'
+      operationId: zoneActiveServices
+      description: ' <aside class="notice">need <small class="badge">zone:show</small> ability for api token</aside>'
+      parameters: []
+      responses:
+        200:
+          description: 'Successful response'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  Instance: true
+                  DataVolume: true
+                  Network: true
+                  ObjectStorage: true
+                  K8s: false
+                properties:
+                  Instance:
+                    type: boolean
+                    example: true
+                  DataVolume:
+                    type: boolean
+                    example: true
+                  Network:
+                    type: boolean
+                    example: true
+                  ObjectStorage:
+                    type: boolean
+                    example: true
+                  K8s:
+                    type: boolean
+                    example: false
+      tags:
+        - Datacenter
+    parameters:
+      -
+        in: path
+        name: zoneId
+        description: 'The ID of the zone.'
+        example: 01F8MECHZX3TBDSZ7XRADM79XE
+        required: true
+        schema:
+          type: string
+  '/zone/{zoneId}/resources':
+    get:
+      summary: 'Customer Resource'
+      operationId: customerResource
+      description: ' <aside class="notice">need <small class="badge">zone:resource:list</small> ability for api token</aside>'
+      parameters: []
+      responses:
+        200:
+          description: 'Successful response'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  instance_resource_collected:
+                    memory:
+                      collected: 0
+                      total: 40960
+                    cpunumber:
+                      collected: 0
+                      total: 40
+                    datavolume:
+                      collected: 10
+                      total: 200
+                    vmlimit:
+                      collected: 0
+                      total: 20
+                properties:
+                  instance_resource_collected:
+                    type: object
+                    properties:
+                      memory:
+                        type: object
+                        properties:
+                          collected:
+                            type: integer
+                            example: 0
+                          total:
+                            type: integer
+                            example: 40960
+                      cpunumber:
+                        type: object
+                        properties:
+                          collected:
+                            type: integer
+                            example: 0
+                          total:
+                            type: integer
+                            example: 40
+                      datavolume:
+                        type: object
+                        properties:
+                          collected:
+                            type: integer
+                            example: 10
+                          total:
+                            type: integer
+                            example: 200
+                      vmlimit:
+                        type: object
+                        properties:
+                          collected:
+                            type: integer
+                            example: 0
+                          total:
+                            type: integer
+                            example: 20
+      tags:
+        - Datacenter
+    parameters:
+      -
+        in: path
+        name: zoneId
+        description: 'The ID of the zone.'
+        example: 01F8MECHZX3TBDSZ7XRADM79XE
+        required: true
+        schema:
+          type: string
+  /user/profile:
+    get:
+      summary: 'User Profile'
+      operationId: userProfile
+      description: ' <aside class="notice">need <small class="badge">customer:profile:show</small> ability for api token</aside>'
+      parameters: []
+      responses:
+        200:
+          description: 'Successful response'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: ID_PLACEHOLDER
+                    name: NAME_PLACEHOLDER
+                    language: LANGUAGE_PLACEHOLDER
+                    national_code: NATIONAL_CODE_PLACEHOLDER
+                    email: EMAIL_PLACEHOLDER
+                    phone: PHONE_PLACEHOLDER
+                    country: null
+                    state: null
+                    city: null
+                    address: null
+                    zip: null
+                    website: null
+                    extra:
+                      referral_code: null
+                    status: STATUS_PLACEHOLDER
+                    type: TYPE_PLACEHOLDER
+                    created_at: CREATED_AT_PLACEHOLDER
+                    updated_at: UPDATED_AT_PLACEHOLDER
+                    customer_zones_count: null
+                    instances_count: null
+                    payments_count: null
+                    wallets_count: null
+                    invite_code: INVITE_CODE_PLACEHOLDER
+                    invited_by_me: 0
+                    picture: PICTURE_URL_PLACEHOLDER
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: ID_PLACEHOLDER
+                      name:
+                        type: string
+                        example: NAME_PLACEHOLDER
+                      language:
+                        type: string
+                        example: LANGUAGE_PLACEHOLDER
+                      national_code:
+                        type: string
+                        example: NATIONAL_CODE_PLACEHOLDER
+                      email:
+                        type: string
+                        example: EMAIL_PLACEHOLDER
+                      phone:
+                        type: string
+                        example: PHONE_PLACEHOLDER
+                      country:
+                        type: string
+                        example: null
+                      state:
+                        type: string
+                        example: null
+                      city:
+                        type: string
+                        example: null
+                      address:
+                        type: string
+                        example: null
+                      zip:
+                        type: string
+                        example: null
+                      website:
+                        type: string
+                        example: null
+                      extra:
+                        type: object
+                        properties:
+                          referral_code:
+                            type: string
+                            example: null
+                      status:
+                        type: string
+                        example: STATUS_PLACEHOLDER
+                      type:
+                        type: string
+                        example: TYPE_PLACEHOLDER
+                      created_at:
+                        type: string
+                        example: CREATED_AT_PLACEHOLDER
+                      updated_at:
+                        type: string
+                        example: UPDATED_AT_PLACEHOLDER
+                      customer_zones_count:
+                        type: string
+                        example: null
+                      instances_count:
+                        type: string
+                        example: null
+                      payments_count:
+                        type: string
+                        example: null
+                      wallets_count:
+                        type: string
+                        example: null
+                      invite_code:
+                        type: string
+                        example: INVITE_CODE_PLACEHOLDER
+                      invited_by_me:
+                        type: integer
+                        example: 0
+                      picture:
+                        type: string
+                        example: PICTURE_URL_PLACEHOLDER
+      tags:
+        - User
+  /user/token:
+    get:
+      summary: 'Token validation'
+      operationId: tokenValidation
+      description: ''
+      parameters: []
+      responses:
+        204:
+          description: 'Success Response'
+      tags:
+        - User
+  /user/token-abilities:
+    get:
+      summary: 'Token Abilities'
+      operationId: tokenAbilities
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: 'Success Response'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: '{"abilities": ["ability1", "ability2", ...]}'
+      tags:
+        - User
+  /user/ssh-key:
+    get:
+      summary: 'SSH key list'
+      operationId: sSHKeyList
+      description: ' <aside class="notice">need <small class="badge">ssh-key:list</small> ability for api token</aside>'
+      parameters: []
+      responses:
+        200:
+          description: 'Successful response'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  userData:
+                    -
+                      id: placeholder_id_1
+                      display_name: 'User One'
+                      datakey: ssh-authorized-keys
+                      datavalue: 'ssh-rsa AAAA...== user1@example.com'
+                      created_at: '2024-01-01T00:00:00.000000Z'
+                    -
+                      id: placeholder_id_2
+                      display_name: 'User Two'
+                      datakey: ssh-authorized-keys
+                      datavalue: 'ssh-rsa AAAA...== user2@example.com'
+                      created_at: '2024-01-02T00:00:00.000000Z'
+                properties:
+                  userData:
+                    type: array
+                    example:
+                      -
+                        id: placeholder_id_1
+                        display_name: 'User One'
+                        datakey: ssh-authorized-keys
+                        datavalue: 'ssh-rsa AAAA...== user1@example.com'
+                        created_at: '2024-01-01T00:00:00.000000Z'
+                      -
+                        id: placeholder_id_2
+                        display_name: 'User Two'
+                        datakey: ssh-authorized-keys
+                        datavalue: 'ssh-rsa AAAA...== user2@example.com'
+                        created_at: '2024-01-02T00:00:00.000000Z'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: placeholder_id_1
+                        display_name:
+                          type: string
+                          example: 'User One'
+                        datakey:
+                          type: string
+                          example: ssh-authorized-keys
+                        datavalue:
+                          type: string
+                          example: 'ssh-rsa AAAA...== user1@example.com'
+                        created_at:
+                          type: string
+                          example: '2024-01-01T00:00:00.000000Z'
+      tags:
+        - User
+    post:
+      summary: 'Add new SSH Keys'
+      operationId: addNewSSHKeys
+      description: " <aside class=\"notice\">need <small class=\"badge\">ssh-key:create</small> ability for api token</aside>\n <b>Note:</b> This function runs asynchronously in the background. The response will be:<br>\n <pre>{\n   \"data\": {\n       \"success\": true\n   }\n }</pre>\n To check the status of the created ssh Key, use the <b>SSH key list</b> endpoint.\n"
+      parameters: []
+      responses:
+        200:
+          description: 'Successful response'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    success: true
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+      tags:
+        - User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'A display name for the SSH key. Must be at least 3 characters. Must not be greater than 255 characters.'
+                  example: 'My SSH Key'
+                  nullable: false
+                ssh_key:
+                  type: string
+                  description: 'The SSH public key to be registered.'
+                  example: 'ssh-rsa AAAA...== user@example.com'
+                  nullable: false
+              required:
+                - name
+                - ssh_key
+  '/user/ssh-key/{sshKeyId}':
+    delete:
+      summary: 'Delete SSH Key'
+      operationId: deleteSSHKey
+      description: " <aside class=\"notice\">need <small class=\"badge\">ssh-key:delete</small> ability for api token</aside>\n\n"
+      parameters: []
+      responses:
+        200:
+          description: 'Successful response'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    success: true
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                        example: true
+      tags:
+        - User
+    parameters:
+      -
+        in: path
+        name: sshKeyId
+        description: ''
+        example: 2kpyeAKXgXpjAfFyehshb887Rn
+        required: true
+        schema:
+          type: string
+  /user/finance/wallet:
+    get:
+      summary: 'Wallets Balance'
+      operationId: walletsBalance
+      description: ' <aside class="notice">need <small class="badge">customer:wallet:balance</small> ability for api token</aside>'
+      parameters: []
+      responses:
+        200:
+          description: 'Successful response'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    name: WALLET_NAME_PLACEHOLDER
+                    track: TRACK_PLACEHOLDER
+                    type: TYPE_PLACEHOLDER
+                    balance: 0
+                    balance_limit: 0
+                    is_blocked: false
+                    max_cost: 0
+                    remaining_hours: 0
+                    updated_at: DATE_PLACEHOLDER
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: WALLET_NAME_PLACEHOLDER
+                      track:
+                        type: string
+                        example: TRACK_PLACEHOLDER
+                      type:
+                        type: string
+                        example: TYPE_PLACEHOLDER
+                      balance:
+                        type: integer
+                        example: 0
+                      balance_limit:
+                        type: integer
+                        example: 0
+                      is_blocked:
+                        type: boolean
+                        example: false
+                      max_cost:
+                        type: integer
+                        example: 0
+                      remaining_hours:
+                        type: integer
+                        example: 0
+                      updated_at:
+                        type: string
+                        example: DATE_PLACEHOLDER
+      tags:
+        - User
+  /user/finance/documents:
+    get:
+      summary: 'Cost Documents Yearly'
+      operationId: costDocumentsYearly
+      description: ' <aside class="notice">need <small class="badge">customer:document:list</small> ability for api token</aside>'
+      parameters: []
+      responses:
+        200:
+          description: 'Successful response'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      dateFrom: DATE_FROM_PLACEHOLDER
+                      dateTo: DATE_TO_PLACEHOLDER
+                      Instance: 0
+                      NetworkNetflow: 0
+                      InstanceSnapshot: 0
+                      InstanceDataVolumes: 0
+                      SupportOfferings: 0
+                      NetworkInternetPublicAddressV4: 0
+                      NetworkDevice: 0
+                      InstanceNetworkSecondaryIpAddressV4: 0
+                      BucketSize: 0
+                      BucketDownloadTraffic: 0
+                      BucketUploadTraffic: 0
+                      KubernetesNode: 0
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        dateFrom: DATE_FROM_PLACEHOLDER
+                        dateTo: DATE_TO_PLACEHOLDER
+                        Instance: 0
+                        NetworkNetflow: 0
+                        InstanceSnapshot: 0
+                        InstanceDataVolumes: 0
+                        SupportOfferings: 0
+                        NetworkInternetPublicAddressV4: 0
+                        NetworkDevice: 0
+                        InstanceNetworkSecondaryIpAddressV4: 0
+                        BucketSize: 0
+                        BucketDownloadTraffic: 0
+                        BucketUploadTraffic: 0
+                        KubernetesNode: 0
+                    items:
+                      type: object
+                      properties:
+                        dateFrom:
+                          type: string
+                          example: DATE_FROM_PLACEHOLDER
+                        dateTo:
+                          type: string
+                          example: DATE_TO_PLACEHOLDER
+                        Instance:
+                          type: integer
+                          example: 0
+                        NetworkNetflow:
+                          type: integer
+                          example: 0
+                        InstanceSnapshot:
+                          type: integer
+                          example: 0
+                        InstanceDataVolumes:
+                          type: integer
+                          example: 0
+                        SupportOfferings:
+                          type: integer
+                          example: 0
+                        NetworkInternetPublicAddressV4:
+                          type: integer
+                          example: 0
+                        NetworkDevice:
+                          type: integer
+                          example: 0
+                        InstanceNetworkSecondaryIpAddressV4:
+                          type: integer
+                          example: 0
+                        BucketSize:
+                          type: integer
+                          example: 0
+                        BucketDownloadTraffic:
+                          type: integer
+                          example: 0
+                        BucketUploadTraffic:
+                          type: integer
+                          example: 0
+                        KubernetesNode:
+                          type: integer
+                          example: 0
+      tags:
+        - User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                year:
+                  type: integer
+                  description: 'The year for the document. Must be at least 1390. Must be at least 1390.'
+                  example: 1402
+                  nullable: false
+              required:
+                - year
+  /user/finance/payments:
+    get:
+      summary: 'Payment List'
+      operationId: paymentList
+      description: ' <aside class="notice">need <small class="badge">customer:payment:list</small> ability for api token</aside>'
+      parameters: []
+      responses:
+        200:
+          description: 'Successful response'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                properties:
+                  data:
+                    type: array
+                    example: []
+      tags:
+        - User
+  '/zone/{zoneId}/instance':
     get:
       summary: Index
       operationId: index
@@ -419,7 +1076,7 @@ paths:
         required: true
         schema:
           type: string
-  '/api/zone/{zoneId}/instance/service-offerings':
+  '/zone/{zoneId}/instance/service-offerings':
     get:
       summary: 'List Instance Service Offerings'
       operationId: listInstanceServiceOfferings
@@ -603,7 +1260,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/instance/vm-images':
+  '/zone/{zoneId}/instance/vm-images':
     get:
       summary: 'List Instance VM Image Service Offerings'
       operationId: listInstanceVMImageServiceOfferings
@@ -766,7 +1423,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/instance/{instanceId}/rebuild':
+  '/zone/{zoneId}/instance/{instanceId}/rebuild':
     post:
       summary: 'Rebuild Instance'
       operationId: rebuildInstance
@@ -822,7 +1479,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/instance/{instanceId}/start':
+  '/zone/{zoneId}/instance/{instanceId}/start':
     post:
       summary: 'Start Instance'
       operationId: startInstance
@@ -864,7 +1521,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/instance/{instanceId}/stop':
+  '/zone/{zoneId}/instance/{instanceId}/stop':
     post:
       summary: 'Stop Instance'
       operationId: stopInstance
@@ -918,7 +1575,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/instance/{instanceId}/reboot':
+  '/zone/{zoneId}/instance/{instanceId}/reboot':
     post:
       summary: 'Reboot Instance'
       operationId: rebootInstance
@@ -960,7 +1617,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/instance/{instanceId}/snapshot':
+  '/zone/{zoneId}/instance/{instanceId}/snapshot':
     post:
       summary: 'Create Snapshot'
       operationId: createSnapshot
@@ -1034,7 +1691,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/instance/{instanceId}/snapshot/{snapshotId}':
+  '/zone/{zoneId}/instance/{instanceId}/snapshot/{snapshotId}':
     delete:
       summary: 'Delete Snapshot'
       operationId: deleteSnapshot
@@ -1084,7 +1741,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/instance/{instanceId}/snapshot/revert':
+  '/zone/{zoneId}/instance/{instanceId}/snapshot/revert':
     post:
       summary: 'Revert Snapshot'
       operationId: revertSnapshot
@@ -1134,7 +1791,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/instance/volumes/service-offering':
+  '/zone/{zoneId}/instance/volumes/service-offering':
     get:
       summary: 'List Volume Service Offerings'
       operationId: listVolumeServiceOfferings
@@ -1199,7 +1856,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/instance/volumes':
+  '/zone/{zoneId}/instance/volumes':
     get:
       summary: 'List Volumes'
       operationId: listVolumes
@@ -1316,7 +1973,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/instance/volumes/{volumeId}':
+  '/zone/{zoneId}/instance/volumes/{volumeId}':
     delete:
       summary: 'Delete Volume'
       operationId: deleteVolume
@@ -1358,7 +2015,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/instance/volumes/{volumeId}/detach':
+  '/zone/{zoneId}/instance/volumes/{volumeId}/detach':
     post:
       summary: 'Detach Volume'
       operationId: detachVolume
@@ -1414,7 +2071,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/instance/volumes/{volumeId}/attach/{instanceId}':
+  '/zone/{zoneId}/instance/volumes/{volumeId}/attach/{instanceId}':
     post:
       summary: 'Attach Volume'
       operationId: attachVolume
@@ -1464,7 +2121,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/network/l2':
+  '/zone/{zoneId}/network/l2':
     post:
       summary: 'Create L2 Network'
       operationId: createL2Network
@@ -1542,7 +2199,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/network/l3':
+  '/zone/{zoneId}/network/l3':
     post:
       summary: 'Create L3 Network'
       operationId: createL3Network
@@ -1632,7 +2289,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/network':
+  '/zone/{zoneId}/network':
     get:
       summary: 'List Networks'
       operationId: listNetworks
@@ -1823,7 +2480,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/network/{networkId}':
+  '/zone/{zoneId}/network/{networkId}':
     get:
       summary: 'Show Network'
       operationId: showNetwork
@@ -1981,7 +2638,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/network/{networkId}/instance/connect':
+  '/zone/{zoneId}/network/{networkId}/instance/connect':
     post:
       summary: 'Connect Instance to a network'
       operationId: connectInstanceToANetwork
@@ -2025,7 +2682,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: quia
+        example: tempora
         required: true
         schema:
           type: ulid
@@ -2033,11 +2690,11 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: quia
+        example: exercitationem
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/network/{networkId}/instance/disconnect':
+  '/zone/{zoneId}/network/{networkId}/instance/disconnect':
     post:
       summary: 'Disconnect Instance to a network'
       operationId: disconnectInstanceToANetwork
@@ -2081,7 +2738,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: minus
+        example: veritatis
         required: true
         schema:
           type: ulid
@@ -2089,11 +2746,11 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: ipsum
+        example: voluptas
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/network/{networkId}/instance':
+  '/zone/{zoneId}/network/{networkId}/instance':
     get:
       summary: 'connected instances of network'
       operationId: connectedInstancesOfNetwork
@@ -2268,7 +2925,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: consequatur
+        example: cumque
         required: true
         schema:
           type: ulid
@@ -2276,11 +2933,11 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: ea
+        example: impedit
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/network/{networkId}/firewall/ipv4':
+  '/zone/{zoneId}/network/{networkId}/firewall/ipv4':
     get:
       summary: 'List IPv4 Firewall Rules'
       operationId: listIPv4FirewallRules
@@ -2561,7 +3218,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/network/{networkId}/firewall/ipv4/{ruleId}':
+  '/zone/{zoneId}/network/{networkId}/firewall/ipv4/{ruleId}':
     delete:
       summary: 'Delete IPv4 Firewall Rule'
       operationId: deleteIPv4FirewallRule
@@ -2611,7 +3268,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/network/{networkId}/firewall/ipv6':
+  '/zone/{zoneId}/network/{networkId}/firewall/ipv6':
     get:
       summary: 'List IPv6 Firewall Rules'
       operationId: listIPv6FirewallRules
@@ -2814,7 +3471,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/network/{networkId}/firewall/ipv6/{ruleId}':
+  '/zone/{zoneId}/network/{networkId}/firewall/ipv6/{ruleId}':
     delete:
       summary: 'Delete IPv6 Firewall Rule'
       operationId: deleteIPv6FirewallRule
@@ -2876,7 +3533,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/network/{networkId}/public-ip':
+  '/zone/{zoneId}/network/{networkId}/public-ip':
     get:
       summary: 'List Public IP Instances'
       operationId: listPublicIPInstances
@@ -2994,7 +3651,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/network/{networkId}/public-ip/{networkPublicIpId}':
+  '/zone/{zoneId}/network/{networkId}/public-ip/{networkPublicIpId}':
     delete:
       summary: 'Disassociate Public IP'
       operationId: disassociatePublicIP
@@ -3024,7 +3681,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: sed
+        example: illum
         required: true
         schema:
           type: ulid
@@ -3032,7 +3689,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: reprehenderit
+        example: repellat
         required: true
         schema:
           type: ulid
@@ -3040,11 +3697,11 @@ paths:
         in: path
         name: networkPublicIpId
         description: 'The ID of the public IP.'
-        example: qui
+        example: non
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/network/{networkId}/public-ip/{networkPublicIpId}/static-nat':
+  '/zone/{zoneId}/network/{networkId}/public-ip/{networkPublicIpId}/static-nat':
     post:
       summary: 'Enable Static NAT'
       operationId: enableStaticNAT
@@ -3079,7 +3736,7 @@ paths:
                 instance_id:
                   type: string
                   description: 'The instance CS ID.'
-                  example: aut
+                  example: ut
                   nullable: false
               required:
                 - instance_id
@@ -3112,7 +3769,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: quas
+        example: sapiente
         required: true
         schema:
           type: ulid
@@ -3120,7 +3777,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: ratione
+        example: velit
         required: true
         schema:
           type: ulid
@@ -3128,11 +3785,11 @@ paths:
         in: path
         name: networkPublicIpId
         description: 'The ID of the public IP.'
-        example: ipsam
+        example: at
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/network/{networkId}/port-forward/{networkPublicIpId}':
+  '/zone/{zoneId}/network/{networkId}/port-forward/{networkPublicIpId}':
     get:
       summary: 'List Port Forward Rules'
       operationId: listPortForwardRules
@@ -3413,7 +4070,7 @@ paths:
                 public_ip_id:
                   type: string
                   description: 'The public IP ULID to filter by (optional).'
-                  example: maxime
+                  example: culpa
                   nullable: false
               required:
                 - public_ip_id
@@ -3485,12 +4142,12 @@ paths:
                 port_end_public:
                   type: integer
                   description: 'The ending public port (optional).'
-                  example: 5
+                  example: 10
                   nullable: false
                 port_end_private:
                   type: integer
                   description: 'The ending private port (optional).'
-                  example: 19
+                  example: 10
                   nullable: false
                 instance_network_secondary_ip_id:
                   type: string
@@ -3531,7 +4188,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/network/{networkId}/port-forward/{networkPublicIpId}/{portforwardId}':
+  '/zone/{zoneId}/network/{networkId}/port-forward/{networkPublicIpId}/{portforwardId}':
     delete:
       summary: 'Delete Port Forward Rule'
       operationId: deletePortForwardRule
@@ -3589,7 +4246,7 @@ paths:
         required: true
         schema:
           type: string
-  '/api/zone/{zoneId}/network/{networkId}/vpn':
+  '/zone/{zoneId}/network/{networkId}/vpn':
     get:
       summary: 'VPN Detail'
       operationId: vPNDetail
@@ -3671,7 +4328,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/network/{networkId}/vpn/enable':
+  '/zone/{zoneId}/network/{networkId}/vpn/enable':
     post:
       summary: 'Enable VPN'
       operationId: enableVPN
@@ -3713,7 +4370,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/network/{networkId}/vpn/disable':
+  '/zone/{zoneId}/network/{networkId}/vpn/disable':
     post:
       summary: 'Disable VPN'
       operationId: disableVPN
@@ -3755,7 +4412,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/network/{networkId}/load-balancer':
+  '/zone/{zoneId}/network/{networkId}/load-balancer':
     get:
       summary: 'List Load Balancing Rules'
       operationId: listLoadBalancingRules
@@ -3828,7 +4485,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/network/{networkId}/load-balancer/rule':
+  '/zone/{zoneId}/network/{networkId}/load-balancer/rule':
     post:
       summary: 'Add Load Balancing Rule'
       operationId: addLoadBalancingRule
@@ -3908,7 +4565,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/network/{networkId}/load-balancer/rule/{loadBalanceRuleId}':
+  '/zone/{zoneId}/network/{networkId}/load-balancer/rule/{loadBalanceRuleId}':
     delete:
       summary: 'Delete Load Balancing Rule'
       operationId: deleteLoadBalancingRule
@@ -3958,7 +4615,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/network/{networkId}/load-balancer/rule/{loadBalanceRuleId}/assign':
+  '/zone/{zoneId}/network/{networkId}/load-balancer/rule/{loadBalanceRuleId}/assign':
     post:
       summary: 'Assign Load Balancing Rule'
       operationId: assignLoadBalancingRule
@@ -4023,7 +4680,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/network/{networkId}/load-balancer/rule/{loadBalanceRuleId}/de-assign':
+  '/zone/{zoneId}/network/{networkId}/load-balancer/rule/{loadBalanceRuleId}/de-assign':
     post:
       summary: 'De-Assign Load Balancing Rule'
       operationId: deAssignLoadBalancingRule
@@ -4087,7 +4744,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/network/{networkId}/ha/live':
+  '/zone/{zoneId}/network/{networkId}/ha/live':
     get:
       summary: 'HAProxy Live Report'
       operationId: hAProxyLiveReport
@@ -4133,7 +4790,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/network/{networkId}/ha/log':
+  '/zone/{zoneId}/network/{networkId}/ha/log':
     get:
       summary: 'HAProxy Log Report'
       operationId: hAProxyLogReport
@@ -4171,7 +4828,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/network/service-offering':
+  '/zone/{zoneId}/network/service-offering':
     get:
       summary: 'List Network Offering'
       operationId: listNetworkOffering
@@ -4285,7 +4942,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/kubernetes':
+  '/zone/{zoneId}/kubernetes':
     get:
       summary: Index
       operationId: index
@@ -4459,7 +5116,7 @@ paths:
     post:
       summary: Create
       operationId: create
-      description: ' <aside class="notice">need <small class="badge">kubernetes:cluster:create</small> ability for api token</aside>'
+      description: " <aside class=\"notice\">need <small class=\"badge\">kubernetes:cluster:create</small> ability for api token</aside>\n\n <b>Note:</b> This function runs asynchronously in the background. The response will be:<br>\n <pre>{\n   \"data\": {\n       \"success\": true\n   }\n }</pre>\n To check the status of the created cluster, use the <b>List Cluster</b> endpoint and review the <code>status</code> field.\n </p>"
       parameters: []
       responses:
         200:
@@ -4470,134 +5127,14 @@ paths:
                 type: object
                 example:
                   data:
-                    id: 01F8MECHZX3TBDSZ7XRADM79XE
-                    name: example-cluster
-                    description: 'This is a test cluster'
-                    zone_id: zone-id
-                    status: Running
-                    kubernetes_version:
-                      id: k8s-version-id
-                      version: 1.26.14
-                      enabled: true
-                      min_cpu: 2
-                      min_memory: 2048
-                    service_offering:
-                      id: service-offering-id
-                      name: service-offering-name
-                      is_public: true
-                      is_available: true
-                      hourly_price:
-                        up: 100
-                        down: 100
-                      hardware:
-                        cpu_core: 4
-                        memory_mb: 4096
-                        cpu_speed_MHz: 2300
-                        root_disk_size_gB: 50
-                        network_rate: 980
-                        disk_iops: 2500
-                    ssh_key: 'ssh-ed25519 ...'
-                    ha_enabled: false
-                    cluster_size: 1
-                    created_at: 1737794395
-                    updated_at: 1737794395
+                    success: true
                 properties:
                   data:
                     type: object
                     properties:
-                      id:
-                        type: string
-                        example: 01F8MECHZX3TBDSZ7XRADM79XE
-                      name:
-                        type: string
-                        example: example-cluster
-                      description:
-                        type: string
-                        example: 'This is a test cluster'
-                      zone_id:
-                        type: string
-                        example: zone-id
-                      status:
-                        type: string
-                        example: Running
-                      kubernetes_version:
-                        type: object
-                        properties:
-                          id:
-                            type: string
-                            example: k8s-version-id
-                          version:
-                            type: string
-                            example: 1.26.14
-                          enabled:
-                            type: boolean
-                            example: true
-                          min_cpu:
-                            type: integer
-                            example: 2
-                          min_memory:
-                            type: integer
-                            example: 2048
-                      service_offering:
-                        type: object
-                        properties:
-                          id:
-                            type: string
-                            example: service-offering-id
-                          name:
-                            type: string
-                            example: service-offering-name
-                          is_public:
-                            type: boolean
-                            example: true
-                          is_available:
-                            type: boolean
-                            example: true
-                          hourly_price:
-                            type: object
-                            properties:
-                              up:
-                                type: integer
-                                example: 100
-                              down:
-                                type: integer
-                                example: 100
-                          hardware:
-                            type: object
-                            properties:
-                              cpu_core:
-                                type: integer
-                                example: 4
-                              memory_mb:
-                                type: integer
-                                example: 4096
-                              cpu_speed_MHz:
-                                type: integer
-                                example: 2300
-                              root_disk_size_gB:
-                                type: integer
-                                example: 50
-                              network_rate:
-                                type: integer
-                                example: 980
-                              disk_iops:
-                                type: integer
-                                example: 2500
-                      ssh_key:
-                        type: string
-                        example: 'ssh-ed25519 ...'
-                      ha_enabled:
+                      success:
                         type: boolean
-                        example: false
-                      cluster_size:
-                        type: integer
-                        example: 1
-                      created_at:
-                        type: integer
-                        example: 1737794395
-                      updated_at:
-                        type: integer
-                        example: 1737794395
+                        example: true
         422:
           description: ''
           content:
@@ -4885,10 +5422,10 @@ paths:
                   description: 'Indicates if high availability is enabled for the cluster.'
                   example: false
                   nullable: false
-                ssh_key:
+                sshkey_id:
                   type: string
-                  description: 'A valid SSH public key for accessing the cluster.'
-                  example: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD...'
+                  description: 'A valid SSH public key identifier for accessing the cluster nodes.'
+                  example: 01F8MECHZX3RZ8Y6B8Q5F1E3V7
                   nullable: false
                 network_id:
                   type: string
@@ -4927,7 +5464,7 @@ paths:
                 - kubernetes_version_id
                 - service_offering_id
                 - ha_enabled
-                - ssh_key
+                - sshkey_id
                 - network_id
     parameters:
       -
@@ -4938,7 +5475,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/kubernetes/events':
+  '/zone/{zoneId}/kubernetes/events':
     get:
       summary: 'Kubernetes Service Events'
       operationId: kubernetesServiceEvents
@@ -4985,7 +5522,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/kubernetes/versions':
+  '/zone/{zoneId}/kubernetes/versions':
     get:
       summary: 'List Kubernetes Versions'
       operationId: listKubernetesVersions
@@ -5045,7 +5582,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/kubernetes/{clusterId}':
+  '/zone/{zoneId}/kubernetes/{clusterId}':
     get:
       summary: Show
       operationId: show
@@ -5392,12 +5929,12 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: cumque
+                  example: magni
                   nullable: true
                 description:
                   type: string
                   description: ''
-                  example: 'Ratione quia error ut qui.'
+                  example: 'Aut modi quae corrupti praesentium.'
                   nullable: true
     delete:
       summary: Delete
@@ -5412,12 +5949,105 @@ paths:
               schema:
                 type: object
                 example:
+                  message: 'Kubernetes cluster deleted successfully'
+                properties:
+                  message:
+                    type: string
+                    example: 'Kubernetes cluster deleted successfully'
+      tags:
+        - Kubernetes
+    parameters:
+      -
+        in: path
+        name: zoneId
+        description: 'The ID of the zone.'
+        example: 01F8MECHZX3TBDSZ7XRADM79XE
+        required: true
+        schema:
+          type: ulid
+      -
+        in: path
+        name: clusterId
+        description: 'The ID of the cluster.'
+        example: 01F8MECHZX3TBDSZ7XRADM79XE
+        required: true
+        schema:
+          type: ulid
+  '/zone/{zoneId}/kubernetes/{clusterId}/events':
+    get:
+      summary: Events
+      operationId: events
+      description: ' <aside class="notice">need <small class="badge">kubernetes:cluster:event:list</small> ability for api token</aside>'
+      parameters: []
+      responses:
+        200:
+          description: 'Success Response'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n        \"data\": [\n            {\n                \"product_model\": \"App\\Models\\KubernetesCluster\",\n                \"product_id\": \"01F8MECHZX3TBDSZ7XRADM79XE\",\n                \"product_source\": \"k8s\",\n                \"type\": \"customer\",\n                \"content\": \"A kubernetes cluster event occurred.\",\n                \"created_at\": 1739256828\n            },\n        ],\n        \"meta\": {\n            \"current_page\": 1,\n            \"from\": 1,\n            \"last_page\": 10,\n            \"per_page\": 20,\n            \"to\": 20,\n            \"total\": 200\n        }\n}"
+      tags:
+        - Kubernetes
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  description: 'The type of events to filter'
+                  example: system
+                  nullable: false
+                from:
+                  type: integer
+                  description: 'The timestamp to start filtering events from'
+                  example: 1707653422
+                  nullable: false
+                to:
+                  type: integer
+                  description: 'The timestamp to end filtering events'
+                  example: 1707653999
+                  nullable: false
+    parameters:
+      -
+        in: path
+        name: zoneId
+        description: 'The ID of the zone.'
+        example: 01F8MECHZX3TBDSZ7XRADM79XE
+        required: true
+        schema:
+          type: ulid
+      -
+        in: path
+        name: clusterId
+        description: 'The ID of the cluster.'
+        example: 01F8MECHZX3TBDSZ7XRADM79XE
+        required: true
+        schema:
+          type: ulid
+  '/zone/{zoneId}/kubernetes/{clusterId}/start':
+    post:
+      summary: Start
+      operationId: start
+      description: ' <aside class="notice">need <small class="badge">kubernetes:cluster:start</small> ability for api token</aside>'
+      parameters: []
+      responses:
+        200:
+          description: 'Successful start'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
                   data:
                     id: 01F8MECHZX3TBDSZ7XRADM79XE
                     name: example-cluster
                     description: 'This is a test cluster'
                     zone_id: zone-id
-                    status: Running
+                    status: Starting
                     kubernetes_version:
                       id: k8s-version-id
                       version: 1.26.14
@@ -5462,7 +6092,7 @@ paths:
                         example: zone-id
                       status:
                         type: string
-                        example: Running
+                        example: Starting
                       kubernetes_version:
                         type: object
                         properties:
@@ -5560,100 +6190,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/kubernetes/{clusterId}/events':
-    get:
-      summary: Events
-      operationId: events
-      description: ' <aside class="notice">need <small class="badge">kubernetes:cluster:event:list</small> ability for api token</aside>'
-      parameters: []
-      responses:
-        200:
-          description: 'Success Response'
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: "{\n        \"data\": [\n            {\n                \"product_model\": \"App\\Models\\KubernetesCluster\",\n                \"product_id\": \"01F8MECHZX3TBDSZ7XRADM79XE\",\n                \"product_source\": \"k8s\",\n                \"type\": \"customer\",\n                \"content\": \"A kubernetes cluster event occurred.\",\n                \"created_at\": 1739256828\n            },\n        ],\n        \"meta\": {\n            \"current_page\": 1,\n            \"from\": 1,\n            \"last_page\": 10,\n            \"per_page\": 20,\n            \"to\": 20,\n            \"total\": 200\n        }\n}"
-      tags:
-        - Kubernetes
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                type:
-                  type: string
-                  description: 'The type of events to filter'
-                  example: system
-                  nullable: false
-                from:
-                  type: integer
-                  description: 'The timestamp to start filtering events from'
-                  example: 1707653422
-                  nullable: false
-                to:
-                  type: integer
-                  description: 'The timestamp to end filtering events'
-                  example: 1707653999
-                  nullable: false
-    parameters:
-      -
-        in: path
-        name: zoneId
-        description: 'The ID of the zone.'
-        example: 01F8MECHZX3TBDSZ7XRADM79XE
-        required: true
-        schema:
-          type: ulid
-      -
-        in: path
-        name: clusterId
-        description: 'The ID of the cluster.'
-        example: 01F8MECHZX3TBDSZ7XRADM79XE
-        required: true
-        schema:
-          type: ulid
-  '/api/zone/{zoneId}/kubernetes/{clusterId}/start':
-    post:
-      summary: Start
-      operationId: start
-      description: ' <aside class="notice">need <small class="badge">kubernetes:cluster:start</small> ability for api token</aside>'
-      parameters: []
-      responses:
-        200:
-          description: 'Successful start'
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: success
-                properties:
-                  message:
-                    type: string
-                    example: success
-      tags:
-        - Kubernetes
-    parameters:
-      -
-        in: path
-        name: zoneId
-        description: 'The ID of the zone.'
-        example: 01F8MECHZX3TBDSZ7XRADM79XE
-        required: true
-        schema:
-          type: ulid
-      -
-        in: path
-        name: clusterId
-        description: 'The ID of the cluster.'
-        example: 01F8MECHZX3TBDSZ7XRADM79XE
-        required: true
-        schema:
-          type: ulid
-  '/api/zone/{zoneId}/kubernetes/{clusterId}/stop':
+  '/zone/{zoneId}/kubernetes/{clusterId}/stop':
     post:
       summary: Stop
       operationId: stop
@@ -5815,7 +6352,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/kubernetes/{clusterId}/scale':
+  '/zone/{zoneId}/kubernetes/{clusterId}/scale':
     post:
       summary: Scale
       operationId: scale
@@ -5834,7 +6371,7 @@ paths:
                     name: example-cluster
                     description: 'This is a test cluster'
                     zone_id: zone-id
-                    status: Running
+                    status: Scaling
                     kubernetes_version:
                       id: k8s-version-id
                       version: 1.26.14
@@ -5879,7 +6416,7 @@ paths:
                         example: zone-id
                       status:
                         type: string
-                        example: Running
+                        example: Scaling
                       kubernetes_version:
                         type: object
                         properties:
@@ -6180,7 +6717,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/kubernetes/{clusterId}/service-offering':
+  '/zone/{zoneId}/kubernetes/{clusterId}/service-offering':
     post:
       summary: 'Update Service Offering'
       operationId: updateServiceOffering
@@ -6356,7 +6893,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/kubernetes/{clusterId}/upgrade':
+  '/zone/{zoneId}/kubernetes/{clusterId}/upgrade':
     post:
       summary: 'Upgrade Version'
       operationId: upgradeVersion
@@ -6532,7 +7069,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/kubernetes/service-offerings':
+  '/zone/{zoneId}/kubernetes/service-offerings':
     get:
       summary: 'List Service Offerings'
       operationId: listServiceOfferings
@@ -6557,7 +7094,59 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/object-storage/buckets':
+  '/zone/{zoneId}/object-storage/events':
+    get:
+      summary: 'Object Storage Events'
+      operationId: objectStorageEvents
+      description: ' <aside class="notice">need <small class="badge">object_storage:event:list</small> ability for api token</aside>'
+      parameters: []
+      responses:
+        200:
+          description: 'Success Response'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n        \"data\": [\n            {\n                \"product_model\": \"App\\Models\\Bucket\",\n                \"product_id\": \"01F8MECHZX3TBDSZ7XRADM79XE\",\n                \"product_source\": \"k8s\",\n                \"type\": \"customer\",\n                \"content\": \"A bucket cluster event occurred.\",\n                \"created_at\": 1739256828\n            },\n        ],\n        \"meta\": {\n            \"current_page\": 1,\n            \"from\": 1,\n            \"last_page\": 10,\n            \"per_page\": 20,\n            \"to\": 20,\n            \"total\": 200\n        }\n}"
+      tags:
+        - 'Object Storage'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  description: 'The type of events to filter'
+                  example: system
+                  nullable: false
+                from:
+                  type: integer
+                  description: 'The timestamp to start filtering events from'
+                  example: 1707653422
+                  nullable: false
+                to:
+                  type: integer
+                  description: 'The timestamp to end filtering events'
+                  example: 1707653999
+                  nullable: false
+                page:
+                  type: integer
+                  description: 'Page number for pagination. Must be between 1 and 10,000 if provided.'
+                  example: 1
+                  nullable: false
+    parameters:
+      -
+        in: path
+        name: zoneId
+        description: ''
+        example: ad
+        required: true
+        schema:
+          type: string
+  '/zone/{zoneId}/object-storage/buckets':
     get:
       summary: Index
       operationId: index
@@ -6723,7 +7312,7 @@ paths:
         required: true
         schema:
           type: string
-  '/api/zone/{zoneId}/object-storage/buckets/{bucketId}':
+  '/zone/{zoneId}/object-storage/buckets/{bucketId}':
     get:
       summary: Show
       operationId: show
@@ -6932,10 +7521,10 @@ paths:
         required: true
         schema:
           type: ulid
-  '/api/zone/{zoneId}/object-storage/buckets/{bucketId}/events':
+  '/zone/{zoneId}/object-storage/buckets/{bucketId}/events':
     get:
-      summary: Events
-      operationId: events
+      summary: 'Bucket Events'
+      operationId: bucketEvents
       description: ' <aside class="notice">need <small class="badge">object_storage:event:list</small> ability for api token</aside>'
       parameters: []
       responses:
@@ -6970,6 +7559,11 @@ paths:
                   description: 'The timestamp to end filtering events'
                   example: 1707653999
                   nullable: false
+                page:
+                  type: integer
+                  description: 'Page number for pagination. Must be between 1 and 10,000 if provided.'
+                  example: 1
+                  nullable: false
     parameters:
       -
         in: path
@@ -6987,7 +7581,7 @@ paths:
         required: true
         schema:
           type: ulid
-  /api/dns/domains:
+  /dns/domains:
     get:
       summary: Index
       operationId: index
@@ -7131,7 +7725,7 @@ paths:
                             items:
                               type: string
                   -
-                    description: 'Invalid domain name (invalid TLD)'
+                    description: 'Invalid domain name (invalid TLD), check https://publicsuffix.org/list/public_suffix_list.dat for more information.'
                     type: object
                     example:
                       message: 'The domain must be valid domain.'
@@ -7172,6 +7766,48 @@ paths:
                               - 'The customer has reached the maximum limit of pending domains.'
                             items:
                               type: string
+                  -
+                    description: 'Not Allowed Domain'
+                    type: object
+                    example:
+                      message: 'Not Allowed Domain'
+                      errors:
+                        domain:
+                          - 'The zone is not allowed.'
+                    properties:
+                      message:
+                        type: string
+                        example: 'Not Allowed Domain'
+                      errors:
+                        type: object
+                        properties:
+                          domain:
+                            type: array
+                            example:
+                              - 'The zone is not allowed.'
+                            items:
+                              type: string
+                  -
+                    description: 'Not Allowed TLD'
+                    type: object
+                    example:
+                      message: 'Not Allowed Domain (TLD)'
+                      errors:
+                        domain:
+                          - 'The TLD of the zone is not allowed.'
+                    properties:
+                      message:
+                        type: string
+                        example: 'Not Allowed Domain (TLD)'
+                      errors:
+                        type: object
+                        properties:
+                          domain:
+                            type: array
+                            example:
+                              - 'The TLD of the zone is not allowed.'
+                            items:
+                              type: string
       tags:
         - DNS
       requestBody:
@@ -7188,7 +7824,7 @@ paths:
                   nullable: false
               required:
                 - domain
-  '/api/dns/domains/{domain}':
+  '/dns/domains/{domain}':
     get:
       summary: Show
       operationId: show
@@ -7362,7 +7998,7 @@ paths:
         required: true
         schema:
           type: string
-  '/api/dns/domains/{domain}/records':
+  '/dns/domains/{domain}/records':
     get:
       summary: Show
       operationId: show
@@ -7715,7 +8351,7 @@ paths:
         required: true
         schema:
           type: string
-  '/api/dns/domains/{domain}/records/{record}/{type}/{contentId}':
+  '/dns/domains/{domain}/records/{record}/{type}/{contentId}':
     put:
       summary: Update
       operationId: update
@@ -8325,7 +8961,50 @@ paths:
         required: true
         schema:
           type: ulid
-  /api/events:
+  /dns/events:
+    get:
+      summary: 'DNS Events'
+      operationId: dNSEvents
+      description: ' <aside class="notice">need <small class="badge">dns:event:list</small> ability for api token</aside>'
+      parameters: []
+      responses:
+        200:
+          description: 'Success Response'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n    \"data\": [\n        {\n            \"product_model\": \"App\\Models\\Zone\",\n            \"product_id\": \"01jz2ty8m3vd3m5g3n3r1dhfy2\",\n            \"product_source\": \"dns\",\n            \"type\": \"system\",\n            \"content\": \"دامنه domain.ir غیر فعال شد.\",\n            \"created_at\": 1752006606\n        }\n    ],\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 1,\n        \"per_page\": 20,\n        \"to\": 1,\n        \"total\": 1\n    }\n}"
+      tags:
+        - DNS
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  description: 'The type of events to filter'
+                  example: system
+                  nullable: false
+                from:
+                  type: integer
+                  description: 'The timestamp to start filtering events from'
+                  example: 1707653422
+                  nullable: false
+                to:
+                  type: integer
+                  description: 'The timestamp to end filtering events'
+                  example: 1707653999
+                  nullable: false
+                page:
+                  type: integer
+                  description: 'Page number for pagination. Must be between 1 and 10,000 if provided.'
+                  example: 1
+                  nullable: false
+  /events:
     get:
       summary: 'List Customer Events'
       operationId: listCustomerEvents
@@ -8364,6 +9043,12 @@ paths:
                   example: 1707653999
                   nullable: false
 tags:
+  -
+    name: Datacenter
+    description: ''
+  -
+    name: User
+    description: ''
   -
     name: Instance
     description: "\n<div class='sl-prose'>\n<p>An <b>Instance</b> represents a virtual machine (VM) or compute resource provisioned in a specific zone. Instances are the core compute units in the cloud platform, allowing users to run applications, host services, and manage workloads. Each instance is created from a template or image, has its own resources (CPU, memory, disk), and can be managed through various lifecycle operations.</p>\n\n<p><b>Key Concepts:</b></p>\n<ul>\n   <li><b>Instance:</b> A virtual machine or compute resource, including its configuration, status, and metadata.</li>\n   <li><b>Zone:</b> A physical or logical location where instances are provisioned. Each instance belongs to a zone.</li>\n   <li><b>VM Image:</b> The template or image used to create the instance, defining its operating system and base software.</li>\n   <li><b>Service Offering:</b> Defines the hardware resources (CPU, memory, disk, network) allocated to the instance.</li>\n   <li><b>Volume:</b> Persistent storage that can be attached to or detached from an instance.</li>\n   <li><b>Snapshot:</b> A point-in-time backup of an instance's volume, which can be created, deleted, or reverted.</li>\n   <li><b>Status:</b> The current state of the instance (e.g., 'Running', 'Stopped', 'Starting', 'Stopping', 'Error').</li>\n   <li><b>Metadata:</b> Custom key-value data associated with the instance.</li>\n</ul>\n\n<p><b>Instance Functionalities:</b></p>\n<ul>\n   <li>List all instances in a zone for the authenticated user.</li>\n   <li>Create, delete, and manage snapshots for instances.</li>\n   <li>Attach, detach, create, and delete volumes for instances.</li>\n   <li>Retrieve detailed information about each instance, including configuration, status, and related resources.</li>\n</ul>\n\n<p><b>Instance Statuses:</b></p>\n<ul>\n   <li><b>Running:</b> Instance is active and operational.</li>\n   <li><b>Stopped:</b> Instance is powered off.</li>\n   <li><b>Starting:</b> Instance is in the process of starting up.</li>\n   <li><b>Stopping:</b> Instance is in the process of shutting down.</li>\n   <li><b>Error:</b> Instance encountered an error during an operation.</li>\n</ul>\n</div>"
