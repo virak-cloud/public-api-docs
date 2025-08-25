@@ -472,7 +472,7 @@ paths:
         in: path
         name: sshKeyId
         description: ''
-        example: 1Ttq1Q9J9n73BwcgQye1HmhN9h
+        example: 6ZQ8HeHQYGfWfCdGWrvng0Mq3r
         required: true
         schema:
           type: string
@@ -1080,7 +1080,7 @@ paths:
     get:
       summary: 'List Instance Service Offerings'
       operationId: listInstanceServiceOfferings
-      description: 'List all available instance service offerings for the specified zone. Returned data is anonymized for documentation purposes.'
+      description: ' <aside class="notice">need <small class="badge">instance:metrics</small> ability for api token</aside>'
       parameters: []
       responses:
         200:
@@ -1264,7 +1264,7 @@ paths:
     get:
       summary: 'List Instance VM Image Service Offerings'
       operationId: listInstanceVMImageServiceOfferings
-      description: 'List all available VM image service offerings for the specified zone. Returned data is anonymized for documentation purposes.'
+      description: ' <aside class="notice">need <small class="badge">instance:metrics</small> ability for api token</aside>'
       parameters: []
       responses:
         200:
@@ -1427,7 +1427,7 @@ paths:
     post:
       summary: 'Rebuild Instance'
       operationId: rebuildInstance
-      description: 'Rebuild an instance with a new VM image.'
+      description: ' <aside class="notice">need <small class="badge">instance:rebuild</small> ability for api token</aside>'
       parameters: []
       responses:
         200:
@@ -1483,7 +1483,7 @@ paths:
     post:
       summary: 'Start Instance'
       operationId: startInstance
-      description: 'Start a stopped instance.'
+      description: ' <aside class="notice">need <small class="badge">instance:start</small> ability for api token</aside>'
       parameters: []
       responses:
         200:
@@ -1525,7 +1525,7 @@ paths:
     post:
       summary: 'Stop Instance'
       operationId: stopInstance
-      description: 'Stop a running instance.'
+      description: ' <aside class="notice">need <small class="badge">instance:stop</small> ability for api token</aside>'
       parameters: []
       responses:
         200:
@@ -1579,7 +1579,7 @@ paths:
     post:
       summary: 'Reboot Instance'
       operationId: rebootInstance
-      description: 'Reboot a running instance.'
+      description: ' <aside class="notice">need <small class="badge">instance:reboot</small> ability for api token</aside>'
       parameters: []
       responses:
         200:
@@ -1621,7 +1621,7 @@ paths:
     delete:
       summary: 'Delete Instance'
       operationId: deleteInstance
-      description: 'Delete an instance. This operation is asynchronous; check the instance list for status updates.'
+      description: " <aside class=\"notice\">need <small class=\"badge\">instance:delete</small> ability for api token</aside>\n   Delete an instance. This operation is asynchronous; check the instance list for status updates."
       parameters: []
       responses:
         200:
@@ -1669,6 +1669,68 @@ paths:
         in: path
         name: instanceId
         description: 'The ID of the instance to delete.'
+        example: 01H9ZCNF46W6C1EM45T21B6M0I
+        required: true
+        schema:
+          type: ulid
+  '/zone/{zoneId}/instance/{instanceId}/metrics':
+    get:
+      summary: 'Instance Metric'
+      operationId: instanceMetric
+      description: ' <aside class="notice">need <small class="badge">instance:metrics</small> ability for api token</aside>'
+      parameters: []
+      responses:
+        200:
+          description: 'Instance metrics response'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "\n{\n  \"data\": [\n    {\n      \"column\": \"networkread\",\n      \"values\": [\n        { \"value\": 0.03, \"time\": \"T1\" },\n        { \"value\": 0.03, \"time\": \"T2\" },\n        { \"value\": 0.03, \"time\": \"T3\" },\n      ]\n    },\n    {\n      \"column\": \"networkwrite\",\n      \"values\": [\n        { \"value\": 0, \"time\": \"T1\" },\n        { \"value\": 0, \"time\": \"T2\" },\n        { \"value\": 0, \"time\": \"T3\" },\n\n      ]\n    }\n  ]\n}\n\n    "
+      tags:
+        - Instance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                metrics:
+                  type: array
+                  description: 'Array of metric keys to fetch. Allowed: memoryusedkbs, memorykbs, cpuused, diskiopstotal, diskkbsread, diskkbswrite, networkread, memoryintfreekbs.'
+                  example:
+                    - memoryusedkbs
+                    - cpuused
+                  items:
+                    type: string
+                time:
+                  type: integer
+                  description: 'Hour number for the metric query.'
+                  example: 1
+                  nullable: false
+                aggregator:
+                  type: string
+                  description: 'Aggregation function. Allowed: last, mean, median, sum.'
+                  example: mean
+                  nullable: false
+              required:
+                - metrics
+                - time
+                - aggregator
+    parameters:
+      -
+        in: path
+        name: zoneId
+        description: 'The ID of the zone.'
+        example: 01F8MECHZX3TBDSZ7XRADM79XE
+        required: true
+        schema:
+          type: ulid
+      -
+        in: path
+        name: instanceId
+        description: 'The ID of the instance.'
         example: 01H9ZCNF46W6C1EM45T21B6M0I
         required: true
         schema:
@@ -1851,7 +1913,7 @@ paths:
     get:
       summary: 'List Volume Service Offerings'
       operationId: listVolumeServiceOfferings
-      description: 'List all volume service offerings available in the specified zone for the authenticated user.'
+      description: " <aside class=\"notice\">need <small class=\"badge\">instance:volume:service-offering:list</small> ability for api token</aside>\n   List all volume service offerings available in the specified zone for the authenticated user."
       parameters: []
       responses:
         200:
@@ -1916,7 +1978,7 @@ paths:
     get:
       summary: 'List Volumes'
       operationId: listVolumes
-      description: 'List all volumes for the authenticated user in the specified zone.'
+      description: ' <aside class="notice">need <small class="badge">instance:volume:list</small> ability for api token</aside>'
       parameters: []
       responses:
         200:
@@ -1961,7 +2023,7 @@ paths:
     post:
       summary: 'Create Volume'
       operationId: createVolume
-      description: 'Create a new volume in the specified zone.'
+      description: " <aside class=\"notice\">need <small class=\"badge\">instance:volume:create</small> ability for api token</aside>\n   Create a new volume in the specified zone."
       parameters: []
       responses:
         200:
@@ -2033,7 +2095,7 @@ paths:
     delete:
       summary: 'Delete Volume'
       operationId: deleteVolume
-      description: 'Delete a volume by its ID.'
+      description: ' <aside class="notice">need <small class="badge">instance:volume:delete</small> ability for api token</aside>'
       parameters: []
       responses:
         200:
@@ -2075,7 +2137,7 @@ paths:
     post:
       summary: 'Detach Volume'
       operationId: detachVolume
-      description: 'Detach a volume from an instance.'
+      description: " <aside class=\"notice\">need <small class=\"badge\">instance:volume:detach</small> ability for api token</aside>\n   Detach a volume from an instance."
       parameters: []
       responses:
         200:
@@ -2131,7 +2193,7 @@ paths:
     post:
       summary: 'Attach Volume'
       operationId: attachVolume
-      description: 'Attach a volume to an instance.'
+      description: " <aside class=\"notice\">need <small class=\"badge\">instance:volume:attach</small> ability for api token</aside>\n   Attach a volume to an instance."
       parameters: []
       responses:
         200:
@@ -2738,7 +2800,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: earum
+        example: sed
         required: true
         schema:
           type: ulid
@@ -2746,7 +2808,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: ut
+        example: ipsa
         required: true
         schema:
           type: ulid
@@ -2794,7 +2856,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: corporis
+        example: laboriosam
         required: true
         schema:
           type: ulid
@@ -2802,7 +2864,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: molestiae
+        example: unde
         required: true
         schema:
           type: ulid
@@ -2981,7 +3043,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: saepe
+        example: accusantium
         required: true
         schema:
           type: ulid
@@ -2989,7 +3051,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: et
+        example: dolore
         required: true
         schema:
           type: ulid
@@ -3737,7 +3799,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: explicabo
+        example: suscipit
         required: true
         schema:
           type: ulid
@@ -3745,7 +3807,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: accusantium
+        example: qui
         required: true
         schema:
           type: ulid
@@ -3753,7 +3815,7 @@ paths:
         in: path
         name: networkPublicIpId
         description: 'The ID of the public IP.'
-        example: distinctio
+        example: nobis
         required: true
         schema:
           type: ulid
@@ -3792,7 +3854,7 @@ paths:
                 instance_id:
                   type: string
                   description: 'The instance CS ID.'
-                  example: ipsam
+                  example: iusto
                   nullable: false
               required:
                 - instance_id
@@ -3825,7 +3887,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: deserunt
+        example: est
         required: true
         schema:
           type: ulid
@@ -3833,7 +3895,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: alias
+        example: doloribus
         required: true
         schema:
           type: ulid
@@ -3841,7 +3903,7 @@ paths:
         in: path
         name: networkPublicIpId
         description: 'The ID of the public IP.'
-        example: omnis
+        example: delectus
         required: true
         schema:
           type: ulid
@@ -4126,7 +4188,7 @@ paths:
                 public_ip_id:
                   type: string
                   description: 'The public IP ULID to filter by (optional).'
-                  example: qui
+                  example: quia
                   nullable: false
               required:
                 - public_ip_id
@@ -4198,12 +4260,12 @@ paths:
                 port_end_public:
                   type: integer
                   description: 'The ending public port (optional).'
-                  example: 10
+                  example: 15
                   nullable: false
                 port_end_private:
                   type: integer
                   description: 'The ending private port (optional).'
-                  example: 15
+                  example: 5
                   nullable: false
                 instance_network_secondary_ip_id:
                   type: string
@@ -5544,7 +5606,7 @@ paths:
             text/plain:
               schema:
                 type: string
-                example: "{\n        \"data\": [\n            {\n                \"product_model\": \"App\\Models\\KubernetesCluster\",\n                \"product_id\": \"01F8MECHZX3TBDSZ7XRADM79XE\",\n                \"product_source\": \"k8s\",\n                \"type\": \"customer\",\n                \"content\": \"A kubernetes cluster event occurred.\",\n                \"created_at\": 1739256828\n            },\n        ],\n        \"meta\": {\n            \"current_page\": 1,\n            \"from\": 1,\n            \"last_page\": 10,\n            \"per_page\": 20,\n            \"to\": 20,\n            \"total\": 200\n        }\n}"
+                example: "{\n        \"data\": [\n            {\n                \"product_id\": \"01F8MECHZX3TBDSZ7XRADM79XE\",\n                \"type\": \"customer\",\n                \"content\": \"A kubernetes cluster event occurred.\",\n                \"created_at\": 1739256828\n            },\n        ],\n        \"meta\": {\n            \"current_page\": 1,\n            \"from\": 1,\n            \"last_page\": 10,\n            \"per_page\": 20,\n            \"to\": 20,\n            \"total\": 200\n        }\n}"
       tags:
         - Kubernetes
       requestBody:
@@ -5559,6 +5621,23 @@ paths:
                   description: 'The type of events to filter'
                   example: system
                   nullable: false
+                product_model:
+                  type: string
+                  description: 'Filter by product model. One of: network, kubernetes_cluster, bucket, instance_network_secondary_ips, instance, zone, network_public_ip, vpn_connection, instance_data_volumes, customer, network_nat.'
+                  example: instance
+                  nullable: false
+                  enum:
+                    - network
+                    - kubernetes_cluster
+                    - bucket
+                    - instance_network_secondary_ips
+                    - instance
+                    - zone
+                    - network_public_ip
+                    - vpn_connection
+                    - instance_data_volumes
+                    - customer
+                    - network_nat
                 from:
                   type: integer
                   description: 'The timestamp to start filtering events from'
@@ -5568,6 +5647,11 @@ paths:
                   type: integer
                   description: 'The timestamp to end filtering events'
                   example: 1707653999
+                  nullable: false
+                page:
+                  type: integer
+                  description: 'Page number for pagination. Must be a positive integer between 1 and 10,000. Must be at least 1. Must not be greater than 10000.'
+                  example: 1
                   nullable: false
     parameters:
       -
@@ -5985,12 +6069,12 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: qui
+                  example: voluptatem
                   nullable: true
                 description:
                   type: string
                   description: ''
-                  example: 'Recusandae ea voluptas corrupti delectus.'
+                  example: 'Aut quaerat quis ipsam enim dicta unde totam.'
                   nullable: true
     delete:
       summary: Delete
@@ -6042,7 +6126,7 @@ paths:
             text/plain:
               schema:
                 type: string
-                example: "{\n        \"data\": [\n            {\n                \"product_model\": \"App\\Models\\KubernetesCluster\",\n                \"product_id\": \"01F8MECHZX3TBDSZ7XRADM79XE\",\n                \"product_source\": \"k8s\",\n                \"type\": \"customer\",\n                \"content\": \"A kubernetes cluster event occurred.\",\n                \"created_at\": 1739256828\n            },\n        ],\n        \"meta\": {\n            \"current_page\": 1,\n            \"from\": 1,\n            \"last_page\": 10,\n            \"per_page\": 20,\n            \"to\": 20,\n            \"total\": 200\n        }\n}"
+                example: "{\n        \"data\": [\n            {\n                \"product_id\": \"01F8MECHZX3TBDSZ7XRADM79XE\",\n                \"type\": \"customer\",\n                \"content\": \"A kubernetes cluster event occurred.\",\n                \"created_at\": 1739256828\n            },\n        ],\n        \"meta\": {\n            \"current_page\": 1,\n            \"from\": 1,\n            \"last_page\": 10,\n            \"per_page\": 20,\n            \"to\": 20,\n            \"total\": 200\n        }\n}"
       tags:
         - Kubernetes
       requestBody:
@@ -6057,6 +6141,23 @@ paths:
                   description: 'The type of events to filter'
                   example: system
                   nullable: false
+                product_model:
+                  type: string
+                  description: 'Filter by product model. One of: network, kubernetes_cluster, bucket, instance_network_secondary_ips, instance, zone, network_public_ip, vpn_connection, instance_data_volumes, customer, network_nat.'
+                  example: instance
+                  nullable: false
+                  enum:
+                    - network
+                    - kubernetes_cluster
+                    - bucket
+                    - instance_network_secondary_ips
+                    - instance
+                    - zone
+                    - network_public_ip
+                    - vpn_connection
+                    - instance_data_volumes
+                    - customer
+                    - network_nat
                 from:
                   type: integer
                   description: 'The timestamp to start filtering events from'
@@ -6066,6 +6167,11 @@ paths:
                   type: integer
                   description: 'The timestamp to end filtering events'
                   example: 1707653999
+                  nullable: false
+                page:
+                  type: integer
+                  description: 'Page number for pagination. Must be a positive integer between 1 and 10,000. Must be at least 1. Must not be greater than 10000.'
+                  example: 1
                   nullable: false
     parameters:
       -
@@ -6987,7 +7093,7 @@ paths:
             text/plain:
               schema:
                 type: string
-                example: "{\n        \"data\": [\n            {\n                \"product_model\": \"App\\Models\\Bucket\",\n                \"product_id\": \"01F8MECHZX3TBDSZ7XRADM79XE\",\n                \"product_source\": \"k8s\",\n                \"type\": \"customer\",\n                \"content\": \"A bucket cluster event occurred.\",\n                \"created_at\": 1739256828\n            },\n        ],\n        \"meta\": {\n            \"current_page\": 1,\n            \"from\": 1,\n            \"last_page\": 10,\n            \"per_page\": 20,\n            \"to\": 20,\n            \"total\": 200\n        }\n}"
+                example: "{\n        \"data\": [\n            {\n                \"product_id\": \"01F8MECHZX3TBDSZ7XRADM79XE\",\n                \"type\": \"customer\",\n                \"content\": \"A bucket cluster event occurred.\",\n                \"created_at\": 1739256828\n            },\n        ],\n        \"meta\": {\n            \"current_page\": 1,\n            \"from\": 1,\n            \"last_page\": 10,\n            \"per_page\": 20,\n            \"to\": 20,\n            \"total\": 200\n        }\n}"
       tags:
         - 'Object Storage'
       requestBody:
@@ -7022,7 +7128,7 @@ paths:
         in: path
         name: zoneId
         description: ''
-        example: eveniet
+        example: aliquid
         required: true
         schema:
           type: string
@@ -7414,7 +7520,7 @@ paths:
             text/plain:
               schema:
                 type: string
-                example: "{\n        \"data\": [\n            {\n                \"product_model\": \"App\\Models\\Bucket\",\n                \"product_id\": \"01F8MECHZX3TBDSZ7XRADM79XE\",\n                \"product_source\": \"k8s\",\n                \"type\": \"customer\",\n                \"content\": \"A bucket cluster event occurred.\",\n                \"created_at\": 1739256828\n            },\n        ],\n        \"meta\": {\n            \"current_page\": 1,\n            \"from\": 1,\n            \"last_page\": 10,\n            \"per_page\": 20,\n            \"to\": 20,\n            \"total\": 200\n        }\n}"
+                example: "{\n        \"data\": [\n            {\n                \"product_id\": \"01F8MECHZX3TBDSZ7XRADM79XE\",\n                \"type\": \"customer\",\n                \"content\": \"A bucket cluster event occurred.\",\n                \"created_at\": 1739256828\n            },\n        ],\n        \"meta\": {\n            \"current_page\": 1,\n            \"from\": 1,\n            \"last_page\": 10,\n            \"per_page\": 20,\n            \"to\": 20,\n            \"total\": 200\n        }\n}"
       tags:
         - 'Object Storage'
       requestBody:
@@ -8851,10 +8957,68 @@ paths:
         200:
           description: 'Success Response'
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: "{\n    \"data\": [\n        {\n            \"product_model\": \"App\\Models\\Zone\",\n            \"product_id\": \"01jz2ty8m3vd3m5g3n3r1dhfy2\",\n            \"product_source\": \"dns\",\n            \"type\": \"system\",\n            \"content\": \"دامنه domain.ir غیر فعال شد.\",\n            \"created_at\": 1752006606\n        }\n    ],\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 1,\n        \"per_page\": 20,\n        \"to\": 1,\n        \"total\": 1\n    }\n}"
+                type: object
+                example:
+                  data:
+                    -
+                      product_id: 01jz2ty8m3vd3m5g3n3r1dhfy2
+                      type: system
+                      content: 'دامنه domain.ir غیر فعال شد.'
+                      created_at: 1752006606
+                  meta:
+                    current_page: 1
+                    from: 1
+                    last_page: 1
+                    per_page: 20
+                    to: 1
+                    total: 1
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        product_id: 01jz2ty8m3vd3m5g3n3r1dhfy2
+                        type: system
+                        content: 'دامنه domain.ir غیر فعال شد.'
+                        created_at: 1752006606
+                    items:
+                      type: object
+                      properties:
+                        product_id:
+                          type: string
+                          example: 01jz2ty8m3vd3m5g3n3r1dhfy2
+                        type:
+                          type: string
+                          example: system
+                        content:
+                          type: string
+                          example: 'دامنه domain.ir غیر فعال شد.'
+                        created_at:
+                          type: integer
+                          example: 1752006606
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      from:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 1
+                      per_page:
+                        type: integer
+                        example: 20
+                      to:
+                        type: integer
+                        example: 1
+                      total:
+                        type: integer
+                        example: 1
       tags:
         - DNS
       requestBody:
@@ -8894,10 +9058,78 @@ paths:
         200:
           description: 'Success Response'
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: "{\n        \"data\": [\n            {\n                \"product_model\": \"App\\Models\\Network\",\n                \"product_id\": \"01F8MECHZX3TBDSZ7XRADM79XE\",\n                \"product_source\": \"network\",\n                \"type\": \"customer\",\n                \"content\": \"A network event occurred.\",\n                \"created_at\": 1739256828\n            },\n            {\n                \"product_model\": \"App\\Models\\Instance\",\n                \"product_id\": \"01F8MECHZX3TBDSZ7XRADM79XE\",\n                \"product_source\": \"core\",\n                \"type\": \"system\",\n                \"content\": \"A system event occurred.\",\n                \"created_at\": 1739256683\n            }\n        ],\n        \"meta\": {\n            \"current_page\": 1,\n            \"from\": 1,\n            \"last_page\": 10,\n            \"per_page\": 20,\n            \"to\": 20,\n            \"total\": 200\n        }\n}"
+                type: object
+                example:
+                  data:
+                    -
+                      product_id: 01F8MECHZX3TBDSZ7XRADM79XE
+                      type: customer
+                      content: 'A network event occurred.'
+                      created_at: 1739256828
+                    -
+                      product_id: 01F8MECHZX3TBDSZ7XRADM79XE
+                      type: system
+                      content: 'A system event occurred.'
+                      created_at: 1739256683
+                  meta:
+                    current_page: 1
+                    from: 1
+                    last_page: 10
+                    per_page: 20
+                    to: 20
+                    total: 200
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        product_id: 01F8MECHZX3TBDSZ7XRADM79XE
+                        type: customer
+                        content: 'A network event occurred.'
+                        created_at: 1739256828
+                      -
+                        product_id: 01F8MECHZX3TBDSZ7XRADM79XE
+                        type: system
+                        content: 'A system event occurred.'
+                        created_at: 1739256683
+                    items:
+                      type: object
+                      properties:
+                        product_id:
+                          type: string
+                          example: 01F8MECHZX3TBDSZ7XRADM79XE
+                        type:
+                          type: string
+                          example: customer
+                        content:
+                          type: string
+                          example: 'A network event occurred.'
+                        created_at:
+                          type: integer
+                          example: 1739256828
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      from:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 10
+                      per_page:
+                        type: integer
+                        example: 20
+                      to:
+                        type: integer
+                        example: 20
+                      total:
+                        type: integer
+                        example: 200
       tags:
         - 'Event Management'
       requestBody:
@@ -8912,6 +9144,23 @@ paths:
                   description: 'The type of events to filter'
                   example: system
                   nullable: false
+                product_model:
+                  type: string
+                  description: 'Filter by product model. One of: network, kubernetes_cluster, bucket, instance_network_secondary_ips, instance, zone, network_public_ip, vpn_connection, instance_data_volumes, customer, network_nat.'
+                  example: instance
+                  nullable: false
+                  enum:
+                    - network
+                    - kubernetes_cluster
+                    - bucket
+                    - instance_network_secondary_ips
+                    - instance
+                    - zone
+                    - network_public_ip
+                    - vpn_connection
+                    - instance_data_volumes
+                    - customer
+                    - network_nat
                 from:
                   type: integer
                   description: 'The timestamp to start filtering events from'
@@ -8921,6 +9170,11 @@ paths:
                   type: integer
                   description: 'The timestamp to end filtering events'
                   example: 1707653999
+                  nullable: false
+                page:
+                  type: integer
+                  description: 'Page number for pagination. Must be a positive integer between 1 and 10,000.'
+                  example: 1
                   nullable: false
 tags:
   -
