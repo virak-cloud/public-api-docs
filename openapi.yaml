@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: 'Virak Cloud API'
-  description: 'The Virak Cloud API is a comprehensive RESTful API that empowers developers to programmatically manage and interact with cloud infrastructure resources. This API provides secure, scalable endpoints for managing virtual instances, networks, Kubernetes clusters, object storage, DNS records, and more. Built with enterprise-grade security and reliability, the Virak Cloud API enables seamless automation and integration with your existing workflows and applications.'
+  description: "<P>\n    Welcome to the Virak Cloud API documentation.\n    Virak Cloud API is a comprehensive RESTful API that empowers developers to programmatically manage and interact with cloud infrastructure resources.\n    This API provides secure, scalable endpoints for managing virtual instances, networks, Kubernetes clusters, object storage, DNS records, and more. Built with enterprise-grade security and reliability, the Virak Cloud API enables seamless automation and integration with your existing workflows and applications.\n    <p>For detailed guides and advanced documentation, visit the <a href=\"https://docs.virakcloud.com/fa/guides/\" target=\"_blank\">VirakCloud Documentation</a>.</p>\n    <a href=\"https://github.com/virak-cloud/public-api-docs\"> <img src=\"https://img.shields.io/badge/github-%23181717.svg?&style=for-the-badge&logo=github&logoColor=white\" alt=\"github icon\" title=\"github icon\"></a>\n</P>"
   version: 1.0.0
 servers:
   -
@@ -472,7 +472,7 @@ paths:
         in: path
         name: sshKeyId
         description: ''
-        example: 6ZQ8HeHQYGfWfCdGWrvng0Mq3r
+        example: 1YWG8Prmf5GKaZJWE1v83WGT0V
         required: true
         schema:
           type: string
@@ -1656,6 +1656,353 @@ paths:
                   nullable: false
               required:
                 - name
+    get:
+      summary: 'Show Instance'
+      operationId: showInstance
+      description: "  <aside class=\"notice\">need <small class=\"badge\">instance:show</small> ability for api token</aside>\n  Retrieve detailed information about a specific instance in a zone."
+      parameters: []
+      responses:
+        200:
+          description: 'Successful response'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: string
+                    customer_id: 01hyddf0krmwvq50cd523zfcfp
+                    name: test-from-cli-intractive
+                    zone_id: 01hysrrs3xhhdaayy69ps6xxya
+                    created: true
+                    template_id: null
+                    vm_image:
+                      id: string
+                      type: TEMPLATE
+                      name: T-Mikrotik-714
+                      is_available: true
+                      display_text: T-Mikrotik-714
+                      name_orginal: 'linux MikroTik 7.14  '
+                      ready_to_use_app: false
+                      ready_to_use_app_name: null
+                      ready_to_use_app_version: null
+                      os_type: linux
+                      os_name: MikroTik
+                      os_version: '7.14'
+                      hardware_requirement:
+                        cpunumber: 1
+                        cpuspeed: 1000
+                        memory: 1000
+                        rootdisksize: 25
+                      category: OPERATION_SYSTEMS
+                    zone:
+                      id: string
+                      name: ALBORZ
+                      location: Iran
+                      is_public: true
+                      is_featured: true
+                      is_ready: true
+                    service_offering:
+                      id: string
+                      name: n02-02-025-500-v3
+                      has_image_requirement: null
+                      is_available: true
+                      is_public: true
+                      suggested: false
+                      category: NETWORK
+                      hourly_price:
+                        up: 2000
+                        down: 2000
+                      hourly_price_no_discount:
+                        up: 2000
+                        down: 2000
+                      description: null
+                      hardware:
+                        cpu_core: 2
+                        memory_mb: 2048
+                        cpu_speed_MHz: 2300
+                        root_disk_size_gB: 25
+                        network_rate: 500
+                        disk_iops: 2500
+                    disk_offering_id: null
+                    service_offering_id: string
+                    status: UP
+                    instance_status: UP
+                    password: string
+                    username: string
+                    created_at: 1756628991
+                    updated_at: 1756633818
+                    metadata: []
+                    kubernetes_cluster_id: null
+                    data_volumes: []
+                    snapshot:
+                      -
+                        id: string
+                        name: on-snapshot
+                        status: READY
+                        created_at: 1756633839
+                        current: false
+                        parent_id: null
+                      -
+                        id: string
+                        name: snap-shot
+                        status: READY
+                        created_at: 1756634140
+                        current: false
+                        parent_id: string
+                      -
+                        id: string
+                        name: other-snapshot
+                        status: READY
+                        created_at: 1756636439
+                        current: false
+                        parent_id: string
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: string
+                      customer_id:
+                        type: string
+                        example: 01hyddf0krmwvq50cd523zfcfp
+                      name:
+                        type: string
+                        example: test-from-cli-intractive
+                      zone_id:
+                        type: string
+                        example: 01hysrrs3xhhdaayy69ps6xxya
+                      created:
+                        type: boolean
+                        example: true
+                      template_id:
+                        type: string
+                        example: null
+                      vm_image:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: string
+                          type:
+                            type: string
+                            example: TEMPLATE
+                          name:
+                            type: string
+                            example: T-Mikrotik-714
+                          is_available:
+                            type: boolean
+                            example: true
+                          display_text:
+                            type: string
+                            example: T-Mikrotik-714
+                          name_orginal:
+                            type: string
+                            example: 'linux MikroTik 7.14  '
+                          ready_to_use_app:
+                            type: boolean
+                            example: false
+                          ready_to_use_app_name:
+                            type: string
+                            example: null
+                          ready_to_use_app_version:
+                            type: string
+                            example: null
+                          os_type:
+                            type: string
+                            example: linux
+                          os_name:
+                            type: string
+                            example: MikroTik
+                          os_version:
+                            type: string
+                            example: '7.14'
+                          hardware_requirement:
+                            type: object
+                            properties:
+                              cpunumber:
+                                type: integer
+                                example: 1
+                              cpuspeed:
+                                type: integer
+                                example: 1000
+                              memory:
+                                type: integer
+                                example: 1000
+                              rootdisksize:
+                                type: integer
+                                example: 25
+                          category:
+                            type: string
+                            example: OPERATION_SYSTEMS
+                      zone:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: string
+                          name:
+                            type: string
+                            example: ALBORZ
+                          location:
+                            type: string
+                            example: Iran
+                          is_public:
+                            type: boolean
+                            example: true
+                          is_featured:
+                            type: boolean
+                            example: true
+                          is_ready:
+                            type: boolean
+                            example: true
+                      service_offering:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: string
+                          name:
+                            type: string
+                            example: n02-02-025-500-v3
+                          has_image_requirement:
+                            type: string
+                            example: null
+                          is_available:
+                            type: boolean
+                            example: true
+                          is_public:
+                            type: boolean
+                            example: true
+                          suggested:
+                            type: boolean
+                            example: false
+                          category:
+                            type: string
+                            example: NETWORK
+                          hourly_price:
+                            type: object
+                            properties:
+                              up:
+                                type: integer
+                                example: 2000
+                              down:
+                                type: integer
+                                example: 2000
+                          hourly_price_no_discount:
+                            type: object
+                            properties:
+                              up:
+                                type: integer
+                                example: 2000
+                              down:
+                                type: integer
+                                example: 2000
+                          description:
+                            type: string
+                            example: null
+                          hardware:
+                            type: object
+                            properties:
+                              cpu_core:
+                                type: integer
+                                example: 2
+                              memory_mb:
+                                type: integer
+                                example: 2048
+                              cpu_speed_MHz:
+                                type: integer
+                                example: 2300
+                              root_disk_size_gB:
+                                type: integer
+                                example: 25
+                              network_rate:
+                                type: integer
+                                example: 500
+                              disk_iops:
+                                type: integer
+                                example: 2500
+                      disk_offering_id:
+                        type: string
+                        example: null
+                      service_offering_id:
+                        type: string
+                        example: string
+                      status:
+                        type: string
+                        example: UP
+                      instance_status:
+                        type: string
+                        example: UP
+                      password:
+                        type: string
+                        example: string
+                      username:
+                        type: string
+                        example: string
+                      created_at:
+                        type: integer
+                        example: 1756628991
+                      updated_at:
+                        type: integer
+                        example: 1756633818
+                      metadata:
+                        type: array
+                        example: []
+                      kubernetes_cluster_id:
+                        type: string
+                        example: null
+                      data_volumes:
+                        type: array
+                        example: []
+                      snapshot:
+                        type: array
+                        example:
+                          -
+                            id: string
+                            name: on-snapshot
+                            status: READY
+                            created_at: 1756633839
+                            current: false
+                            parent_id: null
+                          -
+                            id: string
+                            name: snap-shot
+                            status: READY
+                            created_at: 1756634140
+                            current: false
+                            parent_id: string
+                          -
+                            id: string
+                            name: other-snapshot
+                            status: READY
+                            created_at: 1756636439
+                            current: false
+                            parent_id: string
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: string
+                            name:
+                              type: string
+                              example: on-snapshot
+                            status:
+                              type: string
+                              example: READY
+                            created_at:
+                              type: integer
+                              example: 1756633839
+                            current:
+                              type: boolean
+                              example: false
+                            parent_id:
+                              type: string
+                              example: null
+      tags:
+        - Instance
     parameters:
       -
         in: path
@@ -2800,7 +3147,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: sed
+        example: eos
         required: true
         schema:
           type: ulid
@@ -2808,7 +3155,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: ipsa
+        example: aut
         required: true
         schema:
           type: ulid
@@ -2856,7 +3203,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: laboriosam
+        example: velit
         required: true
         schema:
           type: ulid
@@ -2864,7 +3211,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: unde
+        example: quod
         required: true
         schema:
           type: ulid
@@ -3043,7 +3390,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: accusantium
+        example: reprehenderit
         required: true
         schema:
           type: ulid
@@ -3051,7 +3398,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: dolore
+        example: saepe
         required: true
         schema:
           type: ulid
@@ -3799,7 +4146,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: suscipit
+        example: voluptatem
         required: true
         schema:
           type: ulid
@@ -3807,7 +4154,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: qui
+        example: alias
         required: true
         schema:
           type: ulid
@@ -3815,7 +4162,7 @@ paths:
         in: path
         name: networkPublicIpId
         description: 'The ID of the public IP.'
-        example: nobis
+        example: quo
         required: true
         schema:
           type: ulid
@@ -3854,7 +4201,7 @@ paths:
                 instance_id:
                   type: string
                   description: 'The instance CS ID.'
-                  example: iusto
+                  example: ad
                   nullable: false
               required:
                 - instance_id
@@ -3887,7 +4234,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: est
+        example: eos
         required: true
         schema:
           type: ulid
@@ -3895,7 +4242,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: doloribus
+        example: iste
         required: true
         schema:
           type: ulid
@@ -3903,7 +4250,7 @@ paths:
         in: path
         name: networkPublicIpId
         description: 'The ID of the public IP.'
-        example: delectus
+        example: nihil
         required: true
         schema:
           type: ulid
@@ -4188,7 +4535,7 @@ paths:
                 public_ip_id:
                   type: string
                   description: 'The public IP ULID to filter by (optional).'
-                  example: quia
+                  example: sit
                   nullable: false
               required:
                 - public_ip_id
@@ -4265,7 +4612,7 @@ paths:
                 port_end_private:
                   type: integer
                   description: 'The ending private port (optional).'
-                  example: 5
+                  example: 11
                   nullable: false
                 instance_network_secondary_ip_id:
                   type: string
@@ -6069,12 +6416,12 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: voluptatem
+                  example: nostrum
                   nullable: true
                 description:
                   type: string
                   description: ''
-                  example: 'Aut quaerat quis ipsam enim dicta unde totam.'
+                  example: 'Iure maxime doloremque nesciunt ipsam et repellendus ratione.'
                   nullable: true
     delete:
       summary: Delete
@@ -7128,7 +7475,7 @@ paths:
         in: path
         name: zoneId
         description: ''
-        example: aliquid
+        example: tenetur
         required: true
         schema:
           type: string

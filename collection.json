@@ -10,8 +10,8 @@
     ],
     "info": {
         "name": "Virak Cloud API",
-        "_postman_id": "995e3097-83a6-435e-9e1b-e541202906ee",
-        "description": "The Virak Cloud API is a comprehensive RESTful API that empowers developers to programmatically manage and interact with cloud infrastructure resources. This API provides secure, scalable endpoints for managing virtual instances, networks, Kubernetes clusters, object storage, DNS records, and more. Built with enterprise-grade security and reliability, the Virak Cloud API enables seamless automation and integration with your existing workflows and applications.",
+        "_postman_id": "16efd88c-6def-4128-bdd6-bf61d5579eca",
+        "description": "<P>\n    Welcome to the Virak Cloud API documentation.\n    Virak Cloud API is a comprehensive RESTful API that empowers developers to programmatically manage and interact with cloud infrastructure resources.\n    This API provides secure, scalable endpoints for managing virtual instances, networks, Kubernetes clusters, object storage, DNS records, and more. Built with enterprise-grade security and reliability, the Virak Cloud API enables seamless automation and integration with your existing workflows and applications.\n    <p>For detailed guides and advanced documentation, visit the <a href=\"https:\/\/docs.virakcloud.com\/fa\/guides\/\" target=\"_blank\">VirakCloud Documentation<\/a>.<\/p>\n    <a href=\"https:\/\/github.com\/virak-cloud\/public-api-docs\"> <img src=\"https:\/\/img.shields.io\/badge\/github-%23181717.svg?&style=for-the-badge&logo=github&logoColor=white\" alt=\"github icon\" title=\"github icon\"><\/a>\n<\/P>",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
     "item": [
@@ -24,7 +24,7 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "\/zones",
+                            "path": "api\/external\/zones",
                             "query": [],
                             "raw": "{{baseUrl}}\/zones"
                         },
@@ -56,7 +56,7 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "\/zone\/:zoneId",
+                            "path": "api\/external\/zone\/:zoneId",
                             "query": [],
                             "raw": "{{baseUrl}}\/zone\/:zoneId",
                             "variable": [
@@ -96,7 +96,7 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "\/zone\/:zoneId\/resources",
+                            "path": "api\/external\/zone\/:zoneId\/resources",
                             "query": [],
                             "raw": "{{baseUrl}}\/zone\/:zoneId\/resources",
                             "variable": [
@@ -142,7 +142,7 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "\/user\/profile",
+                            "path": "api\/external\/user\/profile",
                             "query": [],
                             "raw": "{{baseUrl}}\/user\/profile"
                         },
@@ -174,7 +174,7 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "\/user\/token",
+                            "path": "api\/external\/user\/token",
                             "query": [],
                             "raw": "{{baseUrl}}\/user\/token"
                         },
@@ -206,7 +206,7 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "\/user\/token-abilities",
+                            "path": "api\/external\/user\/token-abilities",
                             "query": [],
                             "raw": "{{baseUrl}}\/user\/token-abilities"
                         },
@@ -242,7 +242,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/user\/ssh-key",
+                                    "path": "api\/external\/user\/ssh-key",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/user\/ssh-key"
                                 },
@@ -274,7 +274,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/user\/ssh-key",
+                                    "path": "api\/external\/user\/ssh-key",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/user\/ssh-key"
                                 },
@@ -309,14 +309,14 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/user\/ssh-key\/:sshKeyId",
+                                    "path": "api\/external\/user\/ssh-key\/:sshKeyId",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/user\/ssh-key\/:sshKeyId",
                                     "variable": [
                                         {
                                             "id": "sshKeyId",
                                             "key": "sshKeyId",
-                                            "value": "6ZQ8HeHQYGfWfCdGWrvng0Mq3r",
+                                            "value": "1YWG8Prmf5GKaZJWE1v83WGT0V",
                                             "description": ""
                                         }
                                     ]
@@ -355,7 +355,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/user\/finance\/wallet",
+                                    "path": "api\/external\/user\/finance\/wallet",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/user\/finance\/wallet"
                                 },
@@ -387,7 +387,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/user\/finance\/documents",
+                                    "path": "api\/external\/user\/finance\/documents",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/user\/finance\/documents"
                                 },
@@ -422,7 +422,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/user\/finance\/payments",
+                                    "path": "api\/external\/user\/finance\/payments",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/user\/finance\/payments"
                                 },
@@ -462,7 +462,7 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "\/zone\/:zoneId\/instance",
+                            "path": "api\/external\/zone\/:zoneId\/instance",
                             "query": [],
                             "raw": "{{baseUrl}}\/zone\/:zoneId\/instance",
                             "variable": [
@@ -502,7 +502,7 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "\/zone\/:zoneId\/instance\/service-offerings",
+                            "path": "api\/external\/zone\/:zoneId\/instance\/service-offerings",
                             "query": [],
                             "raw": "{{baseUrl}}\/zone\/:zoneId\/instance\/service-offerings",
                             "variable": [
@@ -542,7 +542,7 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "\/zone\/:zoneId\/instance\/vm-images",
+                            "path": "api\/external\/zone\/:zoneId\/instance\/vm-images",
                             "query": [],
                             "raw": "{{baseUrl}}\/zone\/:zoneId\/instance\/vm-images",
                             "variable": [
@@ -582,7 +582,7 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "\/zone\/:zoneId\/instance",
+                            "path": "api\/external\/zone\/:zoneId\/instance",
                             "query": [],
                             "raw": "{{baseUrl}}\/zone\/:zoneId\/instance",
                             "variable": [
@@ -625,7 +625,7 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "\/zone\/:zoneId\/instance\/:instanceId\/rebuild",
+                            "path": "api\/external\/zone\/:zoneId\/instance\/:instanceId\/rebuild",
                             "query": [],
                             "raw": "{{baseUrl}}\/zone\/:zoneId\/instance\/:instanceId\/rebuild",
                             "variable": [
@@ -674,7 +674,7 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "\/zone\/:zoneId\/instance\/:instanceId\/start",
+                            "path": "api\/external\/zone\/:zoneId\/instance\/:instanceId\/start",
                             "query": [],
                             "raw": "{{baseUrl}}\/zone\/:zoneId\/instance\/:instanceId\/start",
                             "variable": [
@@ -720,7 +720,7 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "\/zone\/:zoneId\/instance\/:instanceId\/stop",
+                            "path": "api\/external\/zone\/:zoneId\/instance\/:instanceId\/stop",
                             "query": [],
                             "raw": "{{baseUrl}}\/zone\/:zoneId\/instance\/:instanceId\/stop",
                             "variable": [
@@ -769,7 +769,7 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "\/zone\/:zoneId\/instance\/:instanceId\/reboot",
+                            "path": "api\/external\/zone\/:zoneId\/instance\/:instanceId\/reboot",
                             "query": [],
                             "raw": "{{baseUrl}}\/zone\/:zoneId\/instance\/:instanceId\/reboot",
                             "variable": [
@@ -815,7 +815,7 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "\/zone\/:zoneId\/instance\/:instanceId",
+                            "path": "api\/external\/zone\/:zoneId\/instance\/:instanceId",
                             "query": [],
                             "raw": "{{baseUrl}}\/zone\/:zoneId\/instance\/:instanceId",
                             "variable": [
@@ -864,7 +864,7 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "\/zone\/:zoneId\/instance\/:instanceId\/metrics",
+                            "path": "api\/external\/zone\/:zoneId\/instance\/:instanceId\/metrics",
                             "query": [],
                             "raw": "{{baseUrl}}\/zone\/:zoneId\/instance\/:instanceId\/metrics",
                             "variable": [
@@ -909,6 +909,52 @@
                     ]
                 },
                 {
+                    "name": "Show Instance",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/external\/zone\/:zoneId\/instance\/:instanceId",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/zone\/:zoneId\/instance\/:instanceId",
+                            "variable": [
+                                {
+                                    "id": "zoneId",
+                                    "key": "zoneId",
+                                    "value": "01F8MECHZX3TBDSZ7XRADM79XE",
+                                    "description": "The ID of the zone."
+                                },
+                                {
+                                    "id": "instanceId",
+                                    "key": "instanceId",
+                                    "value": "01H9ZCNF46W6C1EM45T21B6M0I",
+                                    "description": "The ID of the instance."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "  <aside class=\"notice\">need <small class=\"badge\">instance:show<\/small> ability for api token<\/aside>\n  Retrieve detailed information about a specific instance in a zone."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": \"string\",\n        \"customer_id\": \"01hyddf0krmwvq50cd523zfcfp\",\n        \"name\": \"test-from-cli-intractive\",\n        \"zone_id\": \"01hysrrs3xhhdaayy69ps6xxya\",\n        \"created\": true,\n        \"template_id\": null,\n        \"vm_image\": {\n            \"id\": \"string\",\n            \"type\": \"TEMPLATE\",\n            \"name\": \"T-Mikrotik-714\",\n            \"is_available\": true,\n            \"display_text\": \"T-Mikrotik-714\",\n            \"name_orginal\": \"linux MikroTik 7.14  \",\n            \"ready_to_use_app\": false,\n            \"ready_to_use_app_name\": null,\n            \"ready_to_use_app_version\": null,\n            \"os_type\": \"linux\",\n            \"os_name\": \"MikroTik\",\n            \"os_version\": \"7.14\",\n            \"hardware_requirement\": {\n                \"cpunumber\": 1,\n                \"cpuspeed\": 1000,\n                \"memory\": 1000,\n                \"rootdisksize\": 25\n            },\n            \"category\": \"OPERATION_SYSTEMS\"\n        },\n        \"zone\": {\n            \"id\": \"string\",\n            \"name\": \"ALBORZ\",\n            \"location\": \"Iran\",\n            \"is_public\": true,\n            \"is_featured\": true,\n            \"is_ready\": true\n        },\n        \"service_offering\": {\n            \"id\": \"string\",\n            \"name\": \"n02-02-025-500-v3\",\n            \"has_image_requirement\": null,\n            \"is_available\": true,\n            \"is_public\": true,\n            \"suggested\": false,\n            \"category\": \"NETWORK\",\n            \"hourly_price\": {\n                \"up\": 2000,\n                \"down\": 2000\n            },\n            \"hourly_price_no_discount\": {\n                \"up\": 2000,\n                \"down\": 2000\n            },\n            \"description\": null,\n            \"hardware\": {\n                \"cpu_core\": 2,\n                \"memory_mb\": 2048,\n                \"cpu_speed_MHz\": 2300,\n                \"root_disk_size_gB\": 25,\n                \"network_rate\": 500,\n                \"disk_iops\": 2500\n            }\n        },\n        \"disk_offering_id\": null,\n        \"service_offering_id\": \"string\",\n        \"status\": \"UP\",\n        \"instance_status\": \"UP\",\n        \"password\": \"string\",\n        \"username\": \"string\",\n        \"created_at\": 1756628991,\n        \"updated_at\": 1756633818,\n        \"metadata\": [],\n        \"kubernetes_cluster_id\": null,\n        \"data_volumes\": [],\n        \"snapshot\": [\n            {\n                \"id\": \"string\",\n                \"name\": \"on-snapshot\",\n                \"status\": \"READY\",\n                \"created_at\": 1756633839,\n                \"current\": false,\n                \"parent_id\": null\n            },\n            {\n                \"id\": \"string\",\n                \"name\": \"snap-shot\",\n                \"status\": \"READY\",\n                \"created_at\": 1756634140,\n                \"current\": false,\n                \"parent_id\": \"string\"\n            },\n            {\n                \"id\": \"string\",\n                \"name\": \"other-snapshot\",\n                \"status\": \"READY\",\n                \"created_at\": 1756636439,\n                \"current\": false,\n                \"parent_id\": \"string\"\n            }\n        ]\n    }\n}",
+                            "name": "Successful response"
+                        }
+                    ]
+                },
+                {
                     "name": "Snapshots",
                     "description": "",
                     "item": [
@@ -917,7 +963,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/instance\/:instanceId\/snapshot",
+                                    "path": "api\/external\/zone\/:zoneId\/instance\/:instanceId\/snapshot",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/instance\/:instanceId\/snapshot",
                                     "variable": [
@@ -966,7 +1012,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/instance\/:instanceId\/snapshot\/:snapshotId",
+                                    "path": "api\/external\/zone\/:zoneId\/instance\/:instanceId\/snapshot\/:snapshotId",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/instance\/:instanceId\/snapshot\/:snapshotId",
                                     "variable": [
@@ -1018,7 +1064,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/instance\/:instanceId\/snapshot\/revert",
+                                    "path": "api\/external\/zone\/:zoneId\/instance\/:instanceId\/snapshot\/revert",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/instance\/:instanceId\/snapshot\/revert",
                                     "variable": [
@@ -1076,7 +1122,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/instance\/volumes\/service-offering",
+                                    "path": "api\/external\/zone\/:zoneId\/instance\/volumes\/service-offering",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/instance\/volumes\/service-offering",
                                     "variable": [
@@ -1116,7 +1162,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/instance\/volumes",
+                                    "path": "api\/external\/zone\/:zoneId\/instance\/volumes",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/instance\/volumes",
                                     "variable": [
@@ -1156,7 +1202,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/instance\/volumes",
+                                    "path": "api\/external\/zone\/:zoneId\/instance\/volumes",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/instance\/volumes",
                                     "variable": [
@@ -1199,7 +1245,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/instance\/volumes\/:volumeId",
+                                    "path": "api\/external\/zone\/:zoneId\/instance\/volumes\/:volumeId",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/instance\/volumes\/:volumeId",
                                     "variable": [
@@ -1245,7 +1291,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/instance\/volumes\/:volumeId\/detach",
+                                    "path": "api\/external\/zone\/:zoneId\/instance\/volumes\/:volumeId\/detach",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/instance\/volumes\/:volumeId\/detach",
                                     "variable": [
@@ -1294,7 +1340,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/instance\/volumes\/:volumeId\/attach\/:instanceId",
+                                    "path": "api\/external\/zone\/:zoneId\/instance\/volumes\/:volumeId\/attach\/:instanceId",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/instance\/volumes\/:volumeId\/attach\/:instanceId",
                                     "variable": [
@@ -1358,7 +1404,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/l2",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/l2",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/l2",
                                     "variable": [
@@ -1407,7 +1453,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/l3",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/l3",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/l3",
                                     "variable": [
@@ -1456,7 +1502,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network",
+                                    "path": "api\/external\/zone\/:zoneId\/network",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network",
                                     "variable": [
@@ -1496,7 +1542,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId",
                                     "variable": [
@@ -1542,7 +1588,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId",
                                     "variable": [
@@ -1594,20 +1640,20 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId\/instance\/connect",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId\/instance\/connect",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId\/instance\/connect",
                                     "variable": [
                                         {
                                             "id": "zoneId",
                                             "key": "zoneId",
-                                            "value": "sed",
+                                            "value": "eos",
                                             "description": "The ID of the zone."
                                         },
                                         {
                                             "id": "networkId",
                                             "key": "networkId",
-                                            "value": "ipsa",
+                                            "value": "aut",
                                             "description": "The ID of the network."
                                         }
                                     ]
@@ -1643,20 +1689,20 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId\/instance\/disconnect",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId\/instance\/disconnect",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId\/instance\/disconnect",
                                     "variable": [
                                         {
                                             "id": "zoneId",
                                             "key": "zoneId",
-                                            "value": "laboriosam",
+                                            "value": "velit",
                                             "description": "The ID of the zone."
                                         },
                                         {
                                             "id": "networkId",
                                             "key": "networkId",
-                                            "value": "unde",
+                                            "value": "quod",
                                             "description": "The ID of the network."
                                         }
                                     ]
@@ -1692,20 +1738,20 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId\/instance",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId\/instance",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId\/instance",
                                     "variable": [
                                         {
                                             "id": "zoneId",
                                             "key": "zoneId",
-                                            "value": "accusantium",
+                                            "value": "reprehenderit",
                                             "description": "The ID of the zone."
                                         },
                                         {
                                             "id": "networkId",
                                             "key": "networkId",
-                                            "value": "dolore",
+                                            "value": "saepe",
                                             "description": "The ID of the network."
                                         }
                                     ]
@@ -1747,7 +1793,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId\/firewall\/ipv4",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId\/firewall\/ipv4",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId\/firewall\/ipv4",
                                     "variable": [
@@ -1799,7 +1845,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId\/firewall\/ipv4",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId\/firewall\/ipv4",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId\/firewall\/ipv4",
                                     "variable": [
@@ -1872,7 +1918,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId\/firewall\/ipv4\/:ruleId",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId\/firewall\/ipv4\/:ruleId",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId\/firewall\/ipv4\/:ruleId",
                                     "variable": [
@@ -1924,7 +1970,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId\/firewall\/ipv6",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId\/firewall\/ipv6",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId\/firewall\/ipv6",
                                     "variable": [
@@ -1976,7 +2022,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId\/firewall\/ipv6",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId\/firewall\/ipv6",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId\/firewall\/ipv6",
                                     "variable": [
@@ -2025,7 +2071,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId\/firewall\/ipv6\/:ruleId",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId\/firewall\/ipv6\/:ruleId",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId\/firewall\/ipv6\/:ruleId",
                                     "variable": [
@@ -2089,7 +2135,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId\/public-ip",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId\/public-ip",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId\/public-ip",
                                     "variable": [
@@ -2135,20 +2181,20 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId\/public-ip",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId\/public-ip",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId\/public-ip",
                                     "variable": [
                                         {
                                             "id": "zoneId",
                                             "key": "zoneId",
-                                            "value": "a",
+                                            "value": "eum",
                                             "description": "The ID of the zone."
                                         },
                                         {
                                             "id": "networkId",
                                             "key": "networkId",
-                                            "value": "ea",
+                                            "value": "sint",
                                             "description": "The ID of the network."
                                         }
                                     ]
@@ -2181,26 +2227,26 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId\/public-ip\/:networkPublicIpId",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId\/public-ip\/:networkPublicIpId",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId\/public-ip\/:networkPublicIpId",
                                     "variable": [
                                         {
                                             "id": "zoneId",
                                             "key": "zoneId",
-                                            "value": "suscipit",
+                                            "value": "voluptatem",
                                             "description": "The ID of the zone."
                                         },
                                         {
                                             "id": "networkId",
                                             "key": "networkId",
-                                            "value": "qui",
+                                            "value": "alias",
                                             "description": "The ID of the network."
                                         },
                                         {
                                             "id": "networkPublicIpId",
                                             "key": "networkPublicIpId",
-                                            "value": "nobis",
+                                            "value": "quo",
                                             "description": "The ID of the public IP."
                                         }
                                     ]
@@ -2233,26 +2279,26 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId\/public-ip\/:networkPublicIpId\/static-nat",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId\/public-ip\/:networkPublicIpId\/static-nat",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId\/public-ip\/:networkPublicIpId\/static-nat",
                                     "variable": [
                                         {
                                             "id": "zoneId",
                                             "key": "zoneId",
-                                            "value": "est",
+                                            "value": "eos",
                                             "description": "The ID of the zone."
                                         },
                                         {
                                             "id": "networkId",
                                             "key": "networkId",
-                                            "value": "doloribus",
+                                            "value": "iste",
                                             "description": "The ID of the network."
                                         },
                                         {
                                             "id": "networkPublicIpId",
                                             "key": "networkPublicIpId",
-                                            "value": "delectus",
+                                            "value": "nihil",
                                             "description": "The ID of the public IP."
                                         }
                                     ]
@@ -2270,7 +2316,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"instance_id\":\"iusto\"}"
+                                    "raw": "{\"instance_id\":\"ad\"}"
                                 },
                                 "description": "Enable static NAT for a public IP.\n    <b>Note:<\/b> This function runs asynchronously in the background. The response will be:<br>\n  <pre>{\n    \"data\": {\n        \"success\": true\n    }\n  }<\/pre>\n  To check the status of the created public ip, use the <b>List Public IPs<\/b> endpoint and review.\n  <\/p>\n  "
                             },
@@ -2288,26 +2334,26 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId\/public-ip\/:networkPublicIpId\/static-nat",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId\/public-ip\/:networkPublicIpId\/static-nat",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId\/public-ip\/:networkPublicIpId\/static-nat",
                                     "variable": [
                                         {
                                             "id": "zoneId",
                                             "key": "zoneId",
-                                            "value": "et",
+                                            "value": "tempore",
                                             "description": "The ID of the zone."
                                         },
                                         {
                                             "id": "networkId",
                                             "key": "networkId",
-                                            "value": "fuga",
+                                            "value": "animi",
                                             "description": "The ID of the network."
                                         },
                                         {
                                             "id": "networkPublicIpId",
                                             "key": "networkPublicIpId",
-                                            "value": "eos",
+                                            "value": "nulla",
                                             "description": "The ID of the public IP."
                                         }
                                     ]
@@ -2346,7 +2392,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId\/port-forward\/:networkPublicIpId",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId\/port-forward\/:networkPublicIpId",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId\/port-forward\/:networkPublicIpId",
                                     "variable": [
@@ -2383,7 +2429,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"public_ip_id\":\"quia\"}"
+                                    "raw": "{\"public_ip_id\":\"sit\"}"
                                 },
                                 "description": "Get a list of port forward rules for a network."
                             },
@@ -2401,7 +2447,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId\/port-forward\/:networkPublicIpId",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId\/port-forward\/:networkPublicIpId",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId\/port-forward\/:networkPublicIpId",
                                     "variable": [
@@ -2438,7 +2484,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"network_id\":\"01F8MECHZX3RZ8Y6B8Q5F1E3V7\",\"public_ip_id\":\"01F8MECHZX3RZ8Y6B8Q5F1E3V8\",\"protocol_type\":\"TCP\",\"instance_id\":\"01HZYKJ8QK8ZJ6K8J6K8J6K8J6\",\"port_start_public\":8080,\"port_start_private\":80,\"port_end_public\":15,\"port_end_private\":5,\"instance_network_secondary_ip_id\":\"01F8MECHZX3RZ8Y6B8Q5F1E3V9\"}"
+                                    "raw": "{\"network_id\":\"01F8MECHZX3RZ8Y6B8Q5F1E3V7\",\"public_ip_id\":\"01F8MECHZX3RZ8Y6B8Q5F1E3V8\",\"protocol_type\":\"TCP\",\"instance_id\":\"01HZYKJ8QK8ZJ6K8J6K8J6K8J6\",\"port_start_public\":8080,\"port_start_private\":80,\"port_end_public\":15,\"port_end_private\":11,\"instance_network_secondary_ip_id\":\"01F8MECHZX3RZ8Y6B8Q5F1E3V9\"}"
                                 },
                                 "description": "Add a new port forward rule to a network."
                             },
@@ -2456,7 +2502,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId\/port-forward\/:networkPublicIpId\/:portforwardId",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId\/port-forward\/:networkPublicIpId\/:portforwardId",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId\/port-forward\/:networkPublicIpId\/:portforwardId",
                                     "variable": [
@@ -2520,7 +2566,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId\/vpn",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId\/vpn",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId\/vpn",
                                     "variable": [
@@ -2566,7 +2612,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId\/vpn\/enable",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId\/vpn\/enable",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId\/vpn\/enable",
                                     "variable": [
@@ -2612,7 +2658,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId\/vpn\/disable",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId\/vpn\/disable",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId\/vpn\/disable",
                                     "variable": [
@@ -2658,7 +2704,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId\/vpn",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId\/vpn",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId\/vpn",
                                     "variable": [
@@ -2710,7 +2756,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId\/load-balancer",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId\/load-balancer",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId\/load-balancer",
                                     "variable": [
@@ -2756,7 +2802,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId\/load-balancer\/rule",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId\/load-balancer\/rule",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId\/load-balancer\/rule",
                                     "variable": [
@@ -2805,7 +2851,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId\/load-balancer\/rule\/:loadBalanceRuleId",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId\/load-balancer\/rule\/:loadBalanceRuleId",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId\/load-balancer\/rule\/:loadBalanceRuleId",
                                     "variable": [
@@ -2857,7 +2903,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId\/load-balancer\/rule\/:loadBalanceRuleId\/assign",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId\/load-balancer\/rule\/:loadBalanceRuleId\/assign",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId\/load-balancer\/rule\/:loadBalanceRuleId\/assign",
                                     "variable": [
@@ -2912,7 +2958,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId\/load-balancer\/rule\/:loadBalanceRuleId\/de-assign",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId\/load-balancer\/rule\/:loadBalanceRuleId\/de-assign",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId\/load-balancer\/rule\/:loadBalanceRuleId\/de-assign",
                                     "variable": [
@@ -2967,7 +3013,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId\/ha\/live",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId\/ha\/live",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId\/ha\/live",
                                     "variable": [
@@ -3013,7 +3059,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/:networkId\/ha\/log",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/:networkId\/ha\/log",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/:networkId\/ha\/log",
                                     "variable": [
@@ -3065,7 +3111,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/network\/service-offering",
+                                    "path": "api\/external\/zone\/:zoneId\/network\/service-offering",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/network\/service-offering",
                                     "variable": [
@@ -3117,7 +3163,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/kubernetes",
+                                    "path": "api\/external\/zone\/:zoneId\/kubernetes",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/kubernetes",
                                     "variable": [
@@ -3157,7 +3203,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/kubernetes",
+                                    "path": "api\/external\/zone\/:zoneId\/kubernetes",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/kubernetes",
                                     "variable": [
@@ -3278,7 +3324,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/kubernetes\/:clusterId",
+                                    "path": "api\/external\/zone\/:zoneId\/kubernetes\/:clusterId",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/kubernetes\/:clusterId",
                                     "variable": [
@@ -3324,7 +3370,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/kubernetes\/:clusterId\/events",
+                                    "path": "api\/external\/zone\/:zoneId\/kubernetes\/:clusterId\/events",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/kubernetes\/:clusterId\/events",
                                     "variable": [
@@ -3373,7 +3419,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/kubernetes\/:clusterId",
+                                    "path": "api\/external\/zone\/:zoneId\/kubernetes\/:clusterId",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/kubernetes\/:clusterId",
                                     "variable": [
@@ -3404,7 +3450,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"name\":\"voluptatem\",\"description\":\"Aut quaerat quis ipsam enim dicta unde totam.\"}"
+                                    "raw": "{\"name\":\"nostrum\",\"description\":\"Iure maxime doloremque nesciunt ipsam et repellendus ratione.\"}"
                                 },
                                 "description": " <aside class=\"notice\">need <small class=\"badge\">kubernetes:cluster:update<\/small> ability for api token<\/aside>"
                             },
@@ -3434,7 +3480,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/kubernetes\/:clusterId",
+                                    "path": "api\/external\/zone\/:zoneId\/kubernetes\/:clusterId",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/kubernetes\/:clusterId",
                                     "variable": [
@@ -3480,7 +3526,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/kubernetes\/:clusterId\/start",
+                                    "path": "api\/external\/zone\/:zoneId\/kubernetes\/:clusterId\/start",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/kubernetes\/:clusterId\/start",
                                     "variable": [
@@ -3526,7 +3572,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/kubernetes\/:clusterId\/stop",
+                                    "path": "api\/external\/zone\/:zoneId\/kubernetes\/:clusterId\/stop",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/kubernetes\/:clusterId\/stop",
                                     "variable": [
@@ -3572,7 +3618,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/kubernetes\/:clusterId\/scale",
+                                    "path": "api\/external\/zone\/:zoneId\/kubernetes\/:clusterId\/scale",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/kubernetes\/:clusterId\/scale",
                                     "variable": [
@@ -3669,7 +3715,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/kubernetes\/:clusterId\/service-offering",
+                                    "path": "api\/external\/zone\/:zoneId\/kubernetes\/:clusterId\/service-offering",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/kubernetes\/:clusterId\/service-offering",
                                     "variable": [
@@ -3720,7 +3766,7 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "\/zone\/:zoneId\/kubernetes\/events",
+                            "path": "api\/external\/zone\/:zoneId\/kubernetes\/events",
                             "query": [],
                             "raw": "{{baseUrl}}\/zone\/:zoneId\/kubernetes\/events",
                             "variable": [
@@ -3767,7 +3813,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/kubernetes\/versions",
+                                    "path": "api\/external\/zone\/:zoneId\/kubernetes\/versions",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/kubernetes\/versions",
                                     "variable": [
@@ -3813,7 +3859,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/zone\/:zoneId\/kubernetes\/service-offerings",
+                                    "path": "api\/external\/zone\/:zoneId\/kubernetes\/service-offerings",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/zone\/:zoneId\/kubernetes\/service-offerings",
                                     "variable": [
@@ -3861,14 +3907,14 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "\/zone\/:zoneId\/object-storage\/events",
+                            "path": "api\/external\/zone\/:zoneId\/object-storage\/events",
                             "query": [],
                             "raw": "{{baseUrl}}\/zone\/:zoneId\/object-storage\/events",
                             "variable": [
                                 {
                                     "id": "zoneId",
                                     "key": "zoneId",
-                                    "value": "aliquid",
+                                    "value": "tenetur",
                                     "description": ""
                                 }
                             ]
@@ -3904,7 +3950,7 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "\/zone\/:zoneId\/object-storage\/buckets",
+                            "path": "api\/external\/zone\/:zoneId\/object-storage\/buckets",
                             "query": [],
                             "raw": "{{baseUrl}}\/zone\/:zoneId\/object-storage\/buckets",
                             "variable": [
@@ -3944,7 +3990,7 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "\/zone\/:zoneId\/object-storage\/buckets",
+                            "path": "api\/external\/zone\/:zoneId\/object-storage\/buckets",
                             "query": [],
                             "raw": "{{baseUrl}}\/zone\/:zoneId\/object-storage\/buckets",
                             "variable": [
@@ -3993,7 +4039,7 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "\/zone\/:zoneId\/object-storage\/buckets\/:bucketId",
+                            "path": "api\/external\/zone\/:zoneId\/object-storage\/buckets\/:bucketId",
                             "query": [],
                             "raw": "{{baseUrl}}\/zone\/:zoneId\/object-storage\/buckets\/:bucketId",
                             "variable": [
@@ -4039,7 +4085,7 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "\/zone\/:zoneId\/object-storage\/buckets\/:bucketId\/events",
+                            "path": "api\/external\/zone\/:zoneId\/object-storage\/buckets\/:bucketId\/events",
                             "query": [],
                             "raw": "{{baseUrl}}\/zone\/:zoneId\/object-storage\/buckets\/:bucketId\/events",
                             "variable": [
@@ -4088,7 +4134,7 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "\/zone\/:zoneId\/object-storage\/buckets\/:bucketId",
+                            "path": "api\/external\/zone\/:zoneId\/object-storage\/buckets\/:bucketId",
                             "query": [],
                             "raw": "{{baseUrl}}\/zone\/:zoneId\/object-storage\/buckets\/:bucketId",
                             "variable": [
@@ -4143,7 +4189,7 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "\/zone\/:zoneId\/object-storage\/buckets\/:bucketId",
+                            "path": "api\/external\/zone\/:zoneId\/object-storage\/buckets\/:bucketId",
                             "query": [],
                             "raw": "{{baseUrl}}\/zone\/:zoneId\/object-storage\/buckets\/:bucketId",
                             "variable": [
@@ -4199,7 +4245,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/dns\/domains",
+                                    "path": "api\/external\/dns\/domains",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/dns\/domains"
                                 },
@@ -4231,7 +4277,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/dns\/domains",
+                                    "path": "api\/external\/dns\/domains",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/dns\/domains"
                                 },
@@ -4302,7 +4348,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/dns\/domains\/:domain",
+                                    "path": "api\/external\/dns\/domains\/:domain",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/dns\/domains\/:domain",
                                     "variable": [
@@ -4354,7 +4400,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/dns\/domains\/:domain",
+                                    "path": "api\/external\/dns\/domains\/:domain",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/dns\/domains\/:domain",
                                     "variable": [
@@ -4406,7 +4452,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/dns\/domains\/:domain\/records",
+                                    "path": "api\/external\/dns\/domains\/:domain\/records",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/dns\/domains\/:domain\/records",
                                     "variable": [
@@ -4464,7 +4510,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/dns\/domains\/:domain\/records",
+                                    "path": "api\/external\/dns\/domains\/:domain\/records",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/dns\/domains\/:domain\/records",
                                     "variable": [
@@ -4561,7 +4607,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/dns\/domains\/:domain\/records\/:record\/:type\/:contentId",
+                                    "path": "api\/external\/dns\/domains\/:domain\/records\/:record\/:type\/:contentId",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/dns\/domains\/:domain\/records\/:record\/:type\/:contentId",
                                     "variable": [
@@ -4700,7 +4746,7 @@
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
-                                    "path": "\/dns\/domains\/:domain\/records\/:record\/:type\/:contentId",
+                                    "path": "api\/external\/dns\/domains\/:domain\/records\/:record\/:type\/:contentId",
                                     "query": [],
                                     "raw": "{{baseUrl}}\/dns\/domains\/:domain\/records\/:record\/:type\/:contentId",
                                     "variable": [
@@ -4826,7 +4872,7 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "\/dns\/events",
+                            "path": "api\/external\/dns\/events",
                             "query": [],
                             "raw": "{{baseUrl}}\/dns\/events"
                         },
@@ -4867,7 +4913,7 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "\/events",
+                            "path": "api\/external\/events",
                             "query": [],
                             "raw": "{{baseUrl}}\/events"
                         },
