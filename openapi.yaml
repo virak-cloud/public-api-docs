@@ -472,7 +472,7 @@ paths:
         in: path
         name: sshKeyId
         description: ''
-        example: 1YWG8Prmf5GKaZJWE1v83WGT0V
+        example: 2sEwByFE6X0AYeqfhdngTfqKaa
         required: true
         schema:
           type: string
@@ -2126,18 +2126,12 @@ paths:
             schema:
               type: object
               properties:
-                instance_id:
-                  type: string
-                  description: 'The unique identifier for the instance to snapshot.'
-                  example: 01F8MECHZX3RZ8Y6B8Q5F1E3V6
-                  nullable: false
                 name:
                   type: string
                   description: 'The name of the snapshot.'
                   example: my-snapshot
                   nullable: false
               required:
-                - instance_id
                 - name
     parameters:
       -
@@ -2156,15 +2150,15 @@ paths:
         required: true
         schema:
           type: ulid
-  '/zone/{zoneId}/instance/{instanceId}/snapshot/{snapshotId}':
-    delete:
-      summary: 'Delete Snapshot'
-      operationId: deleteSnapshot
-      description: "<aside class=\"notice\">need <small class=\"badge\">instance:snapshot:delete</small> ability for api token</aside>\n<b>Note:</b> This function deletes a snapshot for a specific instance.<br>\n<pre>{\n  \"data\": {\n      \"success\": true\n  }\n}</pre>"
+  '/zone/{zoneId}/instance/{instanceId}/snapshot/{snapshotId}/revert':
+    post:
+      summary: 'Revert Snapshot'
+      operationId: revertSnapshot
+      description: "<aside class=\"notice\">need <small class=\"badge\">instance:snapshot:revert</small> ability for api token</aside>\n<b>Note:</b> This function reverts an instance to a specific snapshot.<br>\n<pre>{\n  \"data\": {\n      \"success\": true\n  }\n}</pre>"
       parameters: []
       responses:
         200:
-          description: 'Snapshot deleted.'
+          description: 'Instance reverted to snapshot.'
           content:
             application/json:
               schema:
@@ -2206,15 +2200,15 @@ paths:
         required: true
         schema:
           type: ulid
-  '/zone/{zoneId}/instance/{instanceId}/snapshot/revert':
-    post:
-      summary: 'Revert Snapshot'
-      operationId: revertSnapshot
-      description: "<aside class=\"notice\">need <small class=\"badge\">instance:snapshot:revert</small> ability for api token</aside>\n<b>Note:</b> This function reverts an instance to a specific snapshot.<br>\n<pre>{\n  \"data\": {\n      \"success\": true\n  }\n}</pre>"
+  '/zone/{zoneId}/instance/{instanceId}/snapshot/{snapshotId}':
+    delete:
+      summary: 'Delete Snapshot'
+      operationId: deleteSnapshot
+      description: "<aside class=\"notice\">need <small class=\"badge\">instance:snapshot:delete</small> ability for api token</aside>\n<b>Note:</b> This function deletes a snapshot for a specific instance.<br>\n<pre>{\n  \"data\": {\n      \"success\": true\n  }\n}</pre>"
       parameters: []
       responses:
         200:
-          description: 'Instance reverted to snapshot.'
+          description: 'Snapshot deleted.'
           content:
             application/json:
               schema:
@@ -2480,7 +2474,7 @@ paths:
         required: true
         schema:
           type: ulid
-  '/zone/{zoneId}/instance/volumes/{volumeId}/detach':
+  '/zone/{zoneId}/instance/volumes/{volumeId}/detach/{instanceId}':
     post:
       summary: 'Detach Volume'
       operationId: detachVolume
@@ -2536,6 +2530,14 @@ paths:
         required: true
         schema:
           type: ulid
+      -
+        in: path
+        name: instanceId
+        description: ''
+        example: 78MnejGkBm3EWSYE80fXMkcR5B
+        required: true
+        schema:
+          type: string
   '/zone/{zoneId}/instance/volumes/{volumeId}/attach/{instanceId}':
     post:
       summary: 'Attach Volume'
@@ -3147,7 +3149,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: eos
+        example: veritatis
         required: true
         schema:
           type: ulid
@@ -3155,7 +3157,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: aut
+        example: possimus
         required: true
         schema:
           type: ulid
@@ -3203,7 +3205,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: velit
+        example: molestiae
         required: true
         schema:
           type: ulid
@@ -3211,7 +3213,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: quod
+        example: ex
         required: true
         schema:
           type: ulid
@@ -3390,7 +3392,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: reprehenderit
+        example: soluta
         required: true
         schema:
           type: ulid
@@ -3398,7 +3400,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: saepe
+        example: culpa
         required: true
         schema:
           type: ulid
@@ -4146,7 +4148,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: voluptatem
+        example: maiores
         required: true
         schema:
           type: ulid
@@ -4154,7 +4156,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: alias
+        example: vel
         required: true
         schema:
           type: ulid
@@ -4162,7 +4164,7 @@ paths:
         in: path
         name: networkPublicIpId
         description: 'The ID of the public IP.'
-        example: quo
+        example: soluta
         required: true
         schema:
           type: ulid
@@ -4201,7 +4203,7 @@ paths:
                 instance_id:
                   type: string
                   description: 'The instance CS ID.'
-                  example: ad
+                  example: eos
                   nullable: false
               required:
                 - instance_id
@@ -4234,7 +4236,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: eos
+        example: ut
         required: true
         schema:
           type: ulid
@@ -4242,7 +4244,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: iste
+        example: saepe
         required: true
         schema:
           type: ulid
@@ -4250,7 +4252,7 @@ paths:
         in: path
         name: networkPublicIpId
         description: 'The ID of the public IP.'
-        example: nihil
+        example: saepe
         required: true
         schema:
           type: ulid
@@ -4535,7 +4537,7 @@ paths:
                 public_ip_id:
                   type: string
                   description: 'The public IP ULID to filter by (optional).'
-                  example: sit
+                  example: adipisci
                   nullable: false
               required:
                 - public_ip_id
@@ -4607,12 +4609,12 @@ paths:
                 port_end_public:
                   type: integer
                   description: 'The ending public port (optional).'
-                  example: 15
+                  example: 17
                   nullable: false
                 port_end_private:
                   type: integer
                   description: 'The ending private port (optional).'
-                  example: 11
+                  example: 5
                   nullable: false
                 instance_network_secondary_ip_id:
                   type: string
@@ -6416,12 +6418,12 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: nostrum
+                  example: sint
                   nullable: true
                 description:
                   type: string
                   description: ''
-                  example: 'Iure maxime doloremque nesciunt ipsam et repellendus ratione.'
+                  example: 'Eaque est quasi tempore.'
                   nullable: true
     delete:
       summary: Delete
@@ -7475,7 +7477,7 @@ paths:
         in: path
         name: zoneId
         description: ''
-        example: tenetur
+        example: aut
         required: true
         schema:
           type: string
