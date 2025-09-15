@@ -2696,21 +2696,21 @@ paths:
               schema:
                 type: object
                 example:
-                  message: 'The getaway field is required.'
+                  message: 'The gateway field is required.'
                   errors:
-                    getaway:
-                      - 'The getaway field is required.'
+                    gateway:
+                      - 'The gateway field is required.'
                 properties:
                   message:
                     type: string
-                    example: 'The getaway field is required.'
+                    example: 'The gateway field is required.'
                   errors:
                     type: object
                     properties:
-                      getaway:
+                      gateway:
                         type: array
                         example:
-                          - 'The getaway field is required.'
+                          - 'The gateway field is required.'
                         items:
                           type: string
       tags:
@@ -2732,7 +2732,7 @@ paths:
                   description: 'The name of the network.'
                   example: my-l3-network
                   nullable: false
-                getaway:
+                gateway:
                   type: ipv4
                   description: 'The gateway IP address.'
                   example: 192.168.1.1
@@ -2745,7 +2745,7 @@ paths:
               required:
                 - network_offering_id
                 - name
-                - getaway
+                - gateway
                 - netmask
     parameters:
       -
