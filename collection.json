@@ -1484,7 +1484,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"network_offering_id\":\"01H9ZCNF46W6C1EM45T21B6M0G\",\"name\":\"my-l3-network\",\"getaway\":\"192.168.1.1\",\"netmask\":\"255.255.255.0\"}"
+                                    "raw": "{\"network_offering_id\":\"01H9ZCNF46W6C1EM45T21B6M0G\",\"name\":\"my-l3-network\",\"gateway\":\"192.168.1.1\",\"netmask\":\"255.255.255.0\"}"
                                 },
                                 "description": "  <aside class=\"notice\">Requires appropriate <small class=\"badge\">network:l3:create<\/small> ability for API token<\/aside>\n  <p>Creates a new Layer 3 (L3) network in the specified zone. For <code>network_offering_id<\/code>, use the ID of a service offering with type <code>Isolated<\/code>.<br><br>\n  <b>Note:<\/b> This function runs asynchronously in the background. The response will be:<br>\n  <pre>{\n    \"data\": {\n        \"success\": true\n    }\n  }<\/pre>\n  To check the status of the created network, use the <b>List Networks<\/b> endpoint and review the <code>status<\/code> field.\n  <\/p>"
                             },
@@ -1498,7 +1498,7 @@
                                 {
                                     "header": [],
                                     "code": 422,
-                                    "body": "{ \"message\": \"The getaway field is required.\", \"errors\": { \"getaway\": [ \"The getaway field is required.\" ] } }",
+                                    "body": "{ \"message\": \"The gateway field is required.\", \"errors\": { \"gateway\": [ \"The gateway field is required.\" ] } }",
                                     "name": "Validation error - Gateway is required."
                                 }
                             ]
