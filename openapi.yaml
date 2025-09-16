@@ -472,7 +472,7 @@ paths:
         in: path
         name: sshKeyId
         description: ''
-        example: 2sEwByFE6X0AYeqfhdngTfqKaa
+        example: 0fW3D2RtzvGsDgN5QzPFP3dn0K
         required: true
         schema:
           type: string
@@ -638,8 +638,8 @@ paths:
               properties:
                 year:
                   type: integer
-                  description: 'The year for the document. Must be at least 1390. Must be at least 1390.'
-                  example: 1402
+                  description: 'The year for the document. Must be at least 2010. Must be at least 2010. Must not be greater than 2100.'
+                  example: 2025
                   nullable: false
               required:
                 - year
@@ -664,6 +664,141 @@ paths:
                     example: []
       tags:
         - User
+  /user/finance/expenses:
+    get:
+      summary: 'Expense List'
+      operationId: expenseList
+      description: ' <aside class="notice">need <small class="badge">customer:expense:list</small> ability for api token</aside>'
+      parameters: []
+      responses:
+        200:
+          description: 'Successful response'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 01k53kmw215q40x39eeejcpwen
+                      from: '1404-06-23 11:27:16'
+                      amount: 5107
+                      documented: true
+                      metadata:
+                        name: bucket-name
+                        traffic: 51
+                        type: BucketUploadTraffic
+                        tier: low-tier
+                  meta:
+                    current_page: 1
+                    from: 1
+                    last_page: 1
+                    per_page: 50
+                    to: 26
+                    total: 26
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 01k53kmw215q40x39eeejcpwen
+                        from: '1404-06-23 11:27:16'
+                        amount: 5107
+                        documented: true
+                        metadata:
+                          name: bucket-name
+                          traffic: 51
+                          type: BucketUploadTraffic
+                          tier: low-tier
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 01k53kmw215q40x39eeejcpwen
+                        from:
+                          type: string
+                          example: '1404-06-23 11:27:16'
+                        amount:
+                          type: integer
+                          example: 5107
+                        documented:
+                          type: boolean
+                          example: true
+                        metadata:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              example: bucket-name
+                            traffic:
+                              type: integer
+                              example: 51
+                            type:
+                              type: string
+                              example: BucketUploadTraffic
+                            tier:
+                              type: string
+                              example: low-tier
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      from:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 1
+                      per_page:
+                        type: integer
+                        example: 50
+                      to:
+                        type: integer
+                        example: 26
+                      total:
+                        type: integer
+                        example: 26
+      tags:
+        - User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_type:
+                  type: string
+                  description: 'The type of the product for expenses.'
+                  example: BucketUploadTraffic
+                  nullable: false
+                  enum:
+                    - Instance
+                    - InstanceNetworkSecondaryIpAddressV4
+                    - BucketSize
+                    - NetworkInternetPublicAddressV4
+                    - KubernetesNode
+                    - NetworkDevice
+                    - NetworkNetflow
+                    - SupportOfferings
+                    - BucketUploadTraffic
+                    - BucketDownloadTraffic
+                product_id:
+                  type: string
+                  description: 'The ULID of the product.'
+                  example: 01k53jsbp0bc08tq02694xpetf
+                  nullable: false
+                page:
+                  type: integer
+                  description: 'Page number for paginated results. Must be at least 1.'
+                  example: 1
+                  nullable: false
+              required:
+                - product_type
+                - product_id
   '/zone/{zoneId}/instance':
     get:
       summary: Index
@@ -2082,6 +2217,44 @@ paths:
         required: true
         schema:
           type: ulid
+  '/zone/{zoneId}/instance/{instanceId}/console':
+    post:
+      summary: 'Get Console URL'
+      operationId: getConsoleURL
+      description: ' <aside class="notice">need <small class="badge">instance:console</small> ability for api token</aside>'
+      parameters: []
+      responses:
+        200:
+          description: 'Successful response'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  url: consoleproxy
+                properties:
+                  url:
+                    type: string
+                    example: consoleproxy
+      tags:
+        - Instance
+    parameters:
+      -
+        in: path
+        name: zoneId
+        description: 'The ID of the zone.'
+        example: 01F8MECHZX3TBDSZ7XRADM79XE
+        required: true
+        schema:
+          type: ulid
+      -
+        in: path
+        name: instanceId
+        description: 'The ID of the instance.'
+        example: 01H9ZCNF46W6C1EM45T21B6M0I
+        required: true
+        schema:
+          type: ulid
   '/zone/{zoneId}/instance/{instanceId}/snapshot':
     post:
       summary: 'Create Snapshot'
@@ -2534,7 +2707,7 @@ paths:
         in: path
         name: instanceId
         description: ''
-        example: 78MnejGkBm3EWSYE80fXMkcR5B
+        example: 0Z42twQtF6DCmDYN6PGsQYwE3e
         required: true
         schema:
           type: string
@@ -3149,7 +3322,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: veritatis
+        example: officiis
         required: true
         schema:
           type: ulid
@@ -3157,7 +3330,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: possimus
+        example: amet
         required: true
         schema:
           type: ulid
@@ -3205,7 +3378,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: molestiae
+        example: est
         required: true
         schema:
           type: ulid
@@ -3213,7 +3386,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: ex
+        example: omnis
         required: true
         schema:
           type: ulid
@@ -3392,7 +3565,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: soluta
+        example: quo
         required: true
         schema:
           type: ulid
@@ -3400,7 +3573,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: culpa
+        example: nihil
         required: true
         schema:
           type: ulid
@@ -4148,7 +4321,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: maiores
+        example: dolorem
         required: true
         schema:
           type: ulid
@@ -4156,7 +4329,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: vel
+        example: esse
         required: true
         schema:
           type: ulid
@@ -4164,7 +4337,7 @@ paths:
         in: path
         name: networkPublicIpId
         description: 'The ID of the public IP.'
-        example: soluta
+        example: sed
         required: true
         schema:
           type: ulid
@@ -4203,7 +4376,7 @@ paths:
                 instance_id:
                   type: string
                   description: 'The instance CS ID.'
-                  example: eos
+                  example: qui
                   nullable: false
               required:
                 - instance_id
@@ -4236,7 +4409,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: ut
+        example: eveniet
         required: true
         schema:
           type: ulid
@@ -4244,7 +4417,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: saepe
+        example: dolores
         required: true
         schema:
           type: ulid
@@ -4252,7 +4425,7 @@ paths:
         in: path
         name: networkPublicIpId
         description: 'The ID of the public IP.'
-        example: saepe
+        example: consectetur
         required: true
         schema:
           type: ulid
@@ -4537,7 +4710,7 @@ paths:
                 public_ip_id:
                   type: string
                   description: 'The public IP ULID to filter by (optional).'
-                  example: adipisci
+                  example: qui
                   nullable: false
               required:
                 - public_ip_id
@@ -4609,12 +4782,12 @@ paths:
                 port_end_public:
                   type: integer
                   description: 'The ending public port (optional).'
-                  example: 17
+                  example: 2
                   nullable: false
                 port_end_private:
                   type: integer
                   description: 'The ending private port (optional).'
-                  example: 5
+                  example: 16
                   nullable: false
                 instance_network_secondary_ip_id:
                   type: string
@@ -6418,12 +6591,12 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: sint
+                  example: minus
                   nullable: true
                 description:
                   type: string
                   description: ''
-                  example: 'Eaque est quasi tempore.'
+                  example: 'Aperiam quibusdam quas sapiente inventore.'
                   nullable: true
     delete:
       summary: Delete
@@ -7477,7 +7650,7 @@ paths:
         in: path
         name: zoneId
         description: ''
-        example: aut
+        example: ullam
         required: true
         schema:
           type: string
