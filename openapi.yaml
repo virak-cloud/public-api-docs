@@ -638,7 +638,7 @@ paths:
               properties:
                 year:
                   type: integer
-                  description: 'The year for the document. Must be at least 2010. Must be at least 2010. Must not be greater than 2100.'
+                  description: 'The year for the document. The year can be either solar (Shamsi) or Gregorian.'
                   example: 2025
                   nullable: false
               required:

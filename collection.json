@@ -406,7 +406,7 @@
                                     "mode": "raw",
                                     "raw": "{\"year\":2025}"
                                 },
-                                "description": " <aside class=\"notice\">need <small class=\"badge\">customer:document:list<\/small> ability for api token<\/aside>"
+                                "description": " <aside class=\"notice\">need <small class=\"badge\">customer:document:list<\/small> ability for api token<\/aside> The year for the document. The year can be either solar (Shamsi) or Gregorian."
                             },
                             "response": [
                                 {
