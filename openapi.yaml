@@ -472,7 +472,7 @@ paths:
         in: path
         name: sshKeyId
         description: ''
-        example: 0fW3D2RtzvGsDgN5QzPFP3dn0K
+        example: 7PqnVrgYsRy3sbPw4f7MnE8j4a
         required: true
         schema:
           type: string
@@ -638,7 +638,7 @@ paths:
               properties:
                 year:
                   type: integer
-                  description: 'The year for the document. The year can be either solar (Shamsi) or Gregorian.'
+                  description: 'The year for the document. The year can be either solar (Shamsi) or Gregorian. Must be at least 1390.'
                   example: 2025
                   nullable: false
               required:
@@ -2707,7 +2707,7 @@ paths:
         in: path
         name: instanceId
         description: ''
-        example: 0Z42twQtF6DCmDYN6PGsQYwE3e
+        example: 6mqkhPYf0BEJYXSR5BJecmV1Ht
         required: true
         schema:
           type: string
@@ -3322,7 +3322,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: officiis
+        example: ea
         required: true
         schema:
           type: ulid
@@ -3330,7 +3330,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: amet
+        example: perspiciatis
         required: true
         schema:
           type: ulid
@@ -3378,7 +3378,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: est
+        example: voluptas
         required: true
         schema:
           type: ulid
@@ -3386,7 +3386,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: omnis
+        example: voluptas
         required: true
         schema:
           type: ulid
@@ -3565,7 +3565,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: quo
+        example: est
         required: true
         schema:
           type: ulid
@@ -3573,7 +3573,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: nihil
+        example: alias
         required: true
         schema:
           type: ulid
@@ -4321,7 +4321,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: dolorem
+        example: a
         required: true
         schema:
           type: ulid
@@ -4329,7 +4329,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: esse
+        example: a
         required: true
         schema:
           type: ulid
@@ -4337,7 +4337,7 @@ paths:
         in: path
         name: networkPublicIpId
         description: 'The ID of the public IP.'
-        example: sed
+        example: exercitationem
         required: true
         schema:
           type: ulid
@@ -4376,7 +4376,7 @@ paths:
                 instance_id:
                   type: string
                   description: 'The instance CS ID.'
-                  example: qui
+                  example: voluptatem
                   nullable: false
               required:
                 - instance_id
@@ -4409,7 +4409,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: eveniet
+        example: accusantium
         required: true
         schema:
           type: ulid
@@ -4417,7 +4417,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: dolores
+        example: quia
         required: true
         schema:
           type: ulid
@@ -4425,7 +4425,7 @@ paths:
         in: path
         name: networkPublicIpId
         description: 'The ID of the public IP.'
-        example: consectetur
+        example: fuga
         required: true
         schema:
           type: ulid
@@ -4710,7 +4710,7 @@ paths:
                 public_ip_id:
                   type: string
                   description: 'The public IP ULID to filter by (optional).'
-                  example: qui
+                  example: omnis
                   nullable: false
               required:
                 - public_ip_id
@@ -4782,12 +4782,12 @@ paths:
                 port_end_public:
                   type: integer
                   description: 'The ending public port (optional).'
-                  example: 2
+                  example: 12
                   nullable: false
                 port_end_private:
                   type: integer
                   description: 'The ending private port (optional).'
-                  example: 16
+                  example: 20
                   nullable: false
                 instance_network_secondary_ip_id:
                   type: string
@@ -6591,12 +6591,12 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: minus
+                  example: sint
                   nullable: true
                 description:
                   type: string
                   description: ''
-                  example: 'Aperiam quibusdam quas sapiente inventore.'
+                  example: 'Minus quia accusantium sed voluptatem laborum cum aperiam.'
                   nullable: true
     delete:
       summary: Delete
@@ -7650,7 +7650,7 @@ paths:
         in: path
         name: zoneId
         description: ''
-        example: ullam
+        example: optio
         required: true
         schema:
           type: string
@@ -8844,6 +8844,46 @@ paths:
                   type: string
                   description: 'The Record Content.'
                   example: 8.8.8.8
+                  nullable: false
+                priority:
+                  type: integer
+                  description: 'Priority for MX and SRV records. Required if type is MX or SRV. This field is required when <code>type</code> is <code>MX</code> or <code>SRV</code>.'
+                  example: 10
+                  nullable: false
+                weight:
+                  type: integer
+                  description: 'Weight for SRV records. Required if type is SRV. This field is required when <code>type</code> is <code>SRV</code>.'
+                  example: 5
+                  nullable: false
+                port:
+                  type: integer
+                  description: 'Port for SRV records. Required if type is SRV. This field is required when <code>type</code> is <code>SRV</code>.'
+                  example: 80
+                  nullable: false
+                flags:
+                  type: integer
+                  description: 'Flags for CAA records. Required if type is CAA. This field is required when <code>type</code> is <code>CAA</code>.'
+                  example: 0
+                  nullable: false
+                tag:
+                  type: string
+                  description: 'Tag for CAA records. Required if type is CAA. This field is required when <code>type</code> is <code>CAA</code>.'
+                  example: issue
+                  nullable: false
+                license:
+                  type: integer
+                  description: 'License for TLSA records. Required if type is TLSA. This field is required when <code>type</code> is <code>TLSA</code>.'
+                  example: 3
+                  nullable: false
+                choicer:
+                  type: integer
+                  description: 'Choicer for TLSA records. Required if type is TLSA. This field is required when <code>type</code> is <code>TLSA</code>.'
+                  example: 1
+                  nullable: false
+                match:
+                  type: integer
+                  description: 'Match for TLSA records. Required if type is TLSA. This field is required when <code>type</code> is <code>TLSA</code>.'
+                  example: 2
                   nullable: false
               required:
                 - record
