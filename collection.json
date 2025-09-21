@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Virak Cloud API",
-        "_postman_id": "2e12da1a-acbd-47be-8692-a6194a06d2f9",
+        "_postman_id": "679327f5-46b0-4f3c-a9ee-941adfeb6b2e",
         "description": "<P>\n    Welcome to the Virak Cloud API documentation.\n    Virak Cloud API is a comprehensive RESTful API that empowers developers to programmatically manage and interact with cloud infrastructure resources.\n    This API provides secure, scalable endpoints for managing virtual instances, networks, Kubernetes clusters, object storage, DNS records, and more. Built with enterprise-grade security and reliability, the Virak Cloud API enables seamless automation and integration with your existing workflows and applications.\n    <p>For detailed guides and advanced documentation, visit the <a href=\"https:\/\/docs.virakcloud.com\/fa\/guides\/\" target=\"_blank\">VirakCloud Documentation<\/a>.<\/p>\n    <a href=\"https:\/\/github.com\/virak-cloud\/public-api-docs\"> <img src=\"https:\/\/img.shields.io\/badge\/github-%23181717.svg?&style=for-the-badge&logo=github&logoColor=white\" alt=\"github icon\" title=\"github icon\"><\/a>\n<\/P>",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -316,7 +316,7 @@
                                         {
                                             "id": "sshKeyId",
                                             "key": "sshKeyId",
-                                            "value": "4WBB4HMTbCJ7fMBjxG8d9kJe8Y",
+                                            "value": "75svX12wvT9g4KwQF1VHcRNjp4",
                                             "description": ""
                                         }
                                     ]
@@ -1391,7 +1391,7 @@
                                         {
                                             "id": "instanceId",
                                             "key": "instanceId",
-                                            "value": "3eJRSE3VRSwaPtEfkPDh5XnYqz",
+                                            "value": "74NSQHzy4ajdpCMv9x08A9CqBg",
                                             "description": ""
                                         }
                                     ]
@@ -1734,13 +1734,13 @@
                                         {
                                             "id": "zoneId",
                                             "key": "zoneId",
-                                            "value": "debitis",
+                                            "value": "consequuntur",
                                             "description": "The ID of the zone."
                                         },
                                         {
                                             "id": "networkId",
                                             "key": "networkId",
-                                            "value": "in",
+                                            "value": "numquam",
                                             "description": "The ID of the network."
                                         }
                                     ]
@@ -1783,13 +1783,13 @@
                                         {
                                             "id": "zoneId",
                                             "key": "zoneId",
-                                            "value": "repellendus",
+                                            "value": "eaque",
                                             "description": "The ID of the zone."
                                         },
                                         {
                                             "id": "networkId",
                                             "key": "networkId",
-                                            "value": "sequi",
+                                            "value": "voluptates",
                                             "description": "The ID of the network."
                                         }
                                     ]
@@ -1807,7 +1807,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"instance_network_id\":\"01F8MECHZX3RZ8Y6B8Q5F1E3V7\"}"
+                                    "raw": "{\"instance_network_id\":\"01F8MECHZX3RZ8Y6B8Q5F1E3V7\",\"instance_id\":\"01F8MECHZX3RZ8Y6B8Q5F1E3V8\"}"
                                 },
                                 "description": "Requires appropriate <small class=\"badge\">network:instance:disconnect<\/small> ability for API token<\/aside>\n<b>Note:<\/b> This function runs asynchronously in the background. The response will be:<br>\n  <pre>{\n    \"data\": {\n        \"success\": true\n    }\n  }<\/pre>\n  <\/p>\n  "
                             },
@@ -1832,13 +1832,13 @@
                                         {
                                             "id": "zoneId",
                                             "key": "zoneId",
-                                            "value": "rerum",
+                                            "value": "corporis",
                                             "description": "The ID of the zone."
                                         },
                                         {
                                             "id": "networkId",
                                             "key": "networkId",
-                                            "value": "minus",
+                                            "value": "qui",
                                             "description": "The ID of the network."
                                         }
                                     ]
@@ -2275,13 +2275,13 @@
                                         {
                                             "id": "zoneId",
                                             "key": "zoneId",
-                                            "value": "a",
+                                            "value": "ullam",
                                             "description": "The ID of the zone."
                                         },
                                         {
                                             "id": "networkId",
                                             "key": "networkId",
-                                            "value": "odit",
+                                            "value": "fuga",
                                             "description": "The ID of the network."
                                         }
                                     ]
@@ -2321,19 +2321,19 @@
                                         {
                                             "id": "zoneId",
                                             "key": "zoneId",
-                                            "value": "esse",
+                                            "value": "mollitia",
                                             "description": "The ID of the zone."
                                         },
                                         {
                                             "id": "networkId",
                                             "key": "networkId",
-                                            "value": "dignissimos",
+                                            "value": "commodi",
                                             "description": "The ID of the network."
                                         },
                                         {
                                             "id": "networkPublicIpId",
                                             "key": "networkPublicIpId",
-                                            "value": "minima",
+                                            "value": "qui",
                                             "description": "The ID of the public IP."
                                         }
                                     ]
@@ -2373,19 +2373,19 @@
                                         {
                                             "id": "zoneId",
                                             "key": "zoneId",
-                                            "value": "voluptate",
+                                            "value": "eum",
                                             "description": "The ID of the zone."
                                         },
                                         {
                                             "id": "networkId",
                                             "key": "networkId",
-                                            "value": "quas",
+                                            "value": "veritatis",
                                             "description": "The ID of the network."
                                         },
                                         {
                                             "id": "networkPublicIpId",
                                             "key": "networkPublicIpId",
-                                            "value": "voluptatem",
+                                            "value": "autem",
                                             "description": "The ID of the public IP."
                                         }
                                     ]
@@ -2403,7 +2403,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"instance_id\":\"et\"}"
+                                    "raw": "{\"instance_id\":\"ipsam\"}"
                                 },
                                 "description": "Enable static NAT for a public IP.\n    <b>Note:<\/b> This function runs asynchronously in the background. The response will be:<br>\n  <pre>{\n    \"data\": {\n        \"success\": true\n    }\n  }<\/pre>\n  To check the status of the created public ip, use the <b>List Public IPs<\/b> endpoint and review.\n  <\/p>\n  "
                             },
@@ -2428,19 +2428,19 @@
                                         {
                                             "id": "zoneId",
                                             "key": "zoneId",
-                                            "value": "distinctio",
+                                            "value": "et",
                                             "description": "The ID of the zone."
                                         },
                                         {
                                             "id": "networkId",
                                             "key": "networkId",
-                                            "value": "quo",
+                                            "value": "cumque",
                                             "description": "The ID of the network."
                                         },
                                         {
                                             "id": "networkPublicIpId",
                                             "key": "networkPublicIpId",
-                                            "value": "accusantium",
+                                            "value": "similique",
                                             "description": "The ID of the public IP."
                                         }
                                     ]
@@ -2516,7 +2516,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"public_ip_id\":\"culpa\"}"
+                                    "raw": "{\"public_ip_id\":\"mollitia\"}"
                                 },
                                 "description": "Get a list of port forward rules for a network."
                             },
@@ -2571,7 +2571,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"network_id\":\"01F8MECHZX3RZ8Y6B8Q5F1E3V7\",\"public_ip_id\":\"01F8MECHZX3RZ8Y6B8Q5F1E3V8\",\"protocol_type\":\"TCP\",\"instance_id\":\"01HZYKJ8QK8ZJ6K8J6K8J6K8J6\",\"port_start_public\":8080,\"port_start_private\":80,\"port_end_public\":11,\"port_end_private\":11,\"instance_network_secondary_ip_id\":\"01F8MECHZX3RZ8Y6B8Q5F1E3V9\"}"
+                                    "raw": "{\"network_id\":\"01F8MECHZX3RZ8Y6B8Q5F1E3V7\",\"public_ip_id\":\"01F8MECHZX3RZ8Y6B8Q5F1E3V8\",\"protocol_type\":\"TCP\",\"instance_id\":\"01HZYKJ8QK8ZJ6K8J6K8J6K8J6\",\"port_start_public\":8080,\"port_start_private\":80,\"port_end_public\":17,\"port_end_private\":8,\"instance_network_secondary_ip_id\":\"01F8MECHZX3RZ8Y6B8Q5F1E3V9\"}"
                                 },
                                 "description": "Add a new port forward rule to a network."
                             },
@@ -3537,7 +3537,7 @@
                                 ],
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\"name\":\"ut\",\"description\":\"Optio modi facere qui delectus quo.\"}"
+                                    "raw": "{\"name\":\"fuga\",\"description\":\"Maiores autem ut consequuntur.\"}"
                                 },
                                 "description": " <aside class=\"notice\">need <small class=\"badge\">kubernetes:cluster:update<\/small> ability for api token<\/aside>"
                             },
@@ -4001,7 +4001,7 @@
                                 {
                                     "id": "zoneId",
                                     "key": "zoneId",
-                                    "value": "aspernatur",
+                                    "value": "rerum",
                                     "description": ""
                                 }
                             ]
