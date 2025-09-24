@@ -552,7 +552,7 @@ paths:
                       dateFrom: DATE_FROM_PLACEHOLDER
                       dateTo: DATE_TO_PLACEHOLDER
                       Instance: 0
-                      NetworkNetflow: 0
+                      NetworkTraffic: 0
                       InstanceSnapshot: 0
                       InstanceDataVolumes: 0
                       SupportOfferings: 0
@@ -571,7 +571,7 @@ paths:
                         dateFrom: DATE_FROM_PLACEHOLDER
                         dateTo: DATE_TO_PLACEHOLDER
                         Instance: 0
-                        NetworkNetflow: 0
+                        NetworkTraffic: 0
                         InstanceSnapshot: 0
                         InstanceDataVolumes: 0
                         SupportOfferings: 0
@@ -594,7 +594,7 @@ paths:
                         Instance:
                           type: integer
                           example: 0
-                        NetworkNetflow:
+                        NetworkTraffic:
                           type: integer
                           example: 0
                         InstanceSnapshot:
@@ -782,7 +782,7 @@ paths:
                     - NetworkInternetPublicAddressV4
                     - KubernetesNode
                     - NetworkDevice
-                    - NetworkNetflow
+                    - NetworkTraffic
                     - SupportOfferings
                     - BucketUploadTraffic
                     - BucketDownloadTraffic
