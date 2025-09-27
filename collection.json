@@ -412,7 +412,7 @@
                                 {
                                     "header": [],
                                     "code": 200,
-                                    "body": "{\n    \"data\": [\n        {\n            \"dateFrom\": \"DATE_FROM_PLACEHOLDER\",\n            \"dateTo\": \"DATE_TO_PLACEHOLDER\",\n            \"Instance\": 0,\n            \"NetworkNetflow\": 0,\n            \"InstanceSnapshot\": 0,\n            \"InstanceDataVolumes\": 0,\n            \"SupportOfferings\": 0,\n            \"NetworkInternetPublicAddressV4\": 0,\n            \"NetworkDevice\": 0,\n            \"InstanceNetworkSecondaryIpAddressV4\": 0,\n            \"BucketSize\": 0,\n            \"BucketDownloadTraffic\": 0,\n            \"BucketUploadTraffic\": 0,\n            \"KubernetesNode\": 0\n        }\n    ]\n}",
+                                    "body": "{\n    \"data\": [\n        {\n            \"dateFrom\": \"DATE_FROM_PLACEHOLDER\",\n            \"dateTo\": \"DATE_TO_PLACEHOLDER\",\n            \"Instance\": 0,\n            \"NetworkTraffic\": 0,\n            \"InstanceSnapshot\": 0,\n            \"InstanceDataVolumes\": 0,\n            \"SupportOfferings\": 0,\n            \"NetworkInternetPublicAddressV4\": 0,\n            \"NetworkDevice\": 0,\n            \"InstanceNetworkSecondaryIpAddressV4\": 0,\n            \"BucketSize\": 0,\n            \"BucketDownloadTraffic\": 0,\n            \"BucketUploadTraffic\": 0,\n            \"KubernetesNode\": 0\n        }\n    ]\n}",
                                     "name": "Successful response"
                                 }
                             ]
