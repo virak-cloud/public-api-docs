@@ -472,7 +472,7 @@ paths:
         in: path
         name: sshKeyId
         description: ''
-        example: 4GMw8bTrPN7sQFGP3z6A1SDGh6
+        example: 3KXPzgaqjBZDHrYREWWzjsFjXD
         required: true
         schema:
           type: string
@@ -552,7 +552,7 @@ paths:
                       dateFrom: DATE_FROM_PLACEHOLDER
                       dateTo: DATE_TO_PLACEHOLDER
                       Instance: 0
-                      NetworkTraffic: 0
+                      NetworkNetflow: 0
                       InstanceSnapshot: 0
                       InstanceDataVolumes: 0
                       SupportOfferings: 0
@@ -571,7 +571,7 @@ paths:
                         dateFrom: DATE_FROM_PLACEHOLDER
                         dateTo: DATE_TO_PLACEHOLDER
                         Instance: 0
-                        NetworkTraffic: 0
+                        NetworkNetflow: 0
                         InstanceSnapshot: 0
                         InstanceDataVolumes: 0
                         SupportOfferings: 0
@@ -594,7 +594,7 @@ paths:
                         Instance:
                           type: integer
                           example: 0
-                        NetworkTraffic:
+                        NetworkNetflow:
                           type: integer
                           example: 0
                         InstanceSnapshot:
@@ -772,7 +772,7 @@ paths:
               properties:
                 product_type:
                   type: string
-                  description: 'The type of the product for expenses.'
+                  description: 'The type of the product for expenses. NetworkTraffic is accepted as an alias for NetworkNetflow.'
                   example: BucketUploadTraffic
                   nullable: false
                   enum:
@@ -783,6 +783,7 @@ paths:
                     - KubernetesNode
                     - NetworkDevice
                     - NetworkTraffic
+                    - NetworkNetflow
                     - SupportOfferings
                     - BucketUploadTraffic
                     - BucketDownloadTraffic
@@ -793,7 +794,7 @@ paths:
                   nullable: false
                 page:
                   type: integer
-                  description: 'Page number for paginated results. Must be at least 1.'
+                  description: 'Page number for paginated results. Defaults to 1 when omitted. Must be at least 1.'
                   example: 1
                   nullable: false
               required:
@@ -2707,7 +2708,7 @@ paths:
         in: path
         name: instanceId
         description: ''
-        example: 0GrMYD4yxp6QZxmarRsfaRnRWK
+        example: 4rXzWer1wJ1F6sh3enTCbgNm3X
         required: true
         schema:
           type: string
@@ -3322,7 +3323,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: veniam
+        example: rerum
         required: true
         schema:
           type: ulid
@@ -3330,7 +3331,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: maiores
+        example: atque
         required: true
         schema:
           type: ulid
@@ -3384,7 +3385,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: eaque
+        example: aut
         required: true
         schema:
           type: ulid
@@ -3392,7 +3393,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: totam
+        example: reprehenderit
         required: true
         schema:
           type: ulid
@@ -3571,7 +3572,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: aliquam
+        example: nisi
         required: true
         schema:
           type: ulid
@@ -3579,7 +3580,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: nulla
+        example: et
         required: true
         schema:
           type: ulid
@@ -4327,7 +4328,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: deserunt
+        example: quia
         required: true
         schema:
           type: ulid
@@ -4335,7 +4336,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: error
+        example: omnis
         required: true
         schema:
           type: ulid
@@ -4343,7 +4344,7 @@ paths:
         in: path
         name: networkPublicIpId
         description: 'The ID of the public IP.'
-        example: eaque
+        example: quaerat
         required: true
         schema:
           type: ulid
@@ -4382,7 +4383,7 @@ paths:
                 instance_id:
                   type: string
                   description: 'The instance CS ID.'
-                  example: magni
+                  example: pariatur
                   nullable: false
               required:
                 - instance_id
@@ -4415,7 +4416,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: voluptates
+        example: delectus
         required: true
         schema:
           type: ulid
@@ -4423,7 +4424,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: libero
+        example: esse
         required: true
         schema:
           type: ulid
@@ -4431,7 +4432,7 @@ paths:
         in: path
         name: networkPublicIpId
         description: 'The ID of the public IP.'
-        example: ut
+        example: quia
         required: true
         schema:
           type: ulid
@@ -4716,7 +4717,7 @@ paths:
                 public_ip_id:
                   type: string
                   description: 'The public IP ULID to filter by (optional).'
-                  example: eum
+                  example: praesentium
                   nullable: false
               required:
                 - public_ip_id
@@ -4788,12 +4789,12 @@ paths:
                 port_end_public:
                   type: integer
                   description: 'The ending public port (optional).'
-                  example: 20
+                  example: 17
                   nullable: false
                 port_end_private:
                   type: integer
                   description: 'The ending private port (optional).'
-                  example: 14
+                  example: 6
                   nullable: false
                 instance_network_secondary_ip_id:
                   type: string
@@ -6597,12 +6598,12 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: eaque
+                  example: necessitatibus
                   nullable: true
                 description:
                   type: string
                   description: ''
-                  example: 'Quia rerum quaerat ducimus doloremque magnam voluptas.'
+                  example: 'Inventore quaerat dolorem architecto exercitationem voluptates.'
                   nullable: true
     delete:
       summary: Delete
@@ -7407,6 +7408,182 @@ paths:
         required: true
         schema:
           type: ulid
+  '/zone/{zoneId}/kubernetes/{clusterId}/service-offering':
+    post:
+      summary: 'Update Service Offering'
+      operationId: updateServiceOffering
+      description: ' <aside class="notice">need <small class="badge">kubernetes:cluster:update-service-offering</small> ability for api token</aside>'
+      parameters: []
+      responses:
+        200:
+          description: 'Successful service offering update'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 01F8MECHZX3TBDSZ7XRADM79XE
+                    name: example-cluster
+                    description: 'This is a test cluster'
+                    zone_id: zone-id
+                    status: Running
+                    kubernetes_version:
+                      id: k8s-version-id
+                      version: 1.26.14
+                      enabled: true
+                      min_cpu: 2
+                      min_memory: 2048
+                    service_offering:
+                      id: service-offering-id
+                      name: service-offering-name
+                      is_public: true
+                      is_available: true
+                      hourly_price:
+                        up: 100
+                        down: 100
+                      hardware:
+                        cpu_core: 4
+                        memory_mb: 4096
+                        cpu_speed_MHz: 2300
+                        root_disk_size_gB: 50
+                        network_rate: 980
+                        disk_iops: 2500
+                    ssh_key: 'ssh-ed25519 ...'
+                    ha_enabled: false
+                    cluster_size: 1
+                    created_at: 1737794395
+                    updated_at: 1737794395
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 01F8MECHZX3TBDSZ7XRADM79XE
+                      name:
+                        type: string
+                        example: example-cluster
+                      description:
+                        type: string
+                        example: 'This is a test cluster'
+                      zone_id:
+                        type: string
+                        example: zone-id
+                      status:
+                        type: string
+                        example: Running
+                      kubernetes_version:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: k8s-version-id
+                          version:
+                            type: string
+                            example: 1.26.14
+                          enabled:
+                            type: boolean
+                            example: true
+                          min_cpu:
+                            type: integer
+                            example: 2
+                          min_memory:
+                            type: integer
+                            example: 2048
+                      service_offering:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: service-offering-id
+                          name:
+                            type: string
+                            example: service-offering-name
+                          is_public:
+                            type: boolean
+                            example: true
+                          is_available:
+                            type: boolean
+                            example: true
+                          hourly_price:
+                            type: object
+                            properties:
+                              up:
+                                type: integer
+                                example: 100
+                              down:
+                                type: integer
+                                example: 100
+                          hardware:
+                            type: object
+                            properties:
+                              cpu_core:
+                                type: integer
+                                example: 4
+                              memory_mb:
+                                type: integer
+                                example: 4096
+                              cpu_speed_MHz:
+                                type: integer
+                                example: 2300
+                              root_disk_size_gB:
+                                type: integer
+                                example: 50
+                              network_rate:
+                                type: integer
+                                example: 980
+                              disk_iops:
+                                type: integer
+                                example: 2500
+                      ssh_key:
+                        type: string
+                        example: 'ssh-ed25519 ...'
+                      ha_enabled:
+                        type: boolean
+                        example: false
+                      cluster_size:
+                        type: integer
+                        example: 1
+                      created_at:
+                        type: integer
+                        example: 1737794395
+                      updated_at:
+                        type: integer
+                        example: 1737794395
+      tags:
+        - Kubernetes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                service_offering_id:
+                  type: string
+                  description: 'The ID of the new service offering to be applied to the cluster.'
+                  example: 01F8MECHZX3TBDSZ7XRADM79XE
+                  nullable: false
+              required:
+                - service_offering_id
+    parameters:
+      -
+        in: path
+        name: zoneId
+        description: 'The ID of the zone.'
+        example: 01F8MECHZX3TBDSZ7XRADM79XE
+        required: true
+        schema:
+          type: ulid
+      -
+        in: path
+        name: clusterId
+        description: 'The ID of the cluster.'
+        example: 01F8MECHZX3TBDSZ7XRADM79XE
+        required: true
+        schema:
+          type: ulid
   '/zone/{zoneId}/kubernetes/service-offerings':
     get:
       summary: 'List Service Offerings'
@@ -7480,7 +7657,7 @@ paths:
         in: path
         name: zoneId
         description: ''
-        example: consectetur
+        example: molestias
         required: true
         schema:
           type: string
@@ -7503,6 +7680,7 @@ paths:
                       id: string
                       name: string
                       url: string
+                      region: string
                       access_key: string|null
                       secret_key: string|null
                       status: string
@@ -7520,6 +7698,7 @@ paths:
                         id: string
                         name: string
                         url: string
+                        region: string
                         access_key: string|null
                         secret_key: string|null
                         status: string
@@ -7539,6 +7718,9 @@ paths:
                           type: string
                           example: string
                         url:
+                          type: string
+                          example: string
+                        region:
                           type: string
                           example: string
                         access_key:
@@ -7668,6 +7850,7 @@ paths:
                     id: string
                     name: string
                     url: string
+                    region: string
                     access_key: string|null
                     secret_key: string|null
                     status: string
@@ -7689,6 +7872,9 @@ paths:
                         type: string
                         example: string
                       url:
+                        type: string
+                        example: string
+                      region:
                         type: string
                         example: string
                       access_key:
@@ -7740,6 +7926,7 @@ paths:
                     id: string
                     name: string
                     url: string
+                    region: string
                     access_key: string|null
                     secret_key: string|null
                     status: string
@@ -7760,6 +7947,9 @@ paths:
                         type: string
                         example: string
                       url:
+                        type: string
+                        example: string
+                      region:
                         type: string
                         example: string
                       access_key:
