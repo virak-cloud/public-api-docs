@@ -472,7 +472,7 @@ paths:
         in: path
         name: sshKeyId
         description: ''
-        example: 3KXPzgaqjBZDHrYREWWzjsFjXD
+        example: 5AyvNR5M58b4RH87deQCK25sXA
         required: true
         schema:
           type: string
@@ -2708,7 +2708,7 @@ paths:
         in: path
         name: instanceId
         description: ''
-        example: 4rXzWer1wJ1F6sh3enTCbgNm3X
+        example: 55gNxBej2fAK7BQnCJ9DkHEvpv
         required: true
         schema:
           type: string
@@ -3323,7 +3323,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: rerum
+        example: dolor
         required: true
         schema:
           type: ulid
@@ -3331,7 +3331,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: atque
+        example: dolorum
         required: true
         schema:
           type: ulid
@@ -3385,7 +3385,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: aut
+        example: sunt
         required: true
         schema:
           type: ulid
@@ -3393,7 +3393,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: reprehenderit
+        example: qui
         required: true
         schema:
           type: ulid
@@ -3572,7 +3572,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: nisi
+        example: deleniti
         required: true
         schema:
           type: ulid
@@ -3580,7 +3580,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: et
+        example: nihil
         required: true
         schema:
           type: ulid
@@ -4328,7 +4328,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: quia
+        example: et
         required: true
         schema:
           type: ulid
@@ -4336,7 +4336,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: omnis
+        example: iure
         required: true
         schema:
           type: ulid
@@ -4344,7 +4344,7 @@ paths:
         in: path
         name: networkPublicIpId
         description: 'The ID of the public IP.'
-        example: quaerat
+        example: error
         required: true
         schema:
           type: ulid
@@ -4383,7 +4383,7 @@ paths:
                 instance_id:
                   type: string
                   description: 'The instance CS ID.'
-                  example: pariatur
+                  example: qui
                   nullable: false
               required:
                 - instance_id
@@ -4416,7 +4416,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: delectus
+        example: nemo
         required: true
         schema:
           type: ulid
@@ -4424,7 +4424,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: esse
+        example: dolorem
         required: true
         schema:
           type: ulid
@@ -4432,7 +4432,7 @@ paths:
         in: path
         name: networkPublicIpId
         description: 'The ID of the public IP.'
-        example: quia
+        example: quaerat
         required: true
         schema:
           type: ulid
@@ -4717,7 +4717,7 @@ paths:
                 public_ip_id:
                   type: string
                   description: 'The public IP ULID to filter by (optional).'
-                  example: praesentium
+                  example: nihil
                   nullable: false
               required:
                 - public_ip_id
@@ -4789,12 +4789,12 @@ paths:
                 port_end_public:
                   type: integer
                   description: 'The ending public port (optional).'
-                  example: 17
+                  example: 12
                   nullable: false
                 port_end_private:
                   type: integer
                   description: 'The ending private port (optional).'
-                  example: 6
+                  example: 3
                   nullable: false
                 instance_network_secondary_ip_id:
                   type: string
@@ -6598,12 +6598,12 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: necessitatibus
+                  example: optio
                   nullable: true
                 description:
                   type: string
                   description: ''
-                  example: 'Inventore quaerat dolorem architecto exercitationem voluptates.'
+                  example: 'Facere est et dolor adipisci culpa ipsam non rerum.'
                   nullable: true
     delete:
       summary: Delete
@@ -7657,7 +7657,7 @@ paths:
         in: path
         name: zoneId
         description: ''
-        example: molestias
+        example: ut
         required: true
         schema:
           type: string
