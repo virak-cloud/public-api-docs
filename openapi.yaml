@@ -472,7 +472,7 @@ paths:
         in: path
         name: sshKeyId
         description: ''
-        example: 4GMw8bTrPN7sQFGP3z6A1SDGh6
+        example: 55xBC2Jm1dcAfqCDEjzTAw2kgx
         required: true
         schema:
           type: string
@@ -552,7 +552,7 @@ paths:
                       dateFrom: DATE_FROM_PLACEHOLDER
                       dateTo: DATE_TO_PLACEHOLDER
                       Instance: 0
-                      NetworkTraffic: 0
+                      NetworkNetflow: 0
                       InstanceSnapshot: 0
                       InstanceDataVolumes: 0
                       SupportOfferings: 0
@@ -571,7 +571,7 @@ paths:
                         dateFrom: DATE_FROM_PLACEHOLDER
                         dateTo: DATE_TO_PLACEHOLDER
                         Instance: 0
-                        NetworkTraffic: 0
+                        NetworkNetflow: 0
                         InstanceSnapshot: 0
                         InstanceDataVolumes: 0
                         SupportOfferings: 0
@@ -594,7 +594,7 @@ paths:
                         Instance:
                           type: integer
                           example: 0
-                        NetworkTraffic:
+                        NetworkNetflow:
                           type: integer
                           example: 0
                         InstanceSnapshot:
@@ -772,7 +772,7 @@ paths:
               properties:
                 product_type:
                   type: string
-                  description: 'The type of the product for expenses.'
+                  description: 'The type of the product for expenses. NetworkTraffic is accepted as an alias for NetworkNetflow.'
                   example: BucketUploadTraffic
                   nullable: false
                   enum:
@@ -783,6 +783,7 @@ paths:
                     - KubernetesNode
                     - NetworkDevice
                     - NetworkTraffic
+                    - NetworkNetflow
                     - SupportOfferings
                     - BucketUploadTraffic
                     - BucketDownloadTraffic
@@ -793,7 +794,7 @@ paths:
                   nullable: false
                 page:
                   type: integer
-                  description: 'Page number for paginated results. Must be at least 1.'
+                  description: 'Page number for paginated results. Defaults to 1 when omitted. Must be at least 1.'
                   example: 1
                   nullable: false
               required:
@@ -2707,7 +2708,7 @@ paths:
         in: path
         name: instanceId
         description: ''
-        example: 0GrMYD4yxp6QZxmarRsfaRnRWK
+        example: 6XgNZZ4A7zB9cCX9w3432Kkzka
         required: true
         schema:
           type: string
@@ -3278,6 +3279,185 @@ paths:
         required: true
         schema:
           type: ulid
+  '/zone/{zoneId}/network/instance':
+    get:
+      summary: 'Connected Networks of an instance'
+      operationId: connectedNetworksOfAnInstance
+      description: "Requires appropriate <small class=\"badge\">network:instance:show</small> ability for API token</aside>\n"
+      parameters: []
+      responses:
+        200:
+          description: 'List of network connections for the instance.'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: instance_network_id
+                      instance_id: instance_id
+                      instance_name: instance_name
+                      ipaddress: ip_address_v4
+                      ipaddress_v6: ip_address_v6
+                      macaddress: mac_address
+                      is_default: true
+                      created_at: 1234567890
+                      network:
+                        id: network_id
+                        name: network_name
+                        ip_config: []
+                        ip_config_v6: []
+                      network_offering:
+                        id: network_offering_id
+                        name: network_offering_name
+                        displayname: network_offering_displayname
+                        displayname_fa: network_offering_displayname_fa
+                        hourly_started_price: 0
+                        traffic_price_per_gig: 0
+                        traffic_transfer_free_gig: 1000
+                        networkrate: 200
+                        type: network_type
+                        description: network_description
+                        internet_protocol: internet_protocol
+                      secondary_ips: []
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: instance_network_id
+                        instance_id: instance_id
+                        instance_name: instance_name
+                        ipaddress: ip_address_v4
+                        ipaddress_v6: ip_address_v6
+                        macaddress: mac_address
+                        is_default: true
+                        created_at: 1234567890
+                        network:
+                          id: network_id
+                          name: network_name
+                          ip_config: []
+                          ip_config_v6: []
+                        network_offering:
+                          id: network_offering_id
+                          name: network_offering_name
+                          displayname: network_offering_displayname
+                          displayname_fa: network_offering_displayname_fa
+                          hourly_started_price: 0
+                          traffic_price_per_gig: 0
+                          traffic_transfer_free_gig: 1000
+                          networkrate: 200
+                          type: network_type
+                          description: network_description
+                          internet_protocol: internet_protocol
+                        secondary_ips: []
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: instance_network_id
+                        instance_id:
+                          type: string
+                          example: instance_id
+                        instance_name:
+                          type: string
+                          example: instance_name
+                        ipaddress:
+                          type: string
+                          example: ip_address_v4
+                        ipaddress_v6:
+                          type: string
+                          example: ip_address_v6
+                        macaddress:
+                          type: string
+                          example: mac_address
+                        is_default:
+                          type: boolean
+                          example: true
+                        created_at:
+                          type: integer
+                          example: 1234567890
+                        network:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: network_id
+                            name:
+                              type: string
+                              example: network_name
+                            ip_config:
+                              type: array
+                              example: []
+                            ip_config_v6:
+                              type: array
+                              example: []
+                        network_offering:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: network_offering_id
+                            name:
+                              type: string
+                              example: network_offering_name
+                            displayname:
+                              type: string
+                              example: network_offering_displayname
+                            displayname_fa:
+                              type: string
+                              example: network_offering_displayname_fa
+                            hourly_started_price:
+                              type: integer
+                              example: 0
+                            traffic_price_per_gig:
+                              type: integer
+                              example: 0
+                            traffic_transfer_free_gig:
+                              type: integer
+                              example: 1000
+                            networkrate:
+                              type: integer
+                              example: 200
+                            type:
+                              type: string
+                              example: network_type
+                            description:
+                              type: string
+                              example: network_description
+                            internet_protocol:
+                              type: string
+                              example: internet_protocol
+                        secondary_ips:
+                          type: array
+                          example: []
+      tags:
+        - Network
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                instance_id:
+                  type: string
+                  description: 'The unique identifier for the instance to show.'
+                  example: 01F8MECHZX3RZ8Y6B8Q5F1E3V7
+                  nullable: false
+              required:
+                - instance_id
+    parameters:
+      -
+        in: path
+        name: zoneId
+        description: 'The ID of the zone.'
+        example: qui
+        required: true
+        schema:
+          type: ulid
   '/zone/{zoneId}/network/{networkId}/instance/connect':
     post:
       summary: 'Connect Instance to a network'
@@ -3322,7 +3502,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: veniam
+        example: culpa
         required: true
         schema:
           type: ulid
@@ -3330,7 +3510,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: maiores
+        example: corrupti
         required: true
         schema:
           type: ulid
@@ -3384,7 +3564,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: eaque
+        example: id
         required: true
         schema:
           type: ulid
@@ -3392,15 +3572,15 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: totam
+        example: eligendi
         required: true
         schema:
           type: ulid
   '/zone/{zoneId}/network/{networkId}/instance':
     get:
-      summary: 'connected instances of network'
-      operationId: connectedInstancesOfNetwork
-      description: "Requires appropriate <small class=\"badge\">network:instance:show</small> ability for API token</aside>\n  "
+      summary: 'connected instances of network (DEPRECATED)'
+      operationId: connectedInstancesOfNetworkDEPRECATED
+      description: "Requires appropriate <small class=\"badge\">network:instance:show</small> ability for API token</aside> @deprecated Use /zone/{zoneId}/network/instance instead. This endpoint will be removed in a future version.\n  "
       parameters: []
       responses:
         200:
@@ -3571,7 +3751,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: aliquam
+        example: laudantium
         required: true
         schema:
           type: ulid
@@ -3579,7 +3759,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: nulla
+        example: eum
         required: true
         schema:
           type: ulid
@@ -4327,7 +4507,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: deserunt
+        example: ea
         required: true
         schema:
           type: ulid
@@ -4335,7 +4515,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: error
+        example: voluptatibus
         required: true
         schema:
           type: ulid
@@ -4343,7 +4523,7 @@ paths:
         in: path
         name: networkPublicIpId
         description: 'The ID of the public IP.'
-        example: eaque
+        example: aliquid
         required: true
         schema:
           type: ulid
@@ -4382,7 +4562,7 @@ paths:
                 instance_id:
                   type: string
                   description: 'The instance CS ID.'
-                  example: magni
+                  example: doloribus
                   nullable: false
               required:
                 - instance_id
@@ -4415,7 +4595,7 @@ paths:
         in: path
         name: zoneId
         description: 'The ID of the zone.'
-        example: voluptates
+        example: dolorem
         required: true
         schema:
           type: ulid
@@ -4423,7 +4603,7 @@ paths:
         in: path
         name: networkId
         description: 'The ID of the network.'
-        example: libero
+        example: amet
         required: true
         schema:
           type: ulid
@@ -4431,7 +4611,7 @@ paths:
         in: path
         name: networkPublicIpId
         description: 'The ID of the public IP.'
-        example: ut
+        example: quidem
         required: true
         schema:
           type: ulid
@@ -4716,7 +4896,7 @@ paths:
                 public_ip_id:
                   type: string
                   description: 'The public IP ULID to filter by (optional).'
-                  example: eum
+                  example: officia
                   nullable: false
               required:
                 - public_ip_id
@@ -4788,12 +4968,12 @@ paths:
                 port_end_public:
                   type: integer
                   description: 'The ending public port (optional).'
-                  example: 20
+                  example: 19
                   nullable: false
                 port_end_private:
                   type: integer
                   description: 'The ending private port (optional).'
-                  example: 14
+                  example: 13
                   nullable: false
                 instance_network_secondary_ip_id:
                   type: string
@@ -5615,9 +5795,26 @@ paths:
                         enabled: true
                         min_cpu: 2
                         min_memory: 2048
-                      service_offering:
+                      controller_service_offering:
                         id: service-offering-id
                         name: service-offering-name
+                        controller_only: true
+                        worker_only: false
+                        hourly_price:
+                          up: 100
+                          down: 100
+                        hardware:
+                          cpu_core: 4
+                          memory_mb: 4096
+                          cpu_speed_MHz: 2300
+                          root_disk_size_gB: 50
+                          network_rate: 980
+                          disk_iops: 2500
+                      worker_service_offering:
+                        id: service-offering-id
+                        name: service-offering-name
+                        controller_only: false
+                        worker_only: true
                         hourly_price:
                           up: 100
                           down: 100
@@ -5649,9 +5846,26 @@ paths:
                           enabled: true
                           min_cpu: 2
                           min_memory: 2048
-                        service_offering:
+                        controller_service_offering:
                           id: service-offering-id
                           name: service-offering-name
+                          controller_only: true
+                          worker_only: false
+                          hourly_price:
+                            up: 100
+                            down: 100
+                          hardware:
+                            cpu_core: 4
+                            memory_mb: 4096
+                            cpu_speed_MHz: 2300
+                            root_disk_size_gB: 50
+                            network_rate: 980
+                            disk_iops: 2500
+                        worker_service_offering:
+                          id: service-offering-id
+                          name: service-offering-name
+                          controller_only: false
+                          worker_only: true
                           hourly_price:
                             up: 100
                             down: 100
@@ -5703,7 +5917,7 @@ paths:
                             min_memory:
                               type: integer
                               example: 2048
-                        service_offering:
+                        controller_service_offering:
                           type: object
                           properties:
                             id:
@@ -5712,6 +5926,57 @@ paths:
                             name:
                               type: string
                               example: service-offering-name
+                            controller_only:
+                              type: boolean
+                              example: true
+                            worker_only:
+                              type: boolean
+                              example: false
+                            hourly_price:
+                              type: object
+                              properties:
+                                up:
+                                  type: integer
+                                  example: 100
+                                down:
+                                  type: integer
+                                  example: 100
+                            hardware:
+                              type: object
+                              properties:
+                                cpu_core:
+                                  type: integer
+                                  example: 4
+                                memory_mb:
+                                  type: integer
+                                  example: 4096
+                                cpu_speed_MHz:
+                                  type: integer
+                                  example: 2300
+                                root_disk_size_gB:
+                                  type: integer
+                                  example: 50
+                                network_rate:
+                                  type: integer
+                                  example: 980
+                                disk_iops:
+                                  type: integer
+                                  example: 2500
+                        worker_service_offering:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: service-offering-id
+                            name:
+                              type: string
+                              example: service-offering-name
+                            controller_only:
+                              type: boolean
+                              example: false
+                            worker_only:
+                              type: boolean
+                              example: true
                             hourly_price:
                               type: object
                               properties:
@@ -5851,6 +6116,48 @@ paths:
                             items:
                               type: string
                   -
+                    description: 'Validation error - Controller Service Offering ID is required.'
+                    type: object
+                    example:
+                      message: 'The controller service offering id field is required.'
+                      errors:
+                        controller_service_offering_id:
+                          - 'The controller service offering id field is required.'
+                    properties:
+                      message:
+                        type: string
+                        example: 'The controller service offering id field is required.'
+                      errors:
+                        type: object
+                        properties:
+                          controller_service_offering_id:
+                            type: array
+                            example:
+                              - 'The controller service offering id field is required.'
+                            items:
+                              type: string
+                  -
+                    description: 'Validation error - Worker Service Offering ID is required.'
+                    type: object
+                    example:
+                      message: 'The worker service offering id field is required.'
+                      errors:
+                        worker_service_offering_id:
+                          - 'The worker service offering id field is required.'
+                    properties:
+                      message:
+                        type: string
+                        example: 'The worker service offering id field is required.'
+                      errors:
+                        type: object
+                        properties:
+                          worker_service_offering_id:
+                            type: array
+                            example:
+                              - 'The worker service offering id field is required.'
+                            items:
+                              type: string
+                  -
                     description: 'Validation error - HA Enabled is required.'
                     type: object
                     example:
@@ -5956,6 +6263,48 @@ paths:
                             items:
                               type: string
                   -
+                    description: 'Validation error - Invalid Controller Service Offering ID.'
+                    type: object
+                    example:
+                      message: 'The selected controller service offering id is invalid.'
+                      errors:
+                        controller_service_offering_id:
+                          - 'The selected controller service offering id is invalid.'
+                    properties:
+                      message:
+                        type: string
+                        example: 'The selected controller service offering id is invalid.'
+                      errors:
+                        type: object
+                        properties:
+                          controller_service_offering_id:
+                            type: array
+                            example:
+                              - 'The selected controller service offering id is invalid.'
+                            items:
+                              type: string
+                  -
+                    description: 'Validation error - Invalid Worker Service Offering ID.'
+                    type: object
+                    example:
+                      message: 'The selected worker service offering id is invalid.'
+                      errors:
+                        worker_service_offering_id:
+                          - 'The selected worker service offering id is invalid.'
+                    properties:
+                      message:
+                        type: string
+                        example: 'The selected worker service offering id is invalid.'
+                      errors:
+                        type: object
+                        properties:
+                          worker_service_offering_id:
+                            type: array
+                            example:
+                              - 'The selected worker service offering id is invalid.'
+                            items:
+                              type: string
+                  -
                     description: 'Validation error - Invalid Network ID.'
                     type: object
                     example:
@@ -5977,66 +6326,171 @@ paths:
                             items:
                               type: string
                   -
-                    description: "Validation error - Customer's CPU limit exceeds."
+                    description: "Validation error - Customer's Controller CPU limit exceeds."
                     type: object
                     example:
-                      message: 'The kubernetes version id field is required.'
+                      message: 'The controller service offering id field is required.'
                       errors:
-                        kubernetes_version_id:
+                        controller_service_offering_id:
                           - "The required CPU (cpu core) exceeds the customer's limit (in core count)."
                     properties:
                       message:
                         type: string
-                        example: 'The kubernetes version id field is required.'
+                        example: 'The controller service offering id field is required.'
                       errors:
                         type: object
                         properties:
-                          kubernetes_version_id:
+                          controller_service_offering_id:
                             type: array
                             example:
                               - "The required CPU (cpu core) exceeds the customer's limit (in core count)."
                             items:
                               type: string
                   -
-                    description: "Validation error - Customer's Memory (RAM) limit exceeds."
+                    description: "Validation error - Customer's Controller Memory (RAM) limit exceeds."
                     type: object
                     example:
-                      message: 'The kubernetes version id field is required.'
+                      message: 'The controller service offering id field is required.'
                       errors:
-                        kubernetes_version_id:
+                        controller_service_offering_id:
                           - "The required memory (memory MB) exceeds the customer's limit (in MB)."
                     properties:
                       message:
                         type: string
-                        example: 'The kubernetes version id field is required.'
+                        example: 'The controller service offering id field is required.'
                       errors:
                         type: object
                         properties:
-                          kubernetes_version_id:
+                          controller_service_offering_id:
                             type: array
                             example:
                               - "The required memory (memory MB) exceeds the customer's limit (in MB)."
                             items:
                               type: string
                   -
-                    description: "Validation error - Customer's Disk limit exceeds."
+                    description: "Validation error - Customer's Controller Disk limit exceeds."
                     type: object
                     example:
-                      message: 'The kubernetes version id field is required.'
+                      message: 'The controller service offering id field is required.'
                       errors:
-                        kubernetes_version_id:
+                        controller_service_offering_id:
                           - "The required primary storage (disk GB) exceeds the customer's limit (in GB)."
                     properties:
                       message:
                         type: string
-                        example: 'The kubernetes version id field is required.'
+                        example: 'The controller service offering id field is required.'
                       errors:
                         type: object
                         properties:
-                          kubernetes_version_id:
+                          controller_service_offering_id:
                             type: array
                             example:
                               - "The required primary storage (disk GB) exceeds the customer's limit (in GB)."
+                            items:
+                              type: string
+                  -
+                    description: "Validation error - Customer's Controller VM count limit exceeds."
+                    type: object
+                    example:
+                      message: 'The controller service offering id field is required.'
+                      errors:
+                        controller_service_offering_id:
+                          - "The required VMs (vms) exceeds the customer's limit (VM number)."
+                    properties:
+                      message:
+                        type: string
+                        example: 'The controller service offering id field is required.'
+                      errors:
+                        type: object
+                        properties:
+                          controller_service_offering_id:
+                            type: array
+                            example:
+                              - "The required VMs (vms) exceeds the customer's limit (VM number)."
+                            items:
+                              type: string
+                  -
+                    description: "Validation error - Customer's Worker CPU limit exceeds."
+                    type: object
+                    example:
+                      message: 'The worker service offering id field is required.'
+                      errors:
+                        worker_service_offering_id:
+                          - "The required CPU (cpu core) exceeds the customer's limit (in core count)."
+                    properties:
+                      message:
+                        type: string
+                        example: 'The worker service offering id field is required.'
+                      errors:
+                        type: object
+                        properties:
+                          worker_service_offering_id:
+                            type: array
+                            example:
+                              - "The required CPU (cpu core) exceeds the customer's limit (in core count)."
+                            items:
+                              type: string
+                  -
+                    description: "Validation error - Customer's Worker Memory (RAM) limit exceeds."
+                    type: object
+                    example:
+                      message: 'The worker service offering id field is required.'
+                      errors:
+                        worker_service_offering_id:
+                          - "The required memory (memory MB) exceeds the customer's limit (in MB)."
+                    properties:
+                      message:
+                        type: string
+                        example: 'The worker service offering id field is required.'
+                      errors:
+                        type: object
+                        properties:
+                          worker_service_offering_id:
+                            type: array
+                            example:
+                              - "The required memory (memory MB) exceeds the customer's limit (in MB)."
+                            items:
+                              type: string
+                  -
+                    description: "Validation error - Customer's Worker Disk limit exceeds."
+                    type: object
+                    example:
+                      message: 'The worker service offering id field is required.'
+                      errors:
+                        worker_service_offering_id:
+                          - "The required primary storage (disk GB) exceeds the customer's limit (in GB)."
+                    properties:
+                      message:
+                        type: string
+                        example: 'The worker service offering id field is required.'
+                      errors:
+                        type: object
+                        properties:
+                          worker_service_offering_id:
+                            type: array
+                            example:
+                              - "The required primary storage (disk GB) exceeds the customer's limit (in GB)."
+                            items:
+                              type: string
+                  -
+                    description: "Validation error - Customer's Worker VM count limit exceeds."
+                    type: object
+                    example:
+                      message: 'The worker service offering id field is required.'
+                      errors:
+                        worker_service_offering_id:
+                          - "The required VMs (vms) exceeds the customer's limit (VM number)."
+                    properties:
+                      message:
+                        type: string
+                        example: 'The worker service offering id field is required.'
+                      errors:
+                        type: object
+                        properties:
+                          worker_service_offering_id:
+                            type: array
+                            example:
+                              - "The required VMs (vms) exceeds the customer's limit (VM number)."
                             items:
                               type: string
       tags:
@@ -6058,10 +6512,15 @@ paths:
                   description: 'The unique identifier for the Kubernetes version to be used.'
                   example: 01F8MECHZX3RZ8Y6B8Q5F1E3V6
                   nullable: false
-                service_offering_id:
+                worker_service_offering_id:
                   type: string
-                  description: 'The unique identifier for the service offering associated with the cluster.'
+                  description: 'The unique identifier for the service offering used for worker (node) instances.'
                   example: 01F8MECHZX3RZ8Y6B8Q5F1E3V7
+                  nullable: false
+                controller_service_offering_id:
+                  type: string
+                  description: 'The unique identifier for the service offering used for controller (master) instances.'
+                  example: 01F8MECHZX3RZ8Y6B8Q5F1E3V8
                   nullable: false
                 ha_enabled:
                   type: boolean
@@ -6108,7 +6567,8 @@ paths:
               required:
                 - name
                 - kubernetes_version_id
-                - service_offering_id
+                - worker_service_offering_id
+                - controller_service_offering_id
                 - ha_enabled
                 - sshkey_id
                 - network_id
@@ -6276,11 +6736,30 @@ paths:
                       enabled: true
                       min_cpu: 2
                       min_memory: 2048
-                    service_offering:
+                    controller_service_offering:
                       id: service-offering-id
                       name: service-offering-name
                       is_public: true
                       is_available: true
+                      controller_only: true
+                      worker_only: false
+                      hourly_price:
+                        up: 100
+                        down: 100
+                      hardware:
+                        cpu_core: 4
+                        memory_mb: 4096
+                        cpu_speed_MHz: 2300
+                        root_disk_size_gB: 50
+                        network_rate: 980
+                        disk_iops: 2500
+                    worker_service_offering:
+                      id: service-offering-id
+                      name: service-offering-name
+                      is_public: true
+                      is_available: true
+                      controller_only: false
+                      worker_only: true
                       hourly_price:
                         up: 100
                         down: 100
@@ -6333,7 +6812,7 @@ paths:
                           min_memory:
                             type: integer
                             example: 2048
-                      service_offering:
+                      controller_service_offering:
                         type: object
                         properties:
                           id:
@@ -6346,6 +6825,63 @@ paths:
                             type: boolean
                             example: true
                           is_available:
+                            type: boolean
+                            example: true
+                          controller_only:
+                            type: boolean
+                            example: true
+                          worker_only:
+                            type: boolean
+                            example: false
+                          hourly_price:
+                            type: object
+                            properties:
+                              up:
+                                type: integer
+                                example: 100
+                              down:
+                                type: integer
+                                example: 100
+                          hardware:
+                            type: object
+                            properties:
+                              cpu_core:
+                                type: integer
+                                example: 4
+                              memory_mb:
+                                type: integer
+                                example: 4096
+                              cpu_speed_MHz:
+                                type: integer
+                                example: 2300
+                              root_disk_size_gB:
+                                type: integer
+                                example: 50
+                              network_rate:
+                                type: integer
+                                example: 980
+                              disk_iops:
+                                type: integer
+                                example: 2500
+                      worker_service_offering:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: service-offering-id
+                          name:
+                            type: string
+                            example: service-offering-name
+                          is_public:
+                            type: boolean
+                            example: true
+                          is_available:
+                            type: boolean
+                            example: true
+                          controller_only:
+                            type: boolean
+                            example: false
+                          worker_only:
                             type: boolean
                             example: true
                           hourly_price:
@@ -6420,11 +6956,30 @@ paths:
                       enabled: true
                       min_cpu: 2
                       min_memory: 2048
-                    service_offering:
+                    controller_service_offering:
                       id: service-offering-id
                       name: service-offering-name
                       is_public: true
                       is_available: true
+                      controller_only: true
+                      worker_only: false
+                      hourly_price:
+                        up: 100
+                        down: 100
+                      hardware:
+                        cpu_core: 4
+                        memory_mb: 4096
+                        cpu_speed_MHz: 2300
+                        root_disk_size_gB: 50
+                        network_rate: 980
+                        disk_iops: 2500
+                    worker_service_offering:
+                      id: service-offering-id
+                      name: service-offering-name
+                      is_public: true
+                      is_available: true
+                      controller_only: false
+                      worker_only: true
                       hourly_price:
                         up: 100
                         down: 100
@@ -6477,7 +7032,7 @@ paths:
                           min_memory:
                             type: integer
                             example: 2048
-                      service_offering:
+                      controller_service_offering:
                         type: object
                         properties:
                           id:
@@ -6490,6 +7045,63 @@ paths:
                             type: boolean
                             example: true
                           is_available:
+                            type: boolean
+                            example: true
+                          controller_only:
+                            type: boolean
+                            example: true
+                          worker_only:
+                            type: boolean
+                            example: false
+                          hourly_price:
+                            type: object
+                            properties:
+                              up:
+                                type: integer
+                                example: 100
+                              down:
+                                type: integer
+                                example: 100
+                          hardware:
+                            type: object
+                            properties:
+                              cpu_core:
+                                type: integer
+                                example: 4
+                              memory_mb:
+                                type: integer
+                                example: 4096
+                              cpu_speed_MHz:
+                                type: integer
+                                example: 2300
+                              root_disk_size_gB:
+                                type: integer
+                                example: 50
+                              network_rate:
+                                type: integer
+                                example: 980
+                              disk_iops:
+                                type: integer
+                                example: 2500
+                      worker_service_offering:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: service-offering-id
+                          name:
+                            type: string
+                            example: service-offering-name
+                          is_public:
+                            type: boolean
+                            example: true
+                          is_available:
+                            type: boolean
+                            example: true
+                          controller_only:
+                            type: boolean
+                            example: false
+                          worker_only:
                             type: boolean
                             example: true
                           hourly_price:
@@ -6597,12 +7209,12 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: eaque
+                  example: nihil
                   nullable: true
                 description:
                   type: string
                   description: ''
-                  example: 'Quia rerum quaerat ducimus doloremque magnam voluptas.'
+                  example: 'Maxime laudantium aut quia veniam et minus nulla.'
                   nullable: true
     delete:
       summary: Delete
@@ -6744,11 +7356,30 @@ paths:
                       enabled: true
                       min_cpu: 2
                       min_memory: 2048
-                    service_offering:
+                    controller_service_offering:
                       id: service-offering-id
                       name: service-offering-name
                       is_public: true
                       is_available: true
+                      controller_only: true
+                      worker_only: false
+                      hourly_price:
+                        up: 100
+                        down: 100
+                      hardware:
+                        cpu_core: 4
+                        memory_mb: 4096
+                        cpu_speed_MHz: 2300
+                        root_disk_size_gB: 50
+                        network_rate: 980
+                        disk_iops: 2500
+                    worker_service_offering:
+                      id: service-offering-id
+                      name: service-offering-name
+                      is_public: true
+                      is_available: true
+                      controller_only: false
+                      worker_only: true
                       hourly_price:
                         up: 100
                         down: 100
@@ -6801,7 +7432,7 @@ paths:
                           min_memory:
                             type: integer
                             example: 2048
-                      service_offering:
+                      controller_service_offering:
                         type: object
                         properties:
                           id:
@@ -6814,6 +7445,63 @@ paths:
                             type: boolean
                             example: true
                           is_available:
+                            type: boolean
+                            example: true
+                          controller_only:
+                            type: boolean
+                            example: true
+                          worker_only:
+                            type: boolean
+                            example: false
+                          hourly_price:
+                            type: object
+                            properties:
+                              up:
+                                type: integer
+                                example: 100
+                              down:
+                                type: integer
+                                example: 100
+                          hardware:
+                            type: object
+                            properties:
+                              cpu_core:
+                                type: integer
+                                example: 4
+                              memory_mb:
+                                type: integer
+                                example: 4096
+                              cpu_speed_MHz:
+                                type: integer
+                                example: 2300
+                              root_disk_size_gB:
+                                type: integer
+                                example: 50
+                              network_rate:
+                                type: integer
+                                example: 980
+                              disk_iops:
+                                type: integer
+                                example: 2500
+                      worker_service_offering:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: service-offering-id
+                          name:
+                            type: string
+                            example: service-offering-name
+                          is_public:
+                            type: boolean
+                            example: true
+                          is_available:
+                            type: boolean
+                            example: true
+                          controller_only:
+                            type: boolean
+                            example: false
+                          worker_only:
                             type: boolean
                             example: true
                           hourly_price:
@@ -6906,11 +7594,30 @@ paths:
                       enabled: true
                       min_cpu: 2
                       min_memory: 2048
-                    service_offering:
+                    controller_service_offering:
                       id: service-offering-id
                       name: service-offering-name
                       is_public: true
                       is_available: true
+                      controller_only: true
+                      worker_only: false
+                      hourly_price:
+                        up: 100
+                        down: 100
+                      hardware:
+                        cpu_core: 4
+                        memory_mb: 4096
+                        cpu_speed_MHz: 2300
+                        root_disk_size_gB: 50
+                        network_rate: 980
+                        disk_iops: 2500
+                    worker_service_offering:
+                      id: service-offering-id
+                      name: service-offering-name
+                      is_public: true
+                      is_available: true
+                      controller_only: false
+                      worker_only: true
                       hourly_price:
                         up: 100
                         down: 100
@@ -6963,7 +7670,7 @@ paths:
                           min_memory:
                             type: integer
                             example: 2048
-                      service_offering:
+                      controller_service_offering:
                         type: object
                         properties:
                           id:
@@ -6976,6 +7683,63 @@ paths:
                             type: boolean
                             example: true
                           is_available:
+                            type: boolean
+                            example: true
+                          controller_only:
+                            type: boolean
+                            example: true
+                          worker_only:
+                            type: boolean
+                            example: false
+                          hourly_price:
+                            type: object
+                            properties:
+                              up:
+                                type: integer
+                                example: 100
+                              down:
+                                type: integer
+                                example: 100
+                          hardware:
+                            type: object
+                            properties:
+                              cpu_core:
+                                type: integer
+                                example: 4
+                              memory_mb:
+                                type: integer
+                                example: 4096
+                              cpu_speed_MHz:
+                                type: integer
+                                example: 2300
+                              root_disk_size_gB:
+                                type: integer
+                                example: 50
+                              network_rate:
+                                type: integer
+                                example: 980
+                              disk_iops:
+                                type: integer
+                                example: 2500
+                      worker_service_offering:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: service-offering-id
+                          name:
+                            type: string
+                            example: service-offering-name
+                          is_public:
+                            type: boolean
+                            example: true
+                          is_available:
+                            type: boolean
+                            example: true
+                          controller_only:
+                            type: boolean
+                            example: false
+                          worker_only:
                             type: boolean
                             example: true
                           hourly_price:
@@ -7068,11 +7832,30 @@ paths:
                       enabled: true
                       min_cpu: 2
                       min_memory: 2048
-                    service_offering:
+                    controller_service_offering:
                       id: service-offering-id
                       name: service-offering-name
                       is_public: true
                       is_available: true
+                      controller_only: true
+                      worker_only: false
+                      hourly_price:
+                        up: 100
+                        down: 100
+                      hardware:
+                        cpu_core: 4
+                        memory_mb: 4096
+                        cpu_speed_MHz: 2300
+                        root_disk_size_gB: 50
+                        network_rate: 980
+                        disk_iops: 2500
+                    worker_service_offering:
+                      id: service-offering-id
+                      name: service-offering-name
+                      is_public: true
+                      is_available: true
+                      controller_only: false
+                      worker_only: true
                       hourly_price:
                         up: 100
                         down: 100
@@ -7125,7 +7908,7 @@ paths:
                           min_memory:
                             type: integer
                             example: 2048
-                      service_offering:
+                      controller_service_offering:
                         type: object
                         properties:
                           id:
@@ -7138,6 +7921,63 @@ paths:
                             type: boolean
                             example: true
                           is_available:
+                            type: boolean
+                            example: true
+                          controller_only:
+                            type: boolean
+                            example: true
+                          worker_only:
+                            type: boolean
+                            example: false
+                          hourly_price:
+                            type: object
+                            properties:
+                              up:
+                                type: integer
+                                example: 100
+                              down:
+                                type: integer
+                                example: 100
+                          hardware:
+                            type: object
+                            properties:
+                              cpu_core:
+                                type: integer
+                                example: 4
+                              memory_mb:
+                                type: integer
+                                example: 4096
+                              cpu_speed_MHz:
+                                type: integer
+                                example: 2300
+                              root_disk_size_gB:
+                                type: integer
+                                example: 50
+                              network_rate:
+                                type: integer
+                                example: 980
+                              disk_iops:
+                                type: integer
+                                example: 2500
+                      worker_service_offering:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: service-offering-id
+                          name:
+                            type: string
+                            example: service-offering-name
+                          is_public:
+                            type: boolean
+                            example: true
+                          is_available:
+                            type: boolean
+                            example: true
+                          controller_only:
+                            type: boolean
+                            example: false
+                          worker_only:
                             type: boolean
                             example: true
                           hourly_price:
@@ -7407,6 +8247,261 @@ paths:
         required: true
         schema:
           type: ulid
+  '/zone/{zoneId}/kubernetes/{clusterId}/service-offering':
+    post:
+      summary: 'Update Service Offering'
+      operationId: updateServiceOffering
+      description: ' <aside class="notice">need <small class="badge">kubernetes:cluster:update-service-offering</small> ability for api token</aside>'
+      parameters: []
+      responses:
+        200:
+          description: 'Successful service offering update'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 01F8MECHZX3TBDSZ7XRADM79XE
+                    name: example-cluster
+                    description: 'This is a test cluster'
+                    zone_id: zone-id
+                    status: Running
+                    kubernetes_version:
+                      id: k8s-version-id
+                      version: 1.26.14
+                      enabled: true
+                      min_cpu: 2
+                      min_memory: 2048
+                    controller_service_offering:
+                      id: service-offering-id
+                      name: service-offering-name
+                      is_public: true
+                      is_available: true
+                      controller_only: true
+                      worker_only: false
+                      hourly_price:
+                        up: 100
+                        down: 100
+                      hardware:
+                        cpu_core: 4
+                        memory_mb: 4096
+                        cpu_speed_MHz: 2300
+                        root_disk_size_gB: 50
+                        network_rate: 980
+                        disk_iops: 2500
+                    worker_service_offering:
+                      id: service-offering-id
+                      name: service-offering-name
+                      is_public: true
+                      is_available: true
+                      controller_only: false
+                      worker_only: true
+                      hourly_price:
+                        up: 100
+                        down: 100
+                      hardware:
+                        cpu_core: 4
+                        memory_mb: 4096
+                        cpu_speed_MHz: 2300
+                        root_disk_size_gB: 50
+                        network_rate: 980
+                        disk_iops: 2500
+                    ssh_key: 'ssh-ed25519 ...'
+                    ha_enabled: false
+                    cluster_size: 1
+                    created_at: 1737794395
+                    updated_at: 1737794395
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 01F8MECHZX3TBDSZ7XRADM79XE
+                      name:
+                        type: string
+                        example: example-cluster
+                      description:
+                        type: string
+                        example: 'This is a test cluster'
+                      zone_id:
+                        type: string
+                        example: zone-id
+                      status:
+                        type: string
+                        example: Running
+                      kubernetes_version:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: k8s-version-id
+                          version:
+                            type: string
+                            example: 1.26.14
+                          enabled:
+                            type: boolean
+                            example: true
+                          min_cpu:
+                            type: integer
+                            example: 2
+                          min_memory:
+                            type: integer
+                            example: 2048
+                      controller_service_offering:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: service-offering-id
+                          name:
+                            type: string
+                            example: service-offering-name
+                          is_public:
+                            type: boolean
+                            example: true
+                          is_available:
+                            type: boolean
+                            example: true
+                          controller_only:
+                            type: boolean
+                            example: true
+                          worker_only:
+                            type: boolean
+                            example: false
+                          hourly_price:
+                            type: object
+                            properties:
+                              up:
+                                type: integer
+                                example: 100
+                              down:
+                                type: integer
+                                example: 100
+                          hardware:
+                            type: object
+                            properties:
+                              cpu_core:
+                                type: integer
+                                example: 4
+                              memory_mb:
+                                type: integer
+                                example: 4096
+                              cpu_speed_MHz:
+                                type: integer
+                                example: 2300
+                              root_disk_size_gB:
+                                type: integer
+                                example: 50
+                              network_rate:
+                                type: integer
+                                example: 980
+                              disk_iops:
+                                type: integer
+                                example: 2500
+                      worker_service_offering:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: service-offering-id
+                          name:
+                            type: string
+                            example: service-offering-name
+                          is_public:
+                            type: boolean
+                            example: true
+                          is_available:
+                            type: boolean
+                            example: true
+                          controller_only:
+                            type: boolean
+                            example: false
+                          worker_only:
+                            type: boolean
+                            example: true
+                          hourly_price:
+                            type: object
+                            properties:
+                              up:
+                                type: integer
+                                example: 100
+                              down:
+                                type: integer
+                                example: 100
+                          hardware:
+                            type: object
+                            properties:
+                              cpu_core:
+                                type: integer
+                                example: 4
+                              memory_mb:
+                                type: integer
+                                example: 4096
+                              cpu_speed_MHz:
+                                type: integer
+                                example: 2300
+                              root_disk_size_gB:
+                                type: integer
+                                example: 50
+                              network_rate:
+                                type: integer
+                                example: 980
+                              disk_iops:
+                                type: integer
+                                example: 2500
+                      ssh_key:
+                        type: string
+                        example: 'ssh-ed25519 ...'
+                      ha_enabled:
+                        type: boolean
+                        example: false
+                      cluster_size:
+                        type: integer
+                        example: 1
+                      created_at:
+                        type: integer
+                        example: 1737794395
+                      updated_at:
+                        type: integer
+                        example: 1737794395
+      tags:
+        - Kubernetes
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                new_worker_service_offering_id:
+                  type: string
+                  description: 'Optional: The ID of a new service offering to apply to worker nodes. If omitted, worker nodes are unchanged.'
+                  example: 01F8MECHZX3TBDSZ7XRADM79XF
+                  nullable: true
+                new_controller_service_offering_id:
+                  type: string
+                  description: 'Optional: The ID of a new service offering to apply to controller nodes. If omitted, controller nodes are unchanged.'
+                  example: 01F8MECHZX3TBDSZ7XRADM79XG
+                  nullable: true
+    parameters:
+      -
+        in: path
+        name: zoneId
+        description: 'The ID of the zone.'
+        example: 01F8MECHZX3TBDSZ7XRADM79XE
+        required: true
+        schema:
+          type: ulid
+      -
+        in: path
+        name: clusterId
+        description: 'The ID of the cluster.'
+        example: 01F8MECHZX3TBDSZ7XRADM79XE
+        required: true
+        schema:
+          type: ulid
   '/zone/{zoneId}/kubernetes/service-offerings':
     get:
       summary: 'List Service Offerings'
@@ -7420,7 +8515,7 @@ paths:
             text/plain:
               schema:
                 type: string
-                example: "{\n        \"data\": [\n            {\n                \"id\": \"01hytvspdx8rzae97ba2qc8fvs\",\n                \"name\": \"n04-04-050-980-v3\",\n                \"is_public\": true,\n                \"is_available\": true,\n                \"hourly_price\": {\n                    \"up\": 100,\n                    \"down\": 100\n                },\n                \"hourly_price_no_discount\": {\n                    \"up\": 100,\n                    \"down\": 100\n                },\n                \"description\": null,\n                \"hardware\": {\n                    \"cpu_core\": 4,\n                    \"memory_mb\": 4096,\n                    \"cpu_speed_MHz\": 2300,\n                    \"root_disk_size_gB\": 50,\n                    \"network_rate\": 980,\n                    \"disk_iops\": 2500\n                }\n            },\n            // Additional service offerings...\n        ]\n    }"
+                example: "{\n        \"data\": [\n            {\n                \"id\": \"01hytvspdx8rzae97ba2qc8fvs\",\n                \"name\": \"n04-04-050-980-v3\",\n                \"is_public\": true,\n                \"is_available\": true,\n                \"node_type\":\"worker\",\n                \"hourly_price\": {\n                    \"up\": 100,\n                    \"down\": 100\n                },\n                \"hourly_price_no_discount\": {\n                    \"up\": 100,\n                    \"down\": 100\n                },\n                \"description\": null,\n                \"hardware\": {\n                    \"cpu_core\": 4,\n                    \"memory_mb\": 4096,\n                    \"cpu_speed_MHz\": 2300,\n                    \"root_disk_size_gB\": 50,\n                    \"network_rate\": 980,\n                    \"disk_iops\": 2500\n                }\n            },\n            // Additional service offerings...\n        ]\n    }"
       tags:
         - Kubernetes
     parameters:
@@ -7480,7 +8575,7 @@ paths:
         in: path
         name: zoneId
         description: ''
-        example: consectetur
+        example: dolor
         required: true
         schema:
           type: string
